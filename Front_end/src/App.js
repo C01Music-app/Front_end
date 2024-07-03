@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Master from "./pages/Master/Master";
-import {List} from "./components/List/List";
+import {PlayList} from "./components/List/PlayLists";
 
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
           <Routes>
               <Route path="/" element={<Master />} >
-                  <Route path="/" element={<List />} />
+                  <Route path="/" element={<PlayList />} />
               </Route>
           </Routes>
       </BrowserRouter>
