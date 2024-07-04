@@ -5,11 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="572440d0-965d-4726-b057-744deacf991c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/List/img/hinh.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/BannerAlbumHot/banner-album-hot-nhac-edm.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/BannerAlbumHot/banner-album-hot-nhac-han.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/BannerAlbumHot/banner-album-hot-nhac-pop-au-my.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/BannerAlbumHot/banner-album-hot-nhac-tre.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/BannerAlbumHot/banner-album-hot-rap-viet.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/BannerSinger/banner-g5-squad.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/BannerSinger/banner-ho-quang-hieu.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/BannerSinger/banner-jack-97.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/BannerSinger/banner-phan-manh-quynh.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/BannerSinger/banner-son-tung-mtp.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/album.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/banner-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/banner-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/banner-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/accsets/user.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/List/AlbumList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/List/AllList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/List/Slider.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/List/PlayLists.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/PlayLists.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Ảnh màn hình 2024-06-19 lúc 14.00.27.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/service/build library.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/build library.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +40,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="JSX File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -40,29 +61,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Node.js.PlayLists.js.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "huy",
-    "last_opened_file_path": "/Users/luuhuy/Desktop/front-end-h/Front_end/src/components/List/img",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.PlayLists.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;huy&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/luuhuy/Desktop/front-end-h/Front_end/src&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/components/List/img" />
       <recent name="$PROJECT_DIR$/src/pages" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/layout" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/List" />
+      <recent name="$PROJECT_DIR$/src/reducers" />
+      <recent name="$PROJECT_DIR$/src/components/List/Slider" />
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/layouts" />
     </key>
   </component>
@@ -86,7 +112,8 @@
       <workItem from="1719892930948" duration="10152000" />
       <workItem from="1719903732564" duration="2865000" />
       <workItem from="1719984120326" duration="2277000" />
-      <workItem from="1719989414999" duration="5482000" />
+      <workItem from="1719989414999" duration="9344000" />
+      <workItem from="1720055534675" duration="4316000" />
     </task>
     <servers />
   </component>
