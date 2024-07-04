@@ -40,10 +40,6 @@ export function Artists() {
                 </div>
             ))}
             </div>
-
-
-
-
         </>
     )
 }
