@@ -1,5 +1,5 @@
 export function Footer() {
-    return(
+    return (
         <>
             <footer className="sticky-footer bg-white">
                 <div className="container my-auto">

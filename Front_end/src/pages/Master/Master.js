@@ -6,7 +6,6 @@ import {Sidebar} from "../../layout/Sidebar/Sidebar";
 function Master() {
     return (
         <>
-
             <div id="wrapper">
                 <Sidebar/>
                 <div id="content-wrapper" class="d-flex flex-column">

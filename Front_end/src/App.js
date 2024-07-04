@@ -1,18 +1,18 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Master from "./pages/Master/Master";
 import './App.css';
-import Slider from "./components/List/Slider";
+import {AllList} from "./components/List/AllList";
 
 function App() {
     return (
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Master />}>
-                        <Route path="/" element={<Slider />}/>
-                    </Route>
-                </Routes>
-            </BrowserRouter>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Master/>}>
+                    <Route path="/" element={<AllList/>}/>
+                </Route>
+            </Routes>
+        </BrowserRouter>
     );
 }
 

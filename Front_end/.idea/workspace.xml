@@ -5,32 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="572440d0-965d-4726-b057-744deacf991c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerAlbumHot/banner-album-hot-nhac-edm.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerAlbumHot/banner-album-hot-nhac-han.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerAlbumHot/banner-album-hot-nhac-pop-au-my.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerAlbumHot/banner-album-hot-nhac-tre.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerAlbumHot/banner-album-hot-rap-viet.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerSinger/banner-g5-squad.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerSinger/banner-ho-quang-hieu.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerSinger/banner-jack-97.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerSinger/banner-phan-manh-quynh.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerSinger/banner-son-tung-mtp.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/album.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/banner-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/banner-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/banner-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/user.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/List/AlbumList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/List/AllList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/List/Slider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/List/img/Artists/Artists.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/backend.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/ArtistsService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/List/AlbumList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/AlbumList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/List/PlayLists.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/PlayLists.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/service/build library.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/build library.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/List/Slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/Slider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Master/Master.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Master/Master.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,6 +96,9 @@
       <workItem from="1719984120326" duration="2277000" />
       <workItem from="1719989414999" duration="9344000" />
       <workItem from="1720055534675" duration="4316000" />
+      <workItem from="1720059894118" duration="1835000" />
+      <workItem from="1720062760498" duration="1032000" />
+      <workItem from="1720063925187" duration="3835000" />
     </task>
     <servers />
   </component>

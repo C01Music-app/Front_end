@@ -1,14 +1,16 @@
-import {Sidebar} from "../../layout/Sidebar/Sidebar";
 import {PlayList} from "./PlayLists";
+import Slider from "./Slider";
+import {AlbumList} from "./AlbumList";
+import {Artists} from "./Artists/Artists";
 
 export function AllList() {
-    return(
+    return (
         <>
-            <div className="container">
-                <Sidebar/>
+            <div style={{padding: '0px 24px'}}><Slider/>
                 <PlayList/>
-                <AllList/>
-            </div>
+                <AlbumList/>
+                <Artists/></div>
+
         </>
     )
 }
