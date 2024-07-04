@@ -1,7 +1,7 @@
 import {Outlet} from "react-router-dom";
-import {Sidebar} from "../../layout/Sidebar/Sidebar";
 import {Topbar} from "../../layout/Topbar/Topbar";
 import {Footer} from "../../layout/Footer/Footer";
+import {Sidebar} from "../../layout/Sidebar/Sidebar";
 
 function Master() {
     return (
