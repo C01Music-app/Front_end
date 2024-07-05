@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="572440d0-965d-4726-b057-744deacf991c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/huycss/huy.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/huycss/huy.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/Footer/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/Footer/Footer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/List/AlbumList/AlbumList.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/List/AlbumList/AlbumList1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/List/SongList/SongList.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/List/SongList/SongList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/List/img/ImageSlider.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/List/AllList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/AllList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/List/Slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/Slider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/Sidebar/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/Sidebar/Sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/build library.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/build library.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +50,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Node.js.AllList.js.executor": "Debug",
+    "Node.js.AllList.js.executor": "Run",
     "Node.js.Artists.js.executor": "Run",
     "Node.js.PlayLists.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -52,6 +62,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
@@ -97,6 +108,9 @@
       <workItem from="1720059894118" duration="1835000" />
       <workItem from="1720062760498" duration="1032000" />
       <workItem from="1720063925187" duration="13877000" />
+      <workItem from="1720141265824" duration="18848000" />
+      <workItem from="1720187223514" duration="1440000" />
+      <workItem from="1720192601975" duration="4319000" />
     </task>
     <servers />
   </component>

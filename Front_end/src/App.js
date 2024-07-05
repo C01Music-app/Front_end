@@ -3,7 +3,6 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Master from "./pages/Master/Master";
 import './App.css';
 import {AllList} from "./components/List/AllList";
-import {Artists} from "./components/List/Artists/Artists";
 
 function App() {
     return (

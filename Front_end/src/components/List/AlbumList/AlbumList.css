@@ -1,0 +1,46 @@
+.app {
+    background-color: #170F23;
+    color: white;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.zm-section-title {
+    font-size: 24px;
+    color: white;
+}
+
+.zm-carousel-wrapper {
+    margin-top: 20px;
+}
+
+.zm-carousel__container {
+    display: flex;
+    gap: 20px;
+}
+
+.zm-carousel-item {
+    flex: 1;
+    max-width: 20%;
+}
+
+.playlist-wrapper {
+    background-color: #170F23;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.zm-card-image img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.zm-card-content {
+    margin-top: 10px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #b0b0b0;
+}
