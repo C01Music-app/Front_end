@@ -1,5 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {artistsService} from "../../../service/ArtistsService";
+import {Link} from "react-router-dom";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import SliderH from "react-slick";
 
 
 export function Artists() {
@@ -8,37 +12,44 @@ export function Artists() {
     const getAllArtists = async () => {
         const response = await artistsService();
         setArtists(response);
+        console.log(response);
     }
 
     useEffect(() => {
         getAllArtists();
     }, [])
 
+    var settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
+
     if (!artists) {
-        return <div>Loading...</div>;
+        return <div>..loading...</div>;
     }
 
     return (
         <>
-
-            <h1 className="ath-0" style={{paddingLeft : '10px'}}>Ca sĩ mới</h1>
-
+            <h1 className="ath-0" style={{paddingLeft: '10px' , color:'white'}}>Ca sĩ mới</h1>
             <div className="row-h">
                 {artists.map((artist) => (
-                <div className="card-deck-h">
-                    <div className="card">
-                        <img className="card-img-top" alt="Card image cap"/>
-                        <div className="card-body">
-                            <h5 className="card-title">{artist.name}</h5>
-                            <h5 className="card-title">{artist.songs.category}</h5>
-                            <p className="card-text">This is a longer card with supporting text below as a natural
-                                lead-in to additional content. This content is a little bit longer.</p>
-                            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small>
-                            </p>
-                        </div>
+                    <div className="card-deck-h col-lg-4 col-xl-3 col-md-6" key={artist.id}>
+                        <Link to={'/detail/' + artist.id} className="link-none">
+                            <div className="card-h1"
+                                 style={{background: `url(${artist.img})`, backgroundSize: 'cover'}}>
+
+                            </div>
+                            <div className="card-body">
+                                <h5 className="card-title title-h" style={{textAlign:'center'}}>
+                                    {artist.name}
+                                </h5>
+                            </div>
+                        </Link>
                     </div>
-                </div>
-            ))}
+                ))}
             </div>
         </>
     )
