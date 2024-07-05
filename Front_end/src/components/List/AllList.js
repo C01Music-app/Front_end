@@ -9,8 +9,8 @@ export function AllList() {
             <div style={{padding: '0px 24px'}}><Slider/>
                 <PlayList/>
                 <AlbumList/>
-                <Artists/></div>
-
+                <Artists/>
+            </div>
         </>
     )
 }

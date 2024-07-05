@@ -9,3 +9,12 @@ export const artistsService = async () => {
         console.log(err);
     }
 }
+
+export const getByIdArtistsService = async (id) => {
+    try {
+        const res = await axios.get(URL_API + '/artists/' + id);
+        return res.data;
+    }catch(err) {
+        console.log(err);
+    }
+}
