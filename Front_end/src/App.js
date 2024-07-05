@@ -1,21 +1,19 @@
-import './App.css';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import React from 'react';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Master from "./pages/Master/Master";
-import {PlayList} from "./components/List/PlayLists";
-
+import './App.css';
+import {AllList} from "./components/List/AllList";
 
 function App() {
-  return (
-    <>
-      <BrowserRouter>
-          <Routes>
-              <Route path="/" element={<Master />} >
-                  <Route path="/" element={<PlayList />} />
-              </Route>
-          </Routes>
-      </BrowserRouter>
-    </>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Master/>}>
+                    <Route path="/" element={<AllList/>}/>
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;
