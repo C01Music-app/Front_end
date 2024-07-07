@@ -5,32 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="572440d0-965d-4726-b057-744deacf991c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerAlbumHot/banner-album-hot-nhac-edm.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerAlbumHot/banner-album-hot-nhac-han.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerAlbumHot/banner-album-hot-nhac-pop-au-my.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerAlbumHot/banner-album-hot-nhac-tre.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerAlbumHot/banner-album-hot-rap-viet.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerSinger/banner-g5-squad.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerSinger/banner-ho-quang-hieu.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerSinger/banner-jack-97.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerSinger/banner-phan-manh-quynh.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/BannerSinger/banner-son-tung-mtp.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/album.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/banner-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/banner-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/banner-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/accsets/user.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/List/AlbumList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/List/AllList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/List/Slider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/List/AlbumList/AlbumList.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/List/AlbumList/AlbumList1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/List/SongList/SongList.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/List/SongList/SongList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/List/img/ImageSlider.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/List/PlayLists.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/PlayLists.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/service/build library.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/build library.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/List/AllList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/AllList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/List/Slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/Slider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/Sidebar/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/Sidebar/Sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/build library.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/build library.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +28,7 @@
       <list>
         <option value="JSX File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -61,21 +48,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.PlayLists.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;huy&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/luuhuy/Desktop/front-end-h/Front_end/src&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.AllList.js.executor": "Run",
+    "Node.js.Artists.js.executor": "Run",
+    "Node.js.PlayLists.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "huy",
+    "last_opened_file_path": "/Users/luuhuy/Desktop/front-end-h/Front_end/src",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -114,6 +105,12 @@
       <workItem from="1719984120326" duration="2277000" />
       <workItem from="1719989414999" duration="9344000" />
       <workItem from="1720055534675" duration="4316000" />
+      <workItem from="1720059894118" duration="1835000" />
+      <workItem from="1720062760498" duration="1032000" />
+      <workItem from="1720063925187" duration="13877000" />
+      <workItem from="1720141265824" duration="18848000" />
+      <workItem from="1720187223514" duration="1440000" />
+      <workItem from="1720192601975" duration="4319000" />
     </task>
     <servers />
   </component>

@@ -1,0 +1,28 @@
+body {
+    background-color: #1a1a1a;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.gallery {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.gallery-container {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item {
+    min-width: 200px;
+    margin: 0 10px;
+}
+
+.gallery-item img {
+    width: 100%;
+    border-radius: 10px;
+}

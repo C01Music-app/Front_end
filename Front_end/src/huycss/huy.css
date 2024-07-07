@@ -1,0 +1,55 @@
+.row-h {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.ph-0 {
+    padding: 0;
+}
+
+.ph-1 {
+    padding: 0;
+}
+.card-deck-h {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 10px;
+}
+.ath-0 {
+
+}
+.bg-gradient-primary {
+    background-color: #040d28 !important;
+    background-image: linear-gradient(180deg, #231B2E 10%, #231B2E 100%) !important;
+}
+
+.bg-white {
+    background-color: #170F23 !important;
+}
+#wrapper #content-wrapper {
+    background-color: #170F23;
+    width: 100%;
+    overflow-x: hidden;
+}
+.circle-img {
+    border-radius: 50%;
+    width: 100px;  /* Bạn có thể thay đổi kích thước tùy ý */
+    height: 100px; /* Đảm bảo chiều rộng và chiều cao bằng nhau để ảnh là hình tròn */
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+}
+.card-h1{
+    width: 300px;
+    height: 300px;
+    border-radius: 1012px;
+    overflow: hidden;
+    scale: 0.8;
+}
+.title-h {
+    color: #9f9e9e;
+}
+.link-none {
+    text-decoration: none;
+}
+.link-none:hover {
+    text-decoration: none;
+}
