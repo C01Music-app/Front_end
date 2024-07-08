@@ -1,0 +1,34 @@
+.vivi {
+  color: azure;
+}
+a {
+  text-decoration: none; /* Xóa dấu gạch chân */
+}
+.vic {
+  color: white; /* Đặt màu chữ thành màu trắng */
+}
+.custom-btn {
+  border: none; /* Loại bỏ khung */
+  background: none; /* Loại bỏ nền */
+  outline: none; /* Loại bỏ viền khi nhấn vào */
+  cursor: pointer;
+}
+.viii {
+  padding: 0;
+}
+.vi22 {
+  border-radius: 100px;
+  padding: 2px 12px 6px 12px !important;
+}
+.custom-link {
+  color: white; /* Đặt màu chữ thành màu trắng */
+  text-decoration: none; /* Xóa dấu gạch chân */
+}
+.custom-link:hover {
+  color: rgb(
+    154,
+    102,
+    227
+  ) !important; /* Đảm bảo màu chữ vẫn trắng khi di chuột qua */
+  text-decoration: none !important; /* Đảm bảo không có dấu gạch chân khi di chuột qua */
+}

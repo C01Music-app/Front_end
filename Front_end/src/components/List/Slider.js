@@ -1,50 +1,38 @@
-import {MDBCarousel, MDBCarouselCaption, MDBCarouselItem} from "mdb-react-ui-kit";
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import './img/ImageSlider.css';
 
+const images = [
+    'https://photo-zmp3.zmdcdn.me/banner/4/9/4/a/494a2c78b19387bff1eb1da5fddbe500.jpg',
+    'https://photo-zmp3.zmdcdn.me/banner/8/4/e/4/84e496159fd5e94624dc869267d6929a.jpg',
+    'https://photo-zmp3.zmdcdn.me/banner/2/d/3/7/2d378748d8fec62f7270cf726d4d309d.jpg'
+];
 
-const Slider = () => {
+const ImageSlider = () => {
+    const [currentImages, setCurrentImages] = useState(images);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImages((prevImages) => {
+                const newImages = [...prevImages];
+                newImages.push(newImages.shift());
+                return newImages;
+            });
+        }, 2000);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
-        <>
-            <div>
-                <div style={{maxWidth: '1200'}}>
-                    <MDBCarousel showIndicators showControls fade>
-                        <MDBCarouselItem itemId={1}>
-                            <img src='https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg'
-                                 className='d-block w-100'
-                                 alt='...'/>
-                            <MDBCarouselCaption>
-                                <h5>First slide label</h5>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </MDBCarouselCaption>
-                        </MDBCarouselItem>
-
-                        <MDBCarouselItem itemId={2}>
-                            <img src='https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg'
-                                 className='d-block w-100'
-                                 alt='...'/>
-                            <MDBCarouselCaption>
-                                <h5>Second slide label</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </MDBCarouselCaption>
-                        </MDBCarouselItem>
-
-                        <MDBCarouselItem itemId={3}>
-                            <img src='https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg'
-                                 className='d-block w-100'
-                                 alt='...'/>
-                            <MDBCarouselCaption>
-                                <h5>Third slide label</h5>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                            </MDBCarouselCaption>
-                        </MDBCarouselItem>
-                    </MDBCarousel>
-                </div>
+        <div className="gallery">
+            <div className="gallery-container">
+                {currentImages.map((image, index) => (
+                    <div className="gallery-item" key={index}>
+                        <img src={image} alt={`Slide ${index}`} />
+                    </div>
+                ))}
             </div>
+        </div>
+    );
+};
 
-
-        </>
-
-    )
-}
-export default Slider
-
+export default ImageSlider;
