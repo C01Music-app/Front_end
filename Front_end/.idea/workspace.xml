@@ -5,21 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="572440d0-965d-4726-b057-744deacf991c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/img/Game_Tile_com.zing_.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/image-zingmp3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/images.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/zing-mp3-la-ung-dung-nhac-so-pho-bien-o-viet-nam.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component-css/menuLogin.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/List/UserList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/context/AppContext.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/layout/Topbar/MenuLogin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/login/Login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/register/Register.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/userService/UserService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/Topbar/Topbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/Topbar/Topbar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,25 +37,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Node.js.AllList.js.executor": "Run",
-    "Node.js.Artists.js.executor": "Run",
-    "Node.js.PlayLists.js.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/mac/Documents/FE/Front_end/Front_end",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.AllList.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.Artists.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.PlayLists.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mac/Documents/FE/Front_end/Front_end&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -118,7 +104,8 @@
       <workItem from="1720402254973" duration="14997000" />
       <workItem from="1720417751425" duration="94000" />
       <workItem from="1720419784235" duration="171000" />
-      <workItem from="1720445115404" duration="533000" />
+      <workItem from="1720445115404" duration="1392000" />
+      <workItem from="1720448462242" duration="362000" />
     </task>
     <servers />
   </component>
