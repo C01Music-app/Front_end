@@ -2,6 +2,9 @@ import { useState } from "react";
 import './Topbar.css'
 import { artistsSearch } from "../../service/ArtistsService";
 import {Link} from "react-router-dom";
+import axios from "axios";
+import {showAlbum} from "../../service/AlbumService";
+import {showSongs} from "../../service/SongsService";
 
 export function Topbar() {
     const [search, setSearch] = useState("");
@@ -9,16 +12,23 @@ export function Topbar() {
 
     const filteredSearch = async (searchValue) => {
         try {
-            const res = await artistsSearch(searchValue);
-            if (res) {
-                setFilteredResults(res);
-            } else {
-                setFilteredResults([]);
-            }
+            const [artistsRes, songsRes, albumsRes] = await Promise.all([
+                artistsSearch(searchValue),
+                showSongs(searchValue),
+                showAlbum(searchValue),
+            ]);
+            const combinedResults = [
+                ...(artistsRes || []).map((res) => ({ ...res, type: 'Artist' })),
+                ...(songsRes || []).map((res) => ({ ...res, type: 'Song' })),
+                ...(albumsRes || []).map((res) => ({ ...res, type: 'Album' })),
+            ];
+            setFilteredResults(combinedResults);
         } catch (e) {
             console.log(e);
+            setFilteredResults([]);
         }
     };
+
     const handleChange = (e) => {
         const searchValue = e.target.value;
         setSearch(searchValue);
@@ -49,12 +59,13 @@ export function Topbar() {
                             />
                         </div>
                     </form>
-                        <div className="results-list">
-                            {filteredResults.map((result, index) => (
-                                <div key={index}>{result.name}</div>
-                            ))}
-                        </div>
-
+                    <div className="results-list">
+                        {filteredResults.map((result, index) => (
+                            <div key={index}>
+                                {result.name} ({result.type})
+                            </div>
+                        ))}
+                    </div>
                 </div>
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item dropdown no-arrow d-sm-none">

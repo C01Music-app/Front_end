@@ -1,82 +1,124 @@
 .app {
-    background-color: #170F23;
-    color: white;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+  background-color: #170f23;
+  color: white;
+  padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 h1 {
-    margin: 0;
+  margin: 0;
 }
 
 .filters {
-    display: flex;
+  display: flex;
 }
 
 .filter-button {
-    background-color: #4a4a4a;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    margin: 0 5px;
-    cursor: pointer;
-    border-radius: 20px;
+  background-color: #4a4a4a;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 20px;
 }
 
 .filter-button.active {
-    background-color: #6a0dad;
+  background-color: #6a0dad;
 }
 
 .songs-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, auto);
-    gap: 20px;
-    margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, auto);
+  gap: 20px;
+  margin-top: 20px;
 }
 
 .song-item {
-    background-color: #170F23;
-    padding: 10px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
+  background-color: #170f23;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .song-image {
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    margin-right: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  margin-right: 10px;
 }
 
 .song-info {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
 }
 
 .song-title {
-    margin: 0;
-    font-size: 16px;
+  margin: 0;
+  font-size: 16px;
+  text-decoration: none;
 }
 
 .song-title .premium {
-    background-color: #ffa500;
-    color: black;
-    padding: 2px 5px;
-    margin-left: 5px;
-    border-radius: 3px;
+  background-color: #ffa500;
+  color: black;
+  padding: 2px 5px;
+  margin-left: 5px;
+  border-radius: 3px;
 }
 
 .song-artist,
 .song-time {
-    margin: 0;
-    font-size: 14px;
-    color: #b0b0b0;
+  margin: 0;
+  font-size: 14px;
+  color: #b0b0b0;
+}
+.custom-link {
+  color: white; /* Đặt màu chữ thành màu trắng */
+  text-decoration: none; /* Xóa dấu gạch chân */
+}
+.custom-link:hover {
+  color: rgb(
+    154,
+    102,
+    227
+  ) !important; /* Đảm bảo màu chữ vẫn trắng khi di chuột qua */
+  text-decoration: none !important; /* Đảm bảo không có dấu gạch chân khi di chuột qua */
+}
+/* Đảm bảo media-container bao bọc và sử dụng Flexbox để bố trí các phần tử */
+.media-container {
+  display: flex;
+  justify-content: flex-end; /* Đẩy media-right sang bên phải */
+  align-items: center; /* Căn giữa theo chiều dọc nếu cần */
+  width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng của phần tử cha */
+  padding: 10px; /* Khoảng cách giữa các phần tử nếu cần */
+}
+
+.media-right {
+  display: flex;
+  align-items: center; /* Căn giữa các phần tử con theo chiều dọc */
+}
+
+.custom-btn {
+  margin-right: 10px; /* Khoảng cách giữa nút và thời lượng */
+}
+
+.duration {
+  font-size: 14px; /* Điều chỉnh kích thước chữ nếu cần */
+  color: #000; /* Màu chữ */
+}
+.custom-btn {
+  border: none; /* Loại bỏ khung */
+  background: none; /* Loại bỏ nền */
+  outline: none; /* Loại bỏ viền khi nhấn vào */
+  cursor: pointer;
 }
