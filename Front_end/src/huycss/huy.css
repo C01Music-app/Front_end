@@ -31,3 +31,25 @@
     width: 100%;
     overflow-x: hidden;
 }
+.circle-img {
+    border-radius: 50%;
+    width: 100px;  /* Bạn có thể thay đổi kích thước tùy ý */
+    height: 100px; /* Đảm bảo chiều rộng và chiều cao bằng nhau để ảnh là hình tròn */
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+}
+.card-h1{
+    width: 300px;
+    height: 300px;
+    border-radius: 1012px;
+    overflow: hidden;
+    scale: 0.8;
+}
+.title-h {
+    color: #9f9e9e;
+}
+.link-none {
+    text-decoration: none;
+}
+.link-none:hover {
+    text-decoration: none;
+}

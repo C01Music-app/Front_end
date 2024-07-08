@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="572440d0-965d-4726-b057-744deacf991c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/huycss/huy.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/huycss/huy.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/Footer/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/Footer/Footer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/List/SongList/DetailSong.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/vicss/vi.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/AlbumService.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/SongsService.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/List/AlbumList/AlbumList1.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/AlbumList/AlbumList1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/List/AllList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/AllList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/List/PlayLists.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/PlayLists.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/List/SongList/SongList.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/SongList/SongList.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/List/SongList/SongList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/SongList/SongList.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,24 +47,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Node.js.AllList.js.executor": "Debug",
-    "Node.js.Artists.js.executor": "Run",
-    "Node.js.PlayLists.js.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "huy",
-    "last_opened_file_path": "/Users/luuhuy/Desktop/front-end-h/Front_end/src",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.AllList.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.Artists.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.PlayLists.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Merging huy&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/luuhuy/Desktop/front-end-h/Front_end/src&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -97,6 +107,13 @@
       <workItem from="1720059894118" duration="1835000" />
       <workItem from="1720062760498" duration="1032000" />
       <workItem from="1720063925187" duration="13877000" />
+      <workItem from="1720141265824" duration="18848000" />
+      <workItem from="1720187223514" duration="1440000" />
+      <workItem from="1720192601975" duration="4602000" />
+      <workItem from="1720328134632" duration="1803000" />
+      <workItem from="1720402254973" duration="14997000" />
+      <workItem from="1720417751425" duration="94000" />
+      <workItem from="1720419784235" duration="171000" />
     </task>
     <servers />
   </component>
