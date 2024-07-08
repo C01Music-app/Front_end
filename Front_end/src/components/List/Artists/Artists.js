@@ -3,7 +3,6 @@ import {artistsService} from "../../../service/ArtistsService";
 import {Link} from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import SliderH from "react-slick";
 
 
 export function Artists() {
@@ -12,20 +11,12 @@ export function Artists() {
     const getAllArtists = async () => {
         const response = await artistsService();
         setArtists(response);
-        console.log(response);
     }
 
     useEffect(() => {
         getAllArtists();
     }, [])
 
-    var settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-    };
 
     if (!artists) {
         return <div>..loading...</div>;
@@ -40,7 +31,6 @@ export function Artists() {
                         <Link to={'/detail/' + artist.id} className="link-none">
                             <div className="card-h1"
                                  style={{background: `url(${artist.img})`, backgroundSize: 'cover'}}>
-
                             </div>
                             <div className="card-body">
                                 <h5 className="card-title title-h" style={{textAlign:'center'}}>

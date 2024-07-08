@@ -4,6 +4,7 @@ import {AlbumList} from "./AlbumList";
 import {Artists} from "./Artists/Artists";
 import SongList from "./SongList/SongList";
 import AlbumList1 from "./AlbumList/AlbumList1";
+import {DetailArtists} from "./Artists/DetailArtists";
 
 export function AllList() {
     return (

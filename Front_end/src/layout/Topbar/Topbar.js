@@ -1,27 +1,62 @@
-export function Topbar({children}) {
+import { useState } from "react";
+import './Topbar.css'
+import { artistsSearch } from "../../service/ArtistsService";
+import {Link} from "react-router-dom";
+
+export function Topbar() {
+    const [search, setSearch] = useState("");
+    const [filteredResults, setFilteredResults] = useState([]);
+
+    const filteredSearch = async (searchValue) => {
+        try {
+            const res = await artistsSearch(searchValue);
+            if (res) {
+                setFilteredResults(res);
+            } else {
+                setFilteredResults([]);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    };
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+        setSearch(searchValue);
+        if (searchValue) {
+            filteredSearch(searchValue);
+        } else {
+            setFilteredResults([]);
+        }
+    };
+
     return (
         <>
             <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
                 <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
                     <i className="fa fa-bars"></i>
                 </button>
-
-                <form
-                    className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div className="input-group">
-                        <input type="text" className="form-control bg-light border-0 small" placeholder="Search for..."
-                               aria-label="Search" aria-describedby="basic-addon2"/>
-                        <div className="input-group-append">
-                            <button className="btn btn-primary" type="button">
-                                <i className="fas fa-search fa-sm"></i>
-                            </button>
+                <div className="search-container">
+                    <form className="search-form">
+                        <div className="search-input-group">
+                            <i className="fas fa-search search-icon"></i>
+                            <input
+                                type="text"
+                                className="search-input"
+                                placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..."
+                                aria-label="Search"
+                                value={search}
+                                onChange={handleChange}
+                            />
                         </div>
-                    </div>
-                </form>
+                    </form>
+                        <div className="results-list">
+                            {filteredResults.map((result, index) => (
+                                <div key={index}>{result.name}</div>
+                            ))}
+                        </div>
 
+                </div>
                 <ul className="navbar-nav ml-auto">
-
                     <li className="nav-item dropdown no-arrow d-sm-none">
                         <a className="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
