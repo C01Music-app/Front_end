@@ -8,10 +8,10 @@ import { DetailSong } from "./components/List/SongList/DetailSong";
 function App() {
   return (
     <BrowserRouter>
-      <Master />
       <Routes>
-        <Route path="/" element={<AllList />} />
-        {/* <Route path="/songs/detail/:id" element={<DetailSong />} /> */}
+        <Route path="/" element={<Master />} />
+        {/* <Route path="/" element={<AllList />} /> */}
+        <Route path="/songs/detail/:id" element={<DetailSong />} />
       </Routes>
     </BrowserRouter>
   );
