@@ -73,9 +73,9 @@ const AlbumList1 = () => {
                         </figure>
                       </div>
                     </a>
-                    {/* <div className="zm-card-content">
-                      <h3 className="mt-10 subtitle">{album.description}</h3>
-                    </div> */}
+                    <div className="zm-card-content">
+                      <h3 className="mt-10 subtitle">{album.title}</h3>
+                    </div>
                   </div>
                 </div>
               </div>
