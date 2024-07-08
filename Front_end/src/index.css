@@ -69,3 +69,7 @@ code {
 .card-footer {
   font-size: 0.8rem;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
