@@ -26,9 +26,14 @@ export const findByID = async (id) => {
   const res = await axios.get(`http://localhost:8080/songs/detail/${id}`);
   return res.data;
 };
+
 export const songSearch = async (searchValue) => {
-  const res = await axios.get(`http://localhost:8080/songs/search`, {
-    params: { name: searchValue },
-  });
-  return res.data;
+  try {
+    const res = await axios.get(`http://localhost:8080/songs/search`, {
+      params: { name: searchValue },
+    });
+    return res.data;
+  } catch (e) {
+    console.log(e);
+  }
 };
