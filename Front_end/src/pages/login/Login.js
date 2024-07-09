@@ -50,7 +50,7 @@ export default function Login() {
                     }}
                 >
                     {({isSubmitting}) => (
-                        <div className="h-screen w-screen flex items-center justify-center">
+                        <div className="h-screen w-screen flex items-center justify-center ">
                             <Form>
                                 <div
                                     className="h-[80vh] w-[80vw] flex items-center justify-center rounded-md bg-white shadow-lg">
@@ -61,14 +61,14 @@ export default function Login() {
                                         className="w-1/2 h-full bg-[#f5f5f5] flex flex-col p-20 justify-between rounded-md">
                                         <div className="w-full flex flex-col">
                                             <div className="w-full flex flex-col mb-5">
-                                                <h1 className="text-base mb-2" style={{ fontSize: '2em' }}>
-                                                    Welcome <span className="text-blue-500" style={{ fontSize: '3em' }}>Z</span>
+                                                <h1 className="text-black mb-2" style={{ fontSize: '2em' }}>
+                                                    Welcome <span className="text-blue-500" style={{ fontSize: '2em' }}>Z</span>
                                                     <span
-                                                    className="text-green-500" style={{ fontSize: '3em' }}>i</span>
+                                                    className="text-green-500" style={{ fontSize: '2em' }}>i</span>
                                                     <span
-                                                    className="text-orange-500" style={{ fontSize: '3em' }}>n</span>
+                                                    className="text-orange-500" style={{ fontSize: '2em' }}>n</span>
                                                     <span
-                                                    className="text-pink-500" style={{ fontSize: '3em' }}>g</span>
+                                                    className="text-pink-500" style={{ fontSize: '2em' }}>g</span>
                                                      <span
                                                     className="text-purple-500" >mp3</span>
                                                 </h1>
@@ -110,10 +110,10 @@ export default function Login() {
                                                 </button>
                                                 </div>
                                             </div>
-                                            <div className="w-full flex items-center justify-center relative py-2">
-                                                <div className="w-full h-[1px] bg-black"></div>
-                                                <p className="text-lg absolute text-black/100 bg-blue-50 my-4">or</p>
-                                            </div>
+                                            {/*<div className="w-full flex items-center justify-center relative py-2">*/}
+                                            {/*    <div className="w-full h-[1px] bg-black"></div>*/}
+                                            {/*    <p className="text-lg absolute text-black/100 bg-blue-50 my-4">or</p>*/}
+                                            {/*</div>*/}
                                             <div>
                                                 <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/login-google&response_type=code
     &client_id=429933962028-7fp58kknkiedmvf5lue15e88ju1dl7sq.apps.googleusercontent.com&approval_prompt=force"
@@ -158,7 +158,5 @@ export default function Login() {
         </>
     )
 
-    function back() {
-        navigate("/")
-    }
+
 }

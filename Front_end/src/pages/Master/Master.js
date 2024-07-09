@@ -3,14 +3,14 @@ import {Topbar} from "../../layout/Topbar/Topbar";
 import {Footer} from "../../layout/Footer/Footer";
 import {Sidebar} from "../../layout/Sidebar/Sidebar";
 
-function Master() {
+export function Master({change,loginStatus}) {
     return (
         <>
             <div id="wrapper">
                 <Sidebar/>
                 <div id="content-wrapper" class="d-flex flex-column">
                     <div id="content">
-                        <Topbar/>
+                        <Topbar changeModal={change} loginStatus={loginStatus}/>
                         <Outlet/>
                         <Footer/>
                     </div>
@@ -20,4 +20,4 @@ function Master() {
     )
 }
 
-export default Master;
+// export default Master;

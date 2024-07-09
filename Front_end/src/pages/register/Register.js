@@ -6,38 +6,15 @@ import {useEffect, useState} from "react";
 
 export function Register() {
     const navigate = useNavigate();
-    const [users, setUsers] = useState([]);
-    const [userTemp, setUserTemp] = useState("");
 
-    const handleUserNameChange = (e, setFieldValue) => {
-        setUserTemp(e.target.value);
-        setFieldValue("userName", e.target.value);
-    };
 
-    useEffect(() => {
-        async function fetchUsers() {
-            try {
-                const userList = await findByUserName(userTemp);
-                setUsers(userList || []);
-            } catch (err) {
-                console.log(err);
-            }
-        }
-        if (userTemp) {
-            fetchUsers();
-        }
-    }, [userTemp]);
-
-    const isUserNameUnique = async (userName) => {
-        const existingUser = users.find(user => user.userName === userName);
-        return !existingUser;
-    };
-
-    const handleSubmit = async (values) => {
+    const handleSubmit = async (values,{setFieldError}) => {
         try {
-            const isUnique = await isUserNameUnique(values.userName);
-            if (!isUnique) {
-                throw new Error("Username must be unique.");
+            const userList = await findByUserName(values.userName);
+
+            if (userList === undefined) {
+                setFieldError("userName", "Username already exists");
+                return;
             }
             const newUser = { ...values, roles: [{ id: 2, name: "USER" }] };
             await addUser(newUser);
@@ -49,10 +26,7 @@ export function Register() {
 
     const validationSchema = Yup.object({
         userName: Yup.string()
-            .required("Username is required")
-            .test("checkUserNameUnique", "Username already exists", async function (value) {
-                return await isUserNameUnique(value);
-            }),
+            .required("Username is required"),
         email: Yup.string()
             .required("Email is required")
             .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "Email is not formatted correctly"),
@@ -71,12 +45,10 @@ export function Register() {
                         password: ""
                     }}
                     validationSchema={validationSchema}
-                    onSubmit={(values) => {
-                        handleSubmit(values);
-                    }}
+                    onSubmit={handleSubmit}
                 >
                     {({ isSubmitting, setFieldValue }) => (
-                        <div className="h-screen w-screen flex items-center justify-center">
+                        <div className="h-screen w-screen flex items-center justify-center ">
                             <Form>
                                 <div
                                     className="h-[80vh] w-[80vw] flex items-center justify-center rounded-md bg-white shadow-lg">
@@ -86,7 +58,7 @@ export function Register() {
                                     <div className="w-1/2 h-full bg-[#f5f5f5] flex flex-col p-20 justify-between rounded-md">
                                         <div className="w-full flex flex-col">
                                             <div className="w-full flex flex-col mb-5">
-                                                <h1 className="text-base mb-2" style={{ fontSize: '2em' }}>
+                                                <h1 className="text-base mb-2" style={{ fontSize: '2em',color:'black' }}>
                                                     Sign up <span className="text-blue-500" style={{ fontSize: '3em' }}>Z</span>
                                                     <span className="text-green-500" style={{ fontSize: '3em' }}>i</span>
                                                     <span className="text-orange-500" style={{ fontSize: '3em' }}>n</span>
@@ -101,7 +73,7 @@ export function Register() {
                                                         placeholder="UserName"
                                                         name="userName"
                                                         className="w-full text-black my-2 py-2 bg-transparent border-b border-black outline-none focus:outline-none"
-                                                        onChange={(e) => handleUserNameChange(e, setFieldValue)}
+
                                                     />
                                                     <ErrorMessage name="userName" component="div" className="text-danger" />
                                                 </div>
@@ -141,10 +113,10 @@ export function Register() {
                                                     Sign in
                                                 </button>
                                             </div>
-                                            <div className="w-full flex items-center justify-center relative py-2">
-                                                <div className="w-full h-[1px] bg-black"></div>
-                                                <p className="text-lg absolute text-black/100 bg-blue-50 my-4">or</p>
-                                            </div>
+                                            {/*<div className="w-full flex items-center justify-center relative py-2">*/}
+                                            {/*    <div className="w-full h-[1px] bg-black"></div>*/}
+                                            {/*    <p className="text-lg absolute text-black/100 bg-blue-50 my-4">or</p>*/}
+                                            {/*</div>*/}
                                             <div>
                                                 <a href="https://accounts.google.com/o/oauth2/auth?scope=email
                                                 &redirect_uri=http://localhost:8080/login-google&response_type=code

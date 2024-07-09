@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Master from "./pages/Master/Master";
+
 import "./App.css";
 import { AllList } from "./components/List/AllList";
 import { DetailSong } from "./components/List/SongList/DetailSong";
@@ -9,6 +9,8 @@ import {Register} from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import {UserList} from "./components/List/UserList";
 import MenuLogin from "./layout/Topbar/MenuLogin";
+import {AppProvider} from "./context/AppContext";
+import {Master} from "./pages/Master/Master";
 
 function App() {
     const [menuStatus, setMenuStatus] = useState(false);
@@ -45,8 +47,9 @@ function App() {
     }, []);
   return (
     <BrowserRouter>
+        <AppProvider>
       <Routes>
-        <Route path="/" element={<Master  />}>
+        <Route path="/" element={<Master change={openModal} loginStatus={loginStatus}/>}>
           <Route path="/" element={<AllList />} />
           {/*<Route path="/detail/:id" element={<DetailSong />} />*/}
         </Route>
@@ -55,7 +58,7 @@ function App() {
           <Route path="/userList" element={<UserList />} />
       </Routes>
         {menuStatus? (<MenuLogin closeModal={closeMenuLogin} changeStatusLogin={changeStatusLogin}/>):(<></>)}
-
+        </AppProvider>
     </BrowserRouter>
   );
 }
