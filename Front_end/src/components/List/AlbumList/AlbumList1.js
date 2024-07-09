@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./AlbumList.css";
 import { showAlbum } from "../../../service/AlbumService";
+// import { Link } from "react-router-dom";
 
 const playlists = [
   // {
@@ -59,6 +60,7 @@ const AlbumList1 = () => {
   return (
     <div className="app">
       <h3 className="zm-section-title title is-2">Nhạc Hot Gây Bão</h3>
+      {/* <Link to="/son">vi du</Link> */}
       <div className="zm-carousel-wrapper">
         <div className="zm-carousel">
           <div className="zm-carousel__container">

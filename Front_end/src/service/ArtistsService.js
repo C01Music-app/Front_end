@@ -18,3 +18,13 @@ export const getByIdArtistsService = async (id) => {
         console.log(err);
     }
 }
+export const artistsSearch = async (searchValue) => {
+    try {
+        const res = await axios.get(`${URL_API}/artists/search`, {
+            params: { name: searchValue }
+        });
+        return res.data;
+    } catch (e) {
+        console.log(e);
+    }
+};

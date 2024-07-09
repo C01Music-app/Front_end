@@ -13,7 +13,7 @@ function Master() {
           <div id="content">
             <Topbar />
             <Outlet />
-            <AllList />
+            {/* <AllList /> */}
             <Footer />
           </div>
         </div>

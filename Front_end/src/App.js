@@ -4,14 +4,16 @@ import Master from "./pages/Master/Master";
 import "./App.css";
 import { AllList } from "./components/List/AllList";
 import { DetailSong } from "./components/List/SongList/DetailSong";
+import { Son } from "./components/List/SongList/Son";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Master />} />
-        {/* <Route path="/" element={<AllList />} /> */}
-        <Route path="/songs/detail/:id" element={<DetailSong />} />
+        <Route path="/" element={<Master />}>
+          <Route path="/" element={<AllList />} />
+          <Route path="detail/:id" element={<DetailSong />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
