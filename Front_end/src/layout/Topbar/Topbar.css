@@ -55,3 +55,55 @@
     top: 60px;
     z-index: 1000;
 }
+.settings-menu {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 200px;
+    background-color: #3b3b3b;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+    z-index: 1000;
+}
+
+.menu-list {
+    list-style-type: none;
+    padding: 10px;
+    margin: 0;
+}
+
+.menu-item {
+    margin: 10px 0;
+}
+
+.menu-button,
+.menu-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.menu-button:hover,
+.menu-link:hover {
+    background-color: #4c4c4c;
+}
+
+.menu-button i,
+.menu-link i {
+    margin-right: 10px;
+}
+
+.line-separator {
+    height: 1px;
+    background-color: #4c4c4c;
+    margin: 10px 0;
+}
