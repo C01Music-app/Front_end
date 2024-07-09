@@ -35,9 +35,7 @@ export const DetailSong = () => {
             alt="171x180"
             src="https://th.bing.com/th/id/R.78ae726a1bc19dc056b3bb5d3439f298?rik=Au1PZhb1kRIDOQ&pid=ImgRaw&r=0"
           />
-          <Figure.Caption>
-            Nulla vitae elit libero, a pharetra augue mollis interdum.
-          </Figure.Caption>
+          <Figure.Caption>Nulla vitae elit libero.</Figure.Caption>
         </div>
       </Figure>
       <div className="media-body">
