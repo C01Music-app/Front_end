@@ -30,8 +30,8 @@ export const DetailSong = () => {
       <Figure>
         <div>
           <Figure.Image
-            width={171}
-            height={180}
+            width={190}
+            height={200}
             alt="171x180"
             src="https://th.bing.com/th/id/R.78ae726a1bc19dc056b3bb5d3439f298?rik=Au1PZhb1kRIDOQ&pid=ImgRaw&r=0"
           />
@@ -44,8 +44,7 @@ export const DetailSong = () => {
         <h5 className="mt-0">Don't</h5>
         <p className="mb-1">
           <a href="/nghe-si/Lee-Chae-Yeon" className="text-secondary">
-            LEE CHAE YEON Thông Tin Số bài hát Ngày phát hành Cung cấp bởi 1
-            03/07/2024 TECHBEAT Music
+            LEE CHAE YEON
           </a>
         </p>
         <p className="text-muted">

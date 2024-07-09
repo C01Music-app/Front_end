@@ -1,17 +1,10 @@
-import { useState } from "react";
+import React, { useState } from 'react';
+import "./Topbar.css";
 import { artistsSearch } from "../../service/ArtistsService";
-import "./Topbar.css"
-import {playListSearch} from "../../service/PlayListService";
-
-const songsSearch = async (searchValue) => {
-    // Thực hiện tìm kiếm và trả về kết quả bài hát
-    return [{ name: "Song 1" }, { name: "Song 2" }]; // Đổi lại bằng API thực tế của bạn
-};
-
-const albumsSearch = async (searchValue) => {
-    // Thực hiện tìm kiếm và trả về kết quả album
-    return [{ name: "Album 1" }, { name: "Album 2" }]; // Đổi lại bằng API thực tế của bạn
-};
+import { playListSearch } from "../../service/PlayListService";
+import { albumSearch } from "../../service/AlbumService";
+import {songSearch} from "../../service/SongsService";
+import {Link} from "react-router-dom";
 
 export function Topbar() {
     const [search, setSearch] = useState("");
@@ -19,21 +12,23 @@ export function Topbar() {
 
     const filteredSearch = async (searchValue) => {
         try {
-            const [artistsRes, songsRes, albumsRes ,playListRes] = await Promise.all([
+            const [artistsRes, songsRes, albumsRes, playListRes] = await Promise.all([
                 artistsSearch(searchValue),
-                songsSearch(searchValue),
-                albumsSearch(searchValue),
-                playListSearch(searchValue)
+                albumSearch(searchValue),
+                playListSearch(searchValue),
+                songSearch(searchValue)
             ]);
+
             console.log("Artists Response:", artistsRes);
             console.log("Songs Response:", songsRes);
             console.log("Albums Response:", albumsRes);
             console.log("Playlists Response:", playListRes);
+
             const combinedResults = [
-                ...(artistsRes || []).map((res) => ({ ...res, type: 'Artist' })),
-                ...(songsRes || []).map((res) => ({ ...res, type: 'Song' })),
-                ...(albumsRes || []).map((res) => ({ ...res, type: 'Album' })),
-                ...(playListRes || []).map((res) => ({ ...res, type: 'Playlist' })),
+                ...(artistsRes || []).map((res) => ({...res, type: 'Artist'})),
+                ...(songsRes || []).map((res) => ({...res, type: 'Song'})),
+                ...(albumsRes || []).map((res) => ({...res, type: 'Album'})),
+                ...(playListRes || []).map((res) => ({...res, type: 'Playlist'})),
             ];
             setFilteredResults(combinedResults);
         } catch (e) {
@@ -51,7 +46,6 @@ export function Topbar() {
             setFilteredResults([]);
         }
     };
-
     return (
         <>
             <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -76,7 +70,7 @@ export function Topbar() {
                         <div className="results-list">
                             {filteredResults.map((result, index) => (
                                 <div key={index}>
-                                    {result.title}{result.name} ({result.type})
+                                    <Link to={"/"}>{result.title || result.name} ({result.type})</Link>
                                 </div>
                             ))}
                         </div>
