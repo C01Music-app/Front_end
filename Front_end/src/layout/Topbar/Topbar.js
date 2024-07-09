@@ -1,10 +1,17 @@
 import { useState } from "react";
-import './Topbar.css'
 import { artistsSearch } from "../../service/ArtistsService";
-import {Link} from "react-router-dom";
-import axios from "axios";
-import {showAlbum} from "../../service/AlbumService";
-import {showSongs} from "../../service/SongsService";
+import "./Topbar.css"
+import {playListSearch} from "../../service/PlayListService";
+
+const songsSearch = async (searchValue) => {
+    // Thực hiện tìm kiếm và trả về kết quả bài hát
+    return [{ name: "Song 1" }, { name: "Song 2" }]; // Đổi lại bằng API thực tế của bạn
+};
+
+const albumsSearch = async (searchValue) => {
+    // Thực hiện tìm kiếm và trả về kết quả album
+    return [{ name: "Album 1" }, { name: "Album 2" }]; // Đổi lại bằng API thực tế của bạn
+};
 
 export function Topbar() {
     const [search, setSearch] = useState("");
@@ -12,15 +19,21 @@ export function Topbar() {
 
     const filteredSearch = async (searchValue) => {
         try {
-            const [artistsRes, songsRes, albumsRes] = await Promise.all([
+            const [artistsRes, songsRes, albumsRes ,playListRes] = await Promise.all([
                 artistsSearch(searchValue),
-                showSongs(searchValue),
-                showAlbum(searchValue),
+                songsSearch(searchValue),
+                albumsSearch(searchValue),
+                playListSearch(searchValue)
             ]);
+            console.log("Artists Response:", artistsRes);
+            console.log("Songs Response:", songsRes);
+            console.log("Albums Response:", albumsRes);
+            console.log("Playlists Response:", playListRes);
             const combinedResults = [
                 ...(artistsRes || []).map((res) => ({ ...res, type: 'Artist' })),
                 ...(songsRes || []).map((res) => ({ ...res, type: 'Song' })),
                 ...(albumsRes || []).map((res) => ({ ...res, type: 'Album' })),
+                ...(playListRes || []).map((res) => ({ ...res, type: 'Playlist' })),
             ];
             setFilteredResults(combinedResults);
         } catch (e) {
@@ -45,7 +58,7 @@ export function Topbar() {
                 <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
                     <i className="fa fa-bars"></i>
                 </button>
-                <div className="search-container">
+                <div className="search-bar-container">
                     <form className="search-form">
                         <div className="search-input-group">
                             <i className="fas fa-search search-icon"></i>
@@ -59,13 +72,15 @@ export function Topbar() {
                             />
                         </div>
                     </form>
-                    <div className="results-list">
-                        {filteredResults.map((result, index) => (
-                            <div key={index}>
-                                {result.name} ({result.type})
-                            </div>
-                        ))}
-                    </div>
+                    {filteredResults.length > 0 && (
+                        <div className="results-list">
+                            {filteredResults.map((result, index) => (
+                                <div key={index}>
+                                    {result.title}{result.name} ({result.type})
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item dropdown no-arrow d-sm-none">
