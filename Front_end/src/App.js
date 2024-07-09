@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import { AllList } from "./components/List/AllList";
-import { DetailSong } from "./components/List/SongList/DetailSong";
 import axios from "axios";
 import {Register} from "./pages/register/Register";
 import Login from "./pages/login/Login";
@@ -51,11 +50,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Master change={openModal} loginStatus={loginStatus}/>}>
           <Route path="/" element={<AllList />} />
-          {/*<Route path="/detail/:id" element={<DetailSong />} />*/}
+            <Route path="/userList" element={<UserList />} />
+
+            {/*<Route path="/detail/:id" element={<DetailSong />} />*/}
         </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/userList" element={<UserList />} />
+          {/*<Route path="/userList" element={<UserList />} />*/}
       </Routes>
         {menuStatus? (<MenuLogin closeModal={closeMenuLogin} changeStatusLogin={changeStatusLogin}/>):(<></>)}
         </AppProvider>

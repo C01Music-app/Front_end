@@ -20,4 +20,3 @@ export function Master({change,loginStatus}) {
     )
 }
 
-// export default Master;

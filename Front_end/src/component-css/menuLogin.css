@@ -53,3 +53,16 @@
     margin-top: 10px;
     color: #e8dcdc;
 }
+
+.tr2 button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent !important;
+    border: none !important;
+}
+.tr2 button:focus {
+    border: none !important;
+    box-shadow: none !important;
+
+}
