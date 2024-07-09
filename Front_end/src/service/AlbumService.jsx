@@ -8,3 +8,10 @@ export const showAlbum = async (page, name) => {
   console.log(res.data);
   return res.data;
 };
+
+export const albumSearch = async (searchValue) => {
+  const res = await axios.get(`http://localhost:8080/songs/search`, {
+    params: { name: searchValue },
+  });
+  return res.data;
+};

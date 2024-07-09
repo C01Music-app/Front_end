@@ -4,6 +4,10 @@ import {AlbumList} from "./AlbumList";
 import {Artists} from "./Artists/Artists";
 import SongList from "./SongList/SongList";
 import AlbumList1 from "./AlbumList/AlbumList1";
+import {DetailArtists} from "./Artists/DetailArtists";
+import {Route} from "react-router-dom";
+import {DetailSong} from "./SongList/DetailSong";
+import React from "react";
 
 export function AllList() {
     return (
@@ -12,8 +16,6 @@ export function AllList() {
                 <Slider/>
                 <AlbumList1/>
                 <SongList/>
-                {/*<PlayList/>*/}
-                {/*<AlbumList/>*/}
                 <Artists/>
             </div>
         </>
