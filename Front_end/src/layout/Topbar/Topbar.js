@@ -58,9 +58,9 @@ export function Topbar({ children, changeModal, loginStatus}) {
     return (
         <>
             <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
+               <Link to="/"> <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
                     <i className="fa fa-bars"></i>
-                </button>
+                </button> </Link>
                 <div className="search-bar-container">
                     <form className="search-form">
                         <div className="search-input-group">

@@ -1,14 +1,19 @@
 import {useNavigate} from "react-router-dom";
 import {AppContext} from "../../context/AppContext";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import axios from "axios";
 import {toast} from "react-toastify";
 import {ErrorMessage, Field, Form, Formik} from "formik";
+import {FaEye, FaEyeSlash} from "react-icons/fa";
 
 
 export default function Login() {
     const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
     const {toggleFlag} = useContext(AppContext);
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
     function register(){
         navigate("/register");
     }
@@ -80,19 +85,28 @@ export default function Login() {
                                                     name="userName"
                                                     className="w-full text-black my-2 py-2 bg-transparent border-b border-black outline-none focus:outline-none"
                                                 />
+                                                <div className="relative w-full">
                                                 <Field
-                                                    type="password"
+                                                    type={showPassword ? "text" : "password"}
                                                     placeholder="Password"
                                                     name="password"
                                                     className="w-full text-black my-2 py-2 bg-transparent border-b border-black outline-none focus:outline-none"
                                                 />
+                                                <button
+                                                    type="button"
+                                                    onClick={togglePasswordVisibility}
+                                                    className="absolute right-0 top-1/2 transform -translate-y-1/2 text-black"
+                                                >
+                                                    {showPassword ? <FaEyeSlash/> : <FaEye/>}
+                                                </button>
+                                                </div>
                                             </div>
                                             <div className="w-full flex items-center justify-between">
-                                                <div className="w-full flex items-center">
+                                                <div className="text-black w-full flex items-center">
                                                     <input type="checkbox" className="w-4 h-4 mr-2"/>
                                                     <p className="text-sm">Remember Me</p>
                                                 </div>
-                                                <p className="text-sm font-medium whitespace-nowrap cursor-pointer underline underline-offset-2">Forgot
+                                                <p className="text-black text-sm font-medium whitespace-nowrap cursor-pointer underline underline-offset-2">Forgot
                                                     password?</p>
                                             </div>
                                             <div className="w-full flex flex-col my-4">
@@ -140,7 +154,7 @@ export default function Login() {
                                                     Sign in with Google
                                                 </a>
                                             </div>
-                                            <div className="w-full flex items-center justify-center my-3">
+                                            <div className="w-full flex items-center justify-center my-2">
                                                 <p className="text-sm font-normal text-black">
                                                 Don't have a account ?<span
                                                     className="font-semibold underline underline-offset-2 cursor-pointer">Sign up for free!</span>
