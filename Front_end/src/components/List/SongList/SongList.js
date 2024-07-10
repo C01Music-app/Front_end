@@ -52,7 +52,12 @@ const SongList = () => {
                 <div>
                   <div className="song-title vicc ">
                     <div className="custom-link">
-                      <Link to={`/detail/${song.id}`}>{song.title} </Link>
+                      <Link
+                        to={`/detail/${song.id}`}
+                        className="white-text link"
+                      >
+                        {song.title}{" "}
+                      </Link>
                     </div>
 
                     {song.premium && <span className="premium">PREMIUM</span>}

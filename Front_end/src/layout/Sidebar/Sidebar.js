@@ -9,19 +9,12 @@ export function Sidebar() {
       >
         <a
           className="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
+          href="/"
         >
           <div className="sidebar-brand-icon rotate-n-15">
             <i className="fas fa-laugh-wink"></i>
           </div>
-          <div className="sidebar-brand-text mx-3">
-            <div class="zm-navbar-item">
-              <button class="zm-btn button" tabindex="0" fdprocessedid="kwo3dg">
-                <div class="zmp3-logo"></div>
-              </button>
-            </div>
-            Zing mp3
-          </div>
+          <div className="sidebar-brand-text mx-3">Zing mp3</div>
         </a>
         <li className="nav-item">
           <a className="nav-link">
@@ -47,7 +40,7 @@ export function Sidebar() {
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="index.html">
+          <a className="nav-link" href="/">
             <span>
               <h6>
                 {" "}
