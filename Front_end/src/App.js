@@ -10,6 +10,9 @@ import {UserList} from "./components/List/UserList";
 import MenuLogin from "./layout/Topbar/MenuLogin";
 import {AppProvider} from "./context/AppContext";
 import {Master} from "./pages/Master/Master";
+import {UserDetail} from "./components/updateUser/UserDetail";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
     const [menuStatus, setMenuStatus] = useState(false);
@@ -51,7 +54,7 @@ function App() {
         <Route path="/" element={<Master change={openModal} loginStatus={loginStatus}/>}>
           <Route path="/" element={<AllList />} />
             <Route path="/userList" element={<UserList />} />
-
+            <Route path="/userdetail" element={<UserDetail />} />
             {/*<Route path="/detail/:id" element={<DetailSong />} />*/}
         </Route>
           <Route path="/login" element={<Login />} />
@@ -59,6 +62,7 @@ function App() {
           {/*<Route path="/userList" element={<UserList />} />*/}
       </Routes>
         {menuStatus? (<MenuLogin closeModal={closeMenuLogin} changeStatusLogin={changeStatusLogin}/>):(<></>)}
+            <ToastContainer />
         </AppProvider>
     </BrowserRouter>
   );

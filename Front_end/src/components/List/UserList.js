@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getAllUsers } from "../../service/userService/UserService";
+import "./img/UserList.css"
 
 export function UserList() {
     const [users, setUsers] = useState([]);
@@ -35,40 +36,44 @@ export function UserList() {
 
     return (
         <>
-            <table className="table table-hover">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>UserName</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                </tr>
-                </thead>
-                <tbody>
-                {currentUsers.map((user, index) => (
-                    <tr key={user.id}>
-                        <td>{indexOfFirstUser + index + 1}</td>
-                        <td>{user.userName}</td>
-                        <td>{user.phone}</td>
-                        <td>{user.email}</td>
+            <div className="container">
+                <table className="table styled-table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>UserName</th>
+                        <th>Phone</th>
+                        <th>Email</th>
                     </tr>
-                ))}
-                </tbody>
-            </table>
-            <div className="pagination">
-                <button
-                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                    disabled={currentPage === 1}
-                >
-                    Previous
-                </button>
-                <span> Page {currentPage} of {totalPages} </span>
-                <button
-                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                    disabled={currentPage === totalPages}
-                >
-                    Next
-                </button>
+                    </thead>
+                    <tbody>
+                    {currentUsers.map((user, index) => (
+                        <tr key={user.id}>
+                            <td>{indexOfFirstUser + index + 1}</td>
+                            <td>{user.userName}</td>
+                            <td>{user.phone}</td>
+                            <td>{user.email}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+                <div className="pagination">
+                    <button
+                        className="pagination-button"
+                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                    >
+                        Previous
+                    </button>
+                    <span> Page {currentPage} of {totalPages} </span>
+                    <button
+                        className="pagination-button"
+                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                        disabled={currentPage === totalPages}
+                    >
+                        Next
+                    </button>
+                </div>
             </div>
         </>
     );

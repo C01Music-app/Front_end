@@ -3,6 +3,7 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import {addUser, findByUserName} from "../../service/userService/UserService";
 import * as Yup from "yup";
 import {useEffect, useState} from "react";
+import {toast} from "react-toastify";
 
 export function Register() {
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ export function Register() {
             const newUser = { ...values, roles: [{ id: 2, name: "USER" }] };
             await addUser(newUser);
             navigate("/login");
+            toast.success("Register successfully");
         } catch (err) {
             console.log(err);
         }
@@ -31,7 +33,10 @@ export function Register() {
             .required("Email is required")
             .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "Email is not formatted correctly"),
         password: Yup.string()
-            .required("Password is required")
+            .required("Password is required"),
+        phone: Yup.string()
+        .required("Phone is required")
+        .matches(/^[0-9]{7,15}$/,"Number phone is not formatted correctly ")
     });
 
     return (
@@ -72,7 +77,7 @@ export function Register() {
                                                         type="text"
                                                         placeholder="UserName"
                                                         name="userName"
-                                                        className="w-full text-black my-2 py-2 bg-transparent border-b border-black outline-none focus:outline-none"
+                                                        className="w-full text-black my-1 py-1 bg-transparent border-b border-black outline-none focus:outline-none"
 
                                                     />
                                                     <ErrorMessage name="userName" component="div" className="text-danger" />
@@ -82,15 +87,16 @@ export function Register() {
                                                         type="text"
                                                         placeholder="Phone"
                                                         name="phone"
-                                                        className="w-full text-black my-2 py-2 bg-transparent border-b border-black outline-none focus:outline-none"
+                                                        className="w-full text-black my-1 py-1 bg-transparent border-b border-black outline-none focus:outline-none"
                                                     />
+                                                    <ErrorMessage name="phone" component="div" className="text-danger" />
                                                 </div>
                                                 <div>
                                                     <Field
                                                         type="text"
                                                         placeholder="Email"
                                                         name="email"
-                                                        className="w-full text-black my-2 py-2 bg-transparent border-b border-black outline-none focus:outline-none"
+                                                        className="w-full text-black my-1 py-1 bg-transparent border-b border-black outline-none focus:outline-none"
                                                     />
                                                     <ErrorMessage name="email" component="div" className="text-danger" />
                                                 </div>
@@ -99,7 +105,7 @@ export function Register() {
                                                         type="password"
                                                         placeholder="Password"
                                                         name="password"
-                                                        className="w-full text-black my-2 py-2 bg-transparent border-b border-black outline-none focus:outline-none"
+                                                        className="w-full text-black my-1 py-1 bg-transparent border-b border-black outline-none focus:outline-none"
                                                     />
                                                     <ErrorMessage name="password" component="div" className="text-danger" />
                                                 </div>
@@ -108,7 +114,7 @@ export function Register() {
                                                 <button
                                                     type="submit"
                                                     disabled={isSubmitting}
-                                                    className="w-full text-white my-2 font-semibold bg-fuchsia-900 rounded-md p-3 text-center flex items-center justify-center"
+                                                    className="w-full text-white my-3 font-semibold bg-fuchsia-900 rounded-md p-3 text-center flex items-center justify-center"
                                                 >
                                                     Sign in
                                                 </button>

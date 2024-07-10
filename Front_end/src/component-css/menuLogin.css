@@ -1,6 +1,6 @@
 .menuLogin{
     width: 300px;
-    height: 550px;
+    height: 350px;
     display: block;
 
     background-color: #34224f;
@@ -9,7 +9,7 @@
 
     position : absolute;
     top: 67px;
-    right: 0;
+    right: 10px;
     z-index: 9;
 
 }

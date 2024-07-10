@@ -2,6 +2,7 @@ import React from 'react';
 import "../../component-css/menuLogin.css"
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 const MenuLogin = ({closeModal, changeStatusLogin}) => {
     const navigate = useNavigate()
@@ -20,6 +21,7 @@ const MenuLogin = ({closeModal, changeStatusLogin}) => {
             setToken("");
             closeModal();
             changeStatusLogin();
+            toast.success("logout successful");
         })
     }
     return (

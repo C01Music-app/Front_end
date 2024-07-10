@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 
 const SettingsButton = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const isRoleName = localStorage.getItem("roles");
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -18,9 +19,9 @@ const SettingsButton = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-                <Dropdown.Item as={Link} to="/userList">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/userList" disabled={isRoleName!=="ADMIN"}>Users</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/UserDetail">Profile</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Setting</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
         // <div className="setting-item">
