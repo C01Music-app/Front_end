@@ -9,6 +9,11 @@ export const showSongs = async (page, name) => {
   return res.data;
 };
 
+export const descSongs = async () => {
+  const res = await axios.get(`http://localhost:8080/songs`);
+  return res.data;
+};
+
 export const detailSongs = async (Songs) => {
   const res = await axios.get(
     `http://localhost:8080/songs/detail/${Songs.id}`,

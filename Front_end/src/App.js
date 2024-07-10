@@ -3,6 +3,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import { AllList } from "./components/List/AllList";
+
+import { DetailSong } from "./components/List/SongList/DetailSong";
+import { Son } from "./components/List/SongList/Son";
+import { PlayMusic } from "./layout/PlayMusic/PlayMusic";
+
 import axios from "axios";
 import {Register} from "./pages/register/Register";
 import Login from "./pages/login/Login";
@@ -13,6 +18,7 @@ import {Master} from "./pages/Master/Master";
 import {UserDetail} from "./components/updateUser/UserDetail";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
     const [menuStatus, setMenuStatus] = useState(false);
@@ -53,9 +59,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Master change={openModal} loginStatus={loginStatus}/>}>
           <Route path="/" element={<AllList />} />
+
+          <Route path="detail/:id" element={<DetailSong />} />
+          <Route path="/" element={<PlayMusic />} />
+
             <Route path="/userList" element={<UserList />} />
             <Route path="/userdetail" element={<UserDetail />} />
             {/*<Route path="/detail/:id" element={<DetailSong />} />*/}
+
         </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

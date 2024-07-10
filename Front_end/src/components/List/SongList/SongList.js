@@ -3,15 +3,21 @@ import "./SongList.css";
 import "../../vicss/vi.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { showSongs } from "../../../service/SongsService";
+import { descSongs } from "../../../service/SongsService";
 
 const SongList = () => {
   const [songs, setSongs] = useState([]);
   const navigate = useNavigate();
 
+  // const getAll = () => {
+  //   showSongs("", "").then((res) => {
+  //     setSongs(res.content);
+  //   });
+  // };
+
   const getAll = () => {
-    showSongs("", "").then((res) => {
-      setSongs(res.content);
+    descSongs().then((res) => {
+      setSongs(res);
     });
   };
 
@@ -19,10 +25,10 @@ const SongList = () => {
     getAll();
   }, []);
 
-  useEffect(() => {
-    console.log("kak");
-    console.log(songs);
-  }, [songs]);
+  // useEffect(() => {
+  //   console.log("kak");
+  //   console.log(songs);
+  // }, [songs]);
 
   if (!songs) {
     <div>loanding...</div>;
@@ -46,7 +52,12 @@ const SongList = () => {
                 <div>
                   <div className="song-title vicc ">
                     <div className="custom-link">
-                      <Link to={`/detail/${song.id}`}>{song.title} </Link>
+                      <Link
+                        to={`/detail/${song.id}`}
+                        className="white-text link"
+                      >
+                        {song.title}{" "}
+                      </Link>
                     </div>
 
                     {song.premium && <span className="premium">PREMIUM</span>}
