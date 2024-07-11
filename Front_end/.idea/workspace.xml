@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="572440d0-965d-4726-b057-744deacf991c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/List/SongList/DetailSong.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/vicss/vi.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/AlbumService.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/SongsService.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/List/AlbumList/AlbumList1.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/AlbumList/AlbumList1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/List/AllList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/AllList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/List/PlayLists.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/PlayLists.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/List/SongList/SongList.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/SongList/SongList.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/List/SongList/SongList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/List/SongList/SongList.js" afterDir="false" />
-    </list>
+    <list default="true" id="572440d0-965d-4726-b057-744deacf991c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,8 +41,8 @@
     &quot;Node.js.Artists.js.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.PlayLists.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Merging huy&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/luuhuy/Desktop/front-end-h/Front_end/src&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mac/Documents/FE/Front_end/Front_end&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -85,7 +73,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-WS-241.15989.105" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.18034.50" />
       </set>
     </attachedChunks>
   </component>
@@ -114,6 +102,11 @@
       <workItem from="1720402254973" duration="14997000" />
       <workItem from="1720417751425" duration="94000" />
       <workItem from="1720419784235" duration="171000" />
+      <workItem from="1720445115404" duration="1392000" />
+      <workItem from="1720448462242" duration="1929000" />
+      <workItem from="1720487000726" duration="1199000" />
+      <workItem from="1720488321956" duration="351000" />
+      <workItem from="1720488767475" duration="6786000" />
     </task>
     <servers />
   </component>

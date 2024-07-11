@@ -11,6 +11,7 @@ export const showSongs = async (page, name) => {
 
 export const descSongs = async () => {
   const res = await axios.get(`http://localhost:8080/songs`);
+  console.log(res.data);
   return res.data;
 };
 
@@ -36,4 +37,8 @@ export const songSearch = async (searchValue) => {
   } catch (e) {
     console.log(e);
   }
+};
+export const createSongs = async (Songs) => {
+  const res = await axios.post(`http://localhost:8080/songs/create`, Songs);
+  return res.data;
 };

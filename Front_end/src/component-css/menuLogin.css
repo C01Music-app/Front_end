@@ -1,0 +1,68 @@
+.menuLogin{
+    width: 300px;
+    height: 350px;
+    display: block;
+
+    background-color: #34224f;
+    margin-top: 10px;
+    border-radius: 10px;
+
+    position : absolute;
+    top: 67px;
+    right: 10px;
+    z-index: 9;
+
+}
+.login{
+    width: 280px;
+    height: 45px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.button{
+    width: 280px;
+    height: 45px;
+    font-family: Inter, sans-serif;
+    color: #FFFFFF;
+    background-color: #9b4de0;
+    border-radius: 10px;
+}
+.menuLogin_content{
+    color: #FFFFFF;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 10px;
+    text-rendering: optimizelegibility
+}
+.voucher1{
+    background-color: #eedd91;
+    border-radius: 10px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    color: #59533e;
+}
+.voucher2{
+    background-color: #af5151;
+    border-radius: 10px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    color: #e8dcdc;
+}
+
+.tr2 button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent !important;
+    border: none !important;
+}
+.tr2 button:focus {
+    border: none !important;
+    box-shadow: none !important;
+
+}
