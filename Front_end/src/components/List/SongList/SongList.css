@@ -124,3 +124,7 @@ h1 {
   color: rgb(223, 84, 223); /* Màu chữ khi di chuột vào */
   text-decoration: none;
 }
+.custom-modal-header {
+  background-color: purple; /* Màu tím */
+  color: white; /* Màu chữ */
+}
