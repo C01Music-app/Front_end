@@ -1,0 +1,53 @@
+.setting-item {
+    display: inline-block;
+    position: relative;
+    margin-top: 10px;
+}
+
+.zm-btn {
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.zm-btn:hover {
+    background-color: black;
+}
+
+.is-hover-circle {
+    border-radius: 50%;
+}
+
+.button {
+    font-size: 24px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 50px; /* Điều chỉnh khoảng cách so với nút */
+    left: 0;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100px; /* Điều chỉnh kích thước của menu */
+    z-index: 1000; /* Đảm bảo rằng menu không bị ẩn bởi các phần tử khác */
+}
+
+.dropdown-menu li {
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dropdown-menu li:hover {
+    background-color: #f0f0f0;
+}

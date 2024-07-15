@@ -42,7 +42,7 @@ h1 {
 }
 
 .song-item {
-  background-color: #170f23;
+  background-color: #100a18;
   padding: 10px;
   border-radius: 10px;
   display: flex;
@@ -82,18 +82,7 @@ h1 {
   font-size: 14px;
   color: #b0b0b0;
 }
-.custom-link {
-  color: white; /* Đặt màu chữ thành màu trắng */
-  text-decoration: none; /* Xóa dấu gạch chân */
-}
-.custom-link:hover {
-  color: rgb(
-    154,
-    102,
-    227
-  ) !important; /* Đảm bảo màu chữ vẫn trắng khi di chuột qua */
-  text-decoration: none !important; /* Đảm bảo không có dấu gạch chân khi di chuột qua */
-}
+
 /* Đảm bảo media-container bao bọc và sử dụng Flexbox để bố trí các phần tử */
 .media-container {
   display: flex;
@@ -121,4 +110,24 @@ h1 {
   background: none; /* Loại bỏ nền */
   outline: none; /* Loại bỏ viền khi nhấn vào */
   cursor: pointer;
+}
+.white-text {
+  color: white;
+}
+.link {
+  color: white; /* Màu chữ mặc định */
+  /* Loại bỏ dấu gạch chân */
+  transition: color 0.3s ease; /* Hiệu ứng chuyển đổi màu chữ */
+}
+
+.link:hover {
+  color: rgb(223, 84, 223); /* Màu chữ khi di chuột vào */
+  text-decoration: none;
+}
+.custom-modal-header {
+  background-color: purple; /* Màu tím */
+  color: white; /* Màu chữ */
+}
+.khanh {
+  color: #000;
 }

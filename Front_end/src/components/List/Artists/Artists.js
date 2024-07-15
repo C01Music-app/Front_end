@@ -1,25 +1,27 @@
 import React, {useEffect, useState} from "react";
-import {artistsService} from "../../../service/ArtistsService";
+import {artistsService, getByIdArtistsService} from "../../../service/ArtistsService";
 import {Link} from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import axios from "axios";
+
 
 
 export function Artists() {
     const [artists, setArtists] = useState([]);
 
-    const getAllArtists = async () => {
-        const response = await artistsService();
-        setArtists(response);
+    const getArtists = async () => {
+        const res = await artistsService();
+        setArtists(res);
     }
 
     useEffect(() => {
-        getAllArtists();
-    }, [])
+         getArtists()
+     },[])
 
 
-    if (!artists) {
-        return <div>..loading...</div>;
+    if (!artists){
+        return <div>Loading...</div>;
     }
 
     return (
@@ -28,10 +30,7 @@ export function Artists() {
             <div className="row-h">
                 {artists.map((artist) => (
                     <div className="card-deck-h col-lg-4 col-xl-3 col-md-6" key={artist.id}>
-                        <Link to={'/detail/' + artist.id} className="link-none">
-                            <div className="card-h1"
-                                 style={{background: `url(${artist.img})`, backgroundSize: 'cover'}}>
-                            </div>
+                        <Link to={'/artists/detail/' + artist.id} className="link-none">
                             <div className="card-body">
                                 <h5 className="card-title title-h" style={{textAlign:'center'}}>
                                     {artist.name}

@@ -1,0 +1,108 @@
+.horizontal-layout {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  margin-right: 30px; /* Điều chỉnh khoảng cách giữa text và SVG nếu cần */
+}
+.text h1 {
+  margin: 0; /* Loại bỏ khoảng cách mặc định của thẻ h1 */
+  font-size: 2rem; /* Điều chỉnh kích thước chữ của thẻ h1 nếu cần */
+  font-weight: bold;
+}
+.zm-navbar-menu {
+  display: flex;
+  list-style: none; /* Loại bỏ bullet points mặc định của danh sách */
+  padding: 0; /* Loại bỏ padding mặc định của danh sách */
+  margin: 0; /* Loại bỏ margin mặc định của danh sách */
+}
+
+.zm-navbar-item {
+  margin-right: 20px; /* Khoảng cách giữa các mục trong thanh điều hướng */
+}
+
+.zm-navbar-item.is-active .navbar-link a {
+  font-weight: bold; /* Làm đậm chữ cho mục đang được chọn */
+  color: #ece2e2; /* Điều chỉnh màu sắc cho mục đang được chọn */
+}
+
+.zm-navbar-item .navbar-link a {
+  text-decoration: none; /* Loại bỏ gạch chân mặc định của liên kết */
+  color: #e7dcdc; /* Điều chỉnh màu sắc của liên kết */
+}
+
+.zm-navbar-item .navbar-link a:hover {
+  color: #e4f1f3; /* Màu khi hover qua liên kết */
+}
+.zm-navbar-menu-container {
+  margin-top: 20px; /* Khoảng cách phía trên thanh điều hướng */
+  margin-bottom: 70px; /* Khoảng cách phía dưới thanh điều hướng */
+}
+.item.button {
+  width: 100px;
+  height: 40px;
+  display: inline-block;
+  padding: 10px 10px; /* Điều chỉnh kích thước bên trong của nút */
+  background-color: #e8d8e8; /* Màu nền của nút */
+  color: white; /* Màu chữ của nút */
+  text-align: center;
+  text-decoration: none; /* Loại bỏ gạch chân của liên kết */
+  border-radius: 50px; /* Bo góc của nút */
+  font-size: 15px; /* Kích thước chữ của nút */
+  font-weight: bold; /* Làm đậm chữ */
+  margin-top: 20px; /* Khoảng cách phía trên thanh điều hướng */
+  margin-right: 30px;
+}
+
+.item.button:hover {
+  background-color: #0056b3; /* Màu nền khi hover qua nút */
+}
+
+.item.button.active {
+  background-color: #a419c7; /* Màu nền cho nút đang được chọn */
+}
+.zm-empty {
+  text-align: center;
+  padding: 20px;
+}
+
+.zm-empty .icon {
+  margin-bottom: 20px;
+}
+
+.zm-empty .text {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.zm-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.zm-btn:hover {
+  background-color: #0056b3;
+}
+
+.is-outlined.active.is-medium.is-upper {
+  background-color: #007bff;
+  color: white;
+  text-transform: uppercase;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+}
+
+.is-outlined.active.is-medium.is-upper:hover {
+  background-color: #8b23b1;
+  border-color: #0056b3;
+}
