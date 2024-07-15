@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,6 @@ export function CreatePlayList(props) {
     const navigate = useNavigate();
     const id = localStorage.getItem("idUser");
 
-    console.log(id);
 
     const handleCreate = async () => {
         try {
@@ -30,7 +29,6 @@ export function CreatePlayList(props) {
             setIsPublic(true);
             setIsShuffle(true);
             props.onHide();
-            navigate("/");
             toast.success("Playlists Created Successfully");
         } catch (err) {
             console.log("Error:", err);

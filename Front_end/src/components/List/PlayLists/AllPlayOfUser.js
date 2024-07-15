@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {Link, useNavigate} from "react-router-dom";
+import {render} from "@testing-library/react";
 
 const UserPlaylists = () => {
     const [playlists, setPlaylists] = useState([]);
@@ -20,7 +21,7 @@ const UserPlaylists = () => {
             }
         };
         fetchPlaylists();
-    }, [userId]); // Thêm userId vào mảng phụ thuộc
+    }, []); // Thêm userId vào mảng phụ thuộc
 
     if (!userId || userId === 0) {
         return null;
