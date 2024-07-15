@@ -20,6 +20,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Create } from "./components/List/creates/create";
 import { CreateSongs } from "./components/List/SongList/CreateSongs";
+import DeleteSongs from "./components/List/SongList/DeleteSongs";
 
 function App() {
   const [menuStatus, setMenuStatus] = useState(false);
@@ -75,6 +76,7 @@ function App() {
             <Route path="/userList" element={<UserList />} />
             <Route path="/userdetail" element={<UserDetail />} />
             <Route path="/songs/create" element={<CreateSongs />} />
+            <Route path="/songs/remove/:id" element={<DeleteSongs />} />
           </Route>
 
           <Route path="/login" element={<Login />} />

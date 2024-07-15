@@ -1,0 +1,64 @@
+.popup {
+  position: absolute;
+  top: 50px; /* Điều chỉnh vị trí của popup */
+  right: 10px;
+  background-color: #3e3e3e;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  width: 250px;
+  z-index: 1000;
+}
+
+.popup-content {
+  padding: 10px;
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #5e5e5e;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.album-art {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+.song-info {
+  margin-left: 10px;
+}
+
+.song-info strong {
+  display: block;
+}
+
+.popup-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-item {
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.popup-item:hover {
+  background-color: #5e5e5e;
+}
+
+.popup-footer {
+  border-top: 1px solid #5e5e5e;
+  padding-top: 10px;
+  text-align: center;
+}
+.vi-w100 {
+  width: 100% !important;
+}
