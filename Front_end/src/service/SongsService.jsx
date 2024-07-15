@@ -39,6 +39,15 @@ export const songSearch = async (searchValue) => {
   }
 };
 export const createSongs = async (Songs) => {
+  console.log("kkklllK");
+  console.log(Songs);
   const res = await axios.post(`http://localhost:8080/songs/create`, Songs);
+  console.log(res.data, "lp");
+
+  return res.data;
+};
+
+export const removeSongs = async (id) => {
+  const res = await axios.delete(`http://localhost:8080/songs/remove/${id}`);
   return res.data;
 };

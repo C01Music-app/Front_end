@@ -73,7 +73,7 @@ const SongList = () => {
                   </div>
                   <div>
                     <p className="song-artist col-10 viii">
-                      {song.artist[0].name}
+                      {song.artist.name}
                     </p>
                     <p className="song-time">{song.dateStart}</p>
                   </div>
