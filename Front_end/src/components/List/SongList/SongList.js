@@ -5,8 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { descSongs } from "../../../service/SongsService";
 
+import { Button } from "react-bootstrap";
+import AddSongToPlayList from "../PlayLists/AddSongToPlayList";
+import {CreatePlayList} from "../PlayLists/CreatePlayList";
+
 const SongList = () => {
   const [songs, setSongs] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
+
   const navigate = useNavigate();
 
   // const getAll = () => {
@@ -20,9 +26,15 @@ const SongList = () => {
       setSongs(res);
     });
   };
+  // const getA = () => {
+  //   artistsService().then((res) => {
+  //     setartist(res);
+  //   });
+  // };
 
   useEffect(() => {
     getAll();
+    // getA();
   }, []);
 
   // useEffect(() => {
@@ -31,7 +43,7 @@ const SongList = () => {
   // }, [songs]);
 
   if (!songs) {
-    <div>loanding...</div>;
+    <div>loading...</div>;
   }
   return (
     <div className="app">
@@ -59,18 +71,19 @@ const SongList = () => {
                         {song.title}{" "}
                       </Link>
                     </div>
-
                     {song.premium && <span className="premium">PREMIUM</span>}
                   </div>
-                  <div>
-                    <p className="song-artist col-10 viii">{song.artist}</p>
-                    <p className="song-time">{song.dateStart}</p>
-                  </div>
+                  {/*<div>*/}
+                  {/*  <p className="song-artist col-10 viii">*/}
+                  {/*    {song.artist[0].name}*/}
+                  {/*  </p>*/}
+                  {/*  <p className="song-time">{song.dateStart}</p>*/}
+                  {/*</div>*/}
                 </div>
                 <div className="media-right col-2">
-                  <button className="btn btn-outline-secondary btn-sm custom-btn vi22 ">
-                    <i className="icon ic-more"></i> <h4>...</h4>
-                  </button>
+                  <Button className="btn btn-outline-secondary btn-sm custom-btn vi22" onClick={() => setModalShow(true)}>
+                  </Button>
+                  <AddSongToPlayList show={modalShow} onHide={() => setModalShow(false)}/>
                 </div>
               </div>
             </div>

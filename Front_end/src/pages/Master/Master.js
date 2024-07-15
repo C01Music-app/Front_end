@@ -7,8 +7,8 @@ export function Master({ change, loginStatus }) {
     return (
         <div id="wrapper">
             <Sidebar />
-            <div id="content-wrapper" className="d-flex flex-column">
-                <div id="content">
+            <div id="content-wrapper" className="d-flex flex-column" style={{background : "#170F23"}} >
+                <div id="content" style={{background : "#170F23"}}>
                     <Topbar changeModal={change} loginStatus={loginStatus} />
                     <Outlet />
                 </div>

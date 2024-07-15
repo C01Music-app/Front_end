@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
+import { Modal, Button, Form } from 'react-bootstrap';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export function CreatePlayList(props) {
     const [playlistName, setPlaylistName] = useState('');
     const [isPublic, setIsPublic] = useState(true);
     const [isShuffle, setIsShuffle] = useState(true);
+    const navigate = useNavigate();
+    const id = localStorage.getItem("idUser");
+
+    console.log(id);
 
     const handleCreate = async () => {
         try {
             const playlist = {
                 title: playlistName,
-                user: {
-                    id: 1 // Giả sử user id là 1 hoặc bạn có thể lấy từ state hoặc context
-                },
+                user: { id: id }, // Đảm bảo cấu trúc user đúng
                 isPublic: isPublic,
                 isShuffle: isShuffle
             };
@@ -26,8 +30,11 @@ export function CreatePlayList(props) {
             setIsPublic(true);
             setIsShuffle(true);
             props.onHide();
+            navigate("/");
+            toast.success("Playlists Created Successfully");
         } catch (err) {
             console.log("Error:", err);
+            toast.error("Failed to create playlist. Please try again.");
         }
     };
 
@@ -48,34 +55,6 @@ export function CreatePlayList(props) {
                                 onChange={(e) => setPlaylistName(e.target.value)}
                             />
                         </Form.Group>
-                        <Row className="mt-3">
-                            <Col xs={8}>
-                                <Form.Label>Công khai</Form.Label>
-                                <Form.Text>Mọi người có thể nhìn thấy playlist này</Form.Text>
-                            </Col>
-                            <Col xs={4}>
-                                <Form.Check
-                                    type="switch"
-                                    id="public-switch"
-                                    checked={isPublic}
-                                    onChange={(e) => setIsPublic(e.target.checked)}
-                                />
-                            </Col>
-                        </Row>
-                        <Row className="mt-3">
-                            <Col xs={8}>
-                                <Form.Label>Phát ngẫu nhiên</Form.Label>
-                                <Form.Text>Luôn phát ngẫu nhiên tất cả bài hát</Form.Text>
-                            </Col>
-                            <Col xs={4}>
-                                <Form.Check
-                                    type="switch"
-                                    id="shuffle-switch"
-                                    checked={isShuffle}
-                                    onChange={(e) => setIsShuffle(e.target.checked)}
-                                />
-                            </Col>
-                        </Row>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>

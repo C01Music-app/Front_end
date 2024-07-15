@@ -1,37 +1,38 @@
 import React, {useState} from "react";
-import "./Sidebar.css"
-import Button from "react-bootstrap/Button";
 import {CreatePlayList} from "../../components/List/PlayLists/CreatePlayList";
+import {Button} from "react-bootstrap";
+import AllPlayOfUser from "../../components/List/PlayLists/AllPlayOfUser";
 
 export function Sidebar() {
-    const [modalShow, setModalShow] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
-    return (
+  return (
         <>
-            <ul
-                className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed-sidebar"
-                id="accordionSidebar"
+          <ul
+              className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed-sidebar"
+              id="accordionSidebar"
+              style={{background : "#231B2E"}}
+          >
+            <a
+                className="sidebar-brand d-flex align-items-center justify-content-center"
+                href="/"
             >
-                <a
-                    className="sidebar-brand d-flex align-items-center justify-content-center"
-                    href="/"
-                >
-                    <div className="sidebar-brand-icon rotate-n-15">
-                        <i className="fas fa-laugh-wink"></i>
-                    </div>
-                    <div className="sidebar-brand-text mx-3">Zing mp3</div>
-                </a>
-                <li className="nav-item">
-                    <a className="nav-link">
+              <div className="sidebar-brand-icon rotate-n-15">
+                <i className="fas fa-laugh-wink"></i>
+              </div>
+              <div className="sidebar-brand-text mx-3">Zing mp3</div>
+            </a>
+            <li className="nav-item">
+              <a className="nav-link">
             <span>
               <h6>
                 {" "}
-                  <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                  >
+                <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                >
                   <path
                       fill-rule="evenodd"
                       clip-rule="evenodd"
@@ -39,23 +40,23 @@ export function Sidebar() {
                       fill-opacity="0.8"
                   ></path>
                 </svg>
-                  {" "}
-                  Thư viện
+                {" "}
+                Thư viện
               </h6>
             </span>
-                    </a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="/">
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/">
             <span>
               <h6>
                 {" "}
-                  <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                  >
+                <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                >
                   <path
                       fill-rule="evenodd"
                       clip-rule="evenodd"
@@ -63,14 +64,14 @@ export function Sidebar() {
                       fill-opacity="0.8"
                   ></path>
                 </svg>
-                  {" "}
-                  Khám Phá
+                {" "}
+                Khám Phá
               </h6>
             </span>
-                    </a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="index.html">
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="index.html">
             <span>
               <h6>
                 <svg
@@ -87,14 +88,14 @@ export function Sidebar() {
                       fill-opacity="0.8"
                   ></path>
                 </svg>
-                  {" "}
-                  #zingchart
+                {" "}
+                #zingchart
               </h6>
             </span>
-                    </a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="index.html">
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="index.html">
             <span>
               <h6>
                 <svg
@@ -110,18 +111,18 @@ export function Sidebar() {
                       fill-opacity="0.8"
                   ></path>
                 </svg>
-                  {" "}
-                  Radio
+                {" "}
+                Radio
               </h6>
             </span>
-                    </a>
-                </li>
-                <hr className="sidebar-divider"/>
-                <li className="nav-item">
-                    <a className="nav-link" href="index.html">
+              </a>
+            </li>
+            <hr className="sidebar-divider"/>
+            <li className="nav-item">
+              <a className="nav-link" href="index.html">
             <span>
               {" "}
-                <h6>
+              <h6>
                 <svg
                     width="24"
                     height="24"
@@ -135,14 +136,14 @@ export function Sidebar() {
                       fill-opacity="0.8"
                   ></path>
                 </svg>
-                    {" "}
-                    BXH Nhạc Mới
+                {" "}
+                BXH Nhạc Mới
               </h6>
             </span>
-                    </a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="index.html">
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="index.html">
             <span>
               <h6>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -181,14 +182,14 @@ export function Sidebar() {
                       stroke-width="1.5"
                   ></path>
                 </svg>
-                  {" "}
-                  Chủ Đề & Thể Loại
+                {" "}
+                Chủ Đề & Thể Loại
               </h6>
             </span>
-                    </a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="index.html">
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="index.html">
             <span>
               <h6>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -204,23 +205,30 @@ export function Sidebar() {
                 Top 100
               </h6>
             </span>
-                    </a>
-                </li>
-                <li className="nav-item">
-
-            <span>
-              <h6>
-                <Button variant="primary" onClick={() => setModalShow(true)}>
-        Launch modal with grid
-      </Button>
-
-      <CreatePlayList show={modalShow} onHide={() => setModalShow(false)}/>
-              </h6>
-            </span>
-                </li>
-                <hr className="sidebar-divider d-none d-md-block"/>
-            </ul>
+              </a>
+            </li>
+            <hr className="sidebar-divider d-none d-md-block"/>
+            <li className="nav-item">
+              <AllPlayOfUser/>
+              <Button className="nav-link" onClick={() => setModalShow(true)}>
+                        <span>
+                            <h6>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M12 1.75C6.61522 1.75 2.25 6.11522 2.25 11.5C2.25 16.8848 6.61522 21.25 12 21.25C17.3848 21.25 21.75 16.8848 21.75 11.5C21.75 6.11522 17.3848 1.75 12 1.75ZM3.75 11.5C3.75 7.16751 7.16751 3.75 12 3.75C16.8325 3.75 20.25 7.16751 20.25 11.5C20.25 15.8325 16.8325 19.25 12 19.25C7.16751 19.25 3.75 15.8325 3.75 11.5ZM12 6.75C12.4142 6.75 12.75 7.08579 12.75 7.5V11.25H16.5C16.9142 11.25 17.25 11.5858 17.25 12C17.25 12.4142 16.9142 12.75 16.5 12.75H12.75V16.5C12.75 16.9142 12.4142 17.25 12 17.25C11.5858 17.25 11.25 16.9142 11.25 16.5V12.75H7.5C7.08579 12.75 6.75 12.4142 6.75 12C6.75 11.5858 7.08579 11.25 7.5 11.25H11.25V7.5C11.25 7.08579 11.5858 6.75 12 6.75Z"
+                                        fill-opacity="0.8"
+                                    ></path>
+                                </svg>
+                              {" "}
+                              Tạo playlist mới
+                            </h6>
+                        </span>
+              </Button>
+            </li>
+            <CreatePlayList show={modalShow} onHide={() => setModalShow(false)}/>
+          </ul>
         </>
-    );
-
+  );
 }

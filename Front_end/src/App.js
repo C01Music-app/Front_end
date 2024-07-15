@@ -18,6 +18,10 @@ import { Master } from "./pages/Master/Master";
 import { UserDetail } from "./components/updateUser/UserDetail";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Create } from "./components/List/creates/create";
+import { CreateSongs } from "./components/List/SongList/CreateSongs";
+import {Playlist} from "./components/List/PlayLists/PlayList";
+import AddPlaylistToSong from "./components/List/PlayLists/AddSongToPlayList";
 
 function App() {
     const [menuStatus, setMenuStatus] = useState(false);
@@ -57,7 +61,7 @@ function App() {
             });
     }, []);
     return (
-        <BrowserRouter>
+        <div className="App" style={{background : "#170F23"}}><BrowserRouter>
             <AppProvider>
                 <Routes>
                     <Route
@@ -65,12 +69,15 @@ function App() {
                         element={<Master change={openModal} loginStatus={loginStatus} />}
                     >
                         <Route path="/" element={<AllList />} />
+                        <Route path="/playlists/detail/:id" element={<Playlist />} />
 
                         <Route path="/songs/detail/:id" element={<DetailSong />} />
 
                         <Route path="/" element={<PlayMusic />} />
+                        <Route path="/in" element={<Create />} />
                         <Route path="/userList" element={<UserList />} />
                         <Route path="/userdetail" element={<UserDetail />} />
+                        <Route path="/songs/create" element={<CreateSongs />} />
                     </Route>
 
                     <Route path="/login" element={<Login />} />
@@ -87,7 +94,8 @@ function App() {
                 )}
                 <ToastContainer />
             </AppProvider>
-        </BrowserRouter>
+        </BrowserRouter></div>
+
     );
 }
 

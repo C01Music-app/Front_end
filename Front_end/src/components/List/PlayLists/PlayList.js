@@ -1,21 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Button, Modal, Form } from "react-bootstrap";
+import { FaPencilAlt } from "react-icons/fa";
+import "./PlayList.css";
+import {EditPlaylistModal} from "./EditPlaylistModal";
 
 export function Playlist() {
+    const [modalShow, setModalShow] = useState(false);
     const [playlist, setPlaylist] = useState(null);
     const [songs, setSongs] = useState([]);
+    const [isEditing, setIsEditing] = useState(false);
+    const [newTitle, setNewTitle] = useState('');
     const { id } = useParams();
+
+    const openModal = () => {
+        setModalShow(true);
+    };
 
     const getPlaylistById = async () => {
         try {
             const res = await axios.get(`http://localhost:8080/playlists/detail/${id}`);
             console.log("Playlist Data:", res.data);
             setPlaylist(res.data);
+            setNewTitle(res.data.title);
         } catch (error) {
             console.error('Error fetching playlist data:', error);
         }
-    }
+    };
 
     const getAllSongs = async () => {
         try {
@@ -25,7 +37,18 @@ export function Playlist() {
         } catch (error) {
             console.error('Error fetching songs data:', error);
         }
-    }
+    };
+
+    const handleEditTitle = async () => {
+        try {
+            const res = await axios.put(`http://localhost:8080/playlists/${id}`, { title: newTitle });
+            console.log("Updated Playlist Data:", res.data);
+            setPlaylist(res.data);
+            setIsEditing(false);
+        } catch (error) {
+            console.error('Error updating playlist title:', error);
+        }
+    };
 
     useEffect(() => {
         if (id) {
@@ -43,65 +66,62 @@ export function Playlist() {
         song.playlists.some(p => p.id === parseInt(id))
     ) : [];
 
-    const handleDelete = async (playlistId) => {
+    const handleDelete = async (songId, playlistId) => {
         try {
-            // Sao chép mảng songs
-            const updatedSongs = [...songs];
-
-            // Tìm bài hát cần cập nhật dựa trên playlistId
-            const songToUpdate = updatedSongs.find(song => song.playlists.some(p => p.id === playlistId));
-
-            if (!songToUpdate) {
-                console.error(`Không tìm thấy bài hát có playlist ${playlistId}.`);
-                return;
-            }
-
-            // Hiển thị cửa sổ xác nhận
-            const confirmDelete = window.confirm(`Bạn có chắc chắn muốn xoá playlist này khỏi bài hát "${songToUpdate.title}" không?`);
-
+            const confirmDelete = window.confirm("Bạn có chắc chắn muốn xoá playlist này khỏi bài hát không?");
             if (confirmDelete) {
-                // Lọc bỏ playlist có id là playlistId khỏi bài hát
-                songToUpdate.playlists = songToUpdate.playlists.filter(p => p.id !== playlistId);
-
-                // Gửi yêu cầu cập nhật đến server
-                await axios.put(`http://localhost:8080/songs/update/${songToUpdate.id}`, songToUpdate);
-
-                // Cập nhật state của songs
-                setSongs(updatedSongs);
-
-                // Hiển thị thông báo thành công
-                console.log(`Playlist có ID ${playlistId} đã được xoá khỏi bài hát có ID ${songToUpdate.id}`);
+                const response = await axios.delete(`http://localhost:8080/songs/${songId}/playlists/${playlistId}`);
+                if (response.status === 204) {
+                    setSongs(songs => songs.map(song => {
+                        if (song.id === songId) {
+                            return {
+                                ...song,
+                                playlists: song.playlists.filter(p => p.id !== playlistId)
+                            };
+                        }
+                        return song;
+                    }));
+                    console.log(`Playlist có ID ${playlistId} đã được xoá khỏi bài hát có ID ${songId}`);
+                } else {
+                    console.error('Lỗi khi xoá playlist từ bài hát:', response.data);
+                }
             } else {
                 console.log("Hoạt động xoá playlist đã bị huỷ bỏ.");
             }
         } catch (error) {
             console.error('Lỗi khi xoá playlist từ bài hát:', error);
         }
-    }
+    };
 
 
     return (
-        <div className="playlist1">
+        <div className="playlist1 col-12 px-5">
             <div className="playlist">
                 <div className="playlist-header">
                     <div className="playlist-thumbnail">
                         <img src="https://photo-zmp3.zmdcdn.me/album_default.png" alt="Playlist Thumbnail"/>
                     </div>
                     <div className="playlist-info">
-                        <h3 className="playlist-title">
-                            {playlist.title}
-                            <button className="edit-btn">
-                                <i className="icon ic-edit"></i>
-                            </button>
-                        </h3>
+                        <div>
+                            <h3 className="playlist-title">
+                                <span>{playlist.title}</span>
+                                <Button variant="info" onClick={openModal}>
+                                    <FaPencilAlt/>
+                                </Button>
+                            </h3>
+                            <EditPlaylistModal
+                                show={modalShow}
+                                onHide={() => setModalShow(false)}
+                                playlistId={playlist.id} // Pass playlistId to EditPlaylistModal
+                            />
+                        </div>
                         <div className="playlist-creator">Tạo bởi <span>{playlist.user.userName}</span></div>
-                        <div className="playlist-privacy">Công khai</div>
                     </div>
                 </div>
             </div>
             <div className="container">
                 <h2 className="mt-5 mb-4">Danh sách các bài hát</h2>
-                <table className="table table-dark table-striped">
+                <table className="table">
                     <thead>
                     <tr>
                         <th scope="col">Ảnh bìa</th>
@@ -121,7 +141,9 @@ export function Playlist() {
                             <td>{song.album || 'N/A'}</td>
                             <td>{song.duration}</td>
                             <td>
-                                <button className="btn btn-danger" onClick={() => handleDelete(song.id)}>Xoá</button>
+                                <button className="btn btn-danger"
+                                        onClick={() => handleDelete(song.id, parseInt(id))}>Xoá
+                                </button>
                             </td>
                         </tr>
                     ))}

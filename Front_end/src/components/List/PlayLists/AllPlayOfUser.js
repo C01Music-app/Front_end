@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import {Link, useNavigate} from "react-router-dom";
 
-const UserPlaylists = ({ userId }) => {
+const UserPlaylists = () => {
     const [playlists, setPlaylists] = useState([]);
+    const userId = parseInt(localStorage.getItem("idUser")); // Chuyển đổi userId thành số nguyên
+    const navigate = useNavigate();
+    const userName = localStorage.getItem("userName");
 
     useEffect(() => {
         const fetchPlaylists = async () => {
@@ -16,21 +20,38 @@ const UserPlaylists = ({ userId }) => {
             }
         };
         fetchPlaylists();
-    }, [userId]);
+    }, [userId]); // Thêm userId vào mảng phụ thuộc
+
+    if (!userId || userId === 0) {
+        return null;
+    }
 
     return (
-        <div>
-            <h3>Playlists for User {userId}</h3>
-            {playlists.length > 0 ? (
-                <ul>
-                    {playlists.map(playlist => (
-                        <li key={playlist.id}>{playlist.title}</li>
-                    ))}
-                </ul>
-            ) : (
-                <p>No playlists found for this user.</p>
-            )}
-        </div>
+        <>
+            <li className="nav-item">
+                <h1>Playlist của {userName} </h1>
+                <a className="nav-link" href="index.html">
+            <span>
+              <h6>
+                <div style={{marginTop: -20}}>
+                {playlists.length > 0 ? (
+                    <ul style={{listStyleType: 'none', paddingLeft: 5}}>
+                        {playlists.map(playlist => (
+                            <li key={playlist.id} style={{marginTop: 10, paddingLeft: 0}}>
+                                <Link to={`/playlists/detail/${playlist.id}`}>{playlist.title}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p style={{marginLeft: 0}}></p>
+                )}
+            </div>
+              </h6>
+            </span>
+                </a>
+            </li>
+
+        </>
     );
 };
 
