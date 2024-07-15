@@ -8,15 +8,17 @@ import {DetailArtists} from "./Artists/DetailArtists";
 import {Route} from "react-router-dom";
 import {DetailSong} from "./SongList/DetailSong";
 import React from "react";
+import ArtistsList from "./Artists/ArtistsList";
 
 export function AllList() {
     return (
         <>
             <div style={{padding: '0px 24px'}}>
                 <Slider/>
-                <AlbumList1/>
-                <SongList/>
+                {/*<AlbumList1/>*/}
+                {/*<SongList/>*/}
                 <Artists/>
+                {/*<ArtistsList/>*/}
             </div>
         </>
     )
