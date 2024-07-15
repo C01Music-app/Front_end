@@ -1,0 +1,81 @@
+.AudioPlayer {
+    min-height: 100vh;
+    padding: 120px 0;
+    background-color: #f6f6f6;
+    color: #101010;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.song-info,
+.song-control {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.song-info {
+    flex-direction: column;
+}
+
+.song-control {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.Song-Thumbnail {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.Song-Title {
+    text-transform: capitalize;
+    margin-bottom: 0;
+}
+
+.Singer {
+    margin-top: 0;
+    margin-bottom: 32px;
+    font-size: 12px;
+    color: #333;
+}
+
+.Control-Button-Group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    > * {
+        cursor: pointer;
+    }
+}
+
+.Prev-Button,
+.Next-Button {
+    width: 20px;
+}
+
+.Pause-Play-Button {
+    display: flex;
+    justify-content: center;
+    width: 14px;
+    height: 22px;
+    margin: 0 32px;
+
+    svg {
+        height: 22px;
+    }
+}
+
+.timeSliderCustom {
+    width: 30%; /* Adjust this value to fit 30% of the page width */
+    margin: 0 auto; /* Center align the time slider */
+    padding: 0 10px; /* Optional: Add some padding to the sides */
+    box-sizing: border-box;
+}

@@ -7,11 +7,13 @@ import {songSearch} from "../../service/SongsService";
 import {Link} from "react-router-dom";
 import SettingsButton from "../SettingsButton/SettingsButton";
 import "./../SettingsButton/SettingsButton.css"
+import {useSelector} from "react-redux";
 
 export function Topbar({ children, changeModal, loginStatus}) {
     const [search, setSearch] = useState("");
     const [filteredResults, setFilteredResults] = useState([]);
     const name = localStorage.getItem("userName");
+    // const user= useSelector(state => state.user);
 
     const [reload, setReload] = useState(false);
 
@@ -91,7 +93,10 @@ export function Topbar({ children, changeModal, loginStatus}) {
                     <li className="nav-item dropdown no-arrow">
                         <div className="nav-link dropdown-toggle" id="userDropdown" role="button"
                              aria-haspopup="true" aria-expanded="false">
-                            {name && <span className="mr-2 d-none d-lg-inline text-gray-600 small">{name}</span>}
+                            {/*<p>*/}
+                            {/*    {console.log(user)}*/}
+                            {/*</p>*/}
+                            {name && <span className="mr-2 d-none d-lg-inline text-gray-600 small">{name.userName}</span>}
                             <img className="img-profile rounded-circle" src="img/images.png" alt="profile"
                                  onClick={() => {
                                      changeModal()

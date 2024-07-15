@@ -1,0 +1,38 @@
+.custom-icons{
+    margin-left: 15px;
+    fill:red;
+}
+.icon-text-container{
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.icon-background{
+    margin-left:15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 40%;
+    background: linear-gradient(135deg, #6e4ff5, #8e68ff)
+}
+.icon1-text-container{
+    display: flex;
+    align-items: center;
+}
+.icon1-text-container button {
+    margin-left: 5px;
+}
+    .icon-text-container button {
+    margin-left: 5px;
+}
+.icon2-text-container{
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+}
+.icon2-text-container button {
+    margin-left: 5px;
+}

@@ -31,7 +31,7 @@ const SongList = () => {
   // }, [songs]);
 
   if (!songs) {
-    <div>loanding...</div>;
+    <div>loading...</div>;
   }
   return (
     <div className="app">

@@ -22,6 +22,7 @@ const MenuLogin = ({closeModal, changeStatusLogin}) => {
             closeModal();
             changeStatusLogin();
             toast.success("logout successful");
+            navigate("/");
         })
     }
     return (

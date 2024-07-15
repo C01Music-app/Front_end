@@ -18,6 +18,7 @@ import {Master} from "./pages/Master/Master";
 import {UserDetail} from "./components/updateUser/UserDetail";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import AudioPlayer from "./components/audioPlayer/AudioPlayer";
 
 
 function App() {
@@ -36,7 +37,6 @@ function App() {
     }
 
     useEffect(() => {
-        console.log(menuStatus)
     }, [menuStatus]);
 
     useEffect(() => {
@@ -48,7 +48,7 @@ function App() {
             localStorage.removeItem("token");
             localStorage.removeItem("userName");
             localStorage.removeItem("name");
-            localStorage.removeItem("role");
+            localStorage.removeItem("roles");
             localStorage.removeItem("userAvatar");
             localStorage.removeItem("idUser");
         })
@@ -70,6 +70,7 @@ function App() {
         </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/audioplayer" element={<AudioPlayer />} />
           {/*<Route path="/userList" element={<UserList />} />*/}
       </Routes>
         {menuStatus? (<MenuLogin closeModal={closeMenuLogin} changeStatusLogin={changeStatusLogin}/>):(<></>)}
