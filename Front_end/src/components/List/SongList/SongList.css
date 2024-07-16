@@ -42,7 +42,7 @@ h1 {
 }
 
 .song-item {
-  background-color: #170f23;
+  background-color: #100a18;
   padding: 10px;
   border-radius: 10px;
   display: flex;
@@ -123,4 +123,11 @@ h1 {
 .link:hover {
   color: rgb(223, 84, 223); /* Màu chữ khi di chuột vào */
   text-decoration: none;
+}
+.custom-modal-header {
+  background-color: purple; /* Màu tím */
+  color: white; /* Màu chữ */
+}
+.khanh {
+  color: #000;
 }

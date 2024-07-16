@@ -1,8 +1,8 @@
-import "./AudioPlayer.css"
+import "./AudioPlayer.css";
 import { FaPlay, FaPause, FaForward, FaBackward, FaRandom, FaRedo } from 'react-icons/fa';
-import audios from "../../audios"
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import TimeSlider from "react-input-slider";
+import { descSongs } from "../../service/SongsService";
 
 const AudioPlayer = () => {
     const audioRef = useRef();
@@ -12,17 +12,32 @@ const AudioPlayer = () => {
     const [isPlay, setPlay] = useState(false);
     const [isRandom, setRandom] = useState(false);
     const [isRedo, setRedo] = useState(false);
+    const [volume, setVolume] = useState(1);
+    const [songs, setSongs] = useState([]);
+
+    const getSongs = async () => {
+        try {
+            const res = await descSongs();
+            setSongs(res);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    useEffect(() => {
+        getSongs();
+    }, []);
 
     const handleLoadedData = () => {
         setDuration(audioRef.current.duration);
-        if (isPlay) audioRef.current.play();
+        if (isPlay) audioRef.current.play().catch(error => console.log(error));
     };
 
     const handlePausePlayClick = () => {
         if (isPlay) {
             audioRef.current.pause();
         } else {
-            audioRef.current.play();
+            audioRef.current.play().catch(error => console.log(error));
         }
         setPlay(!isPlay);
     };
@@ -33,18 +48,24 @@ const AudioPlayer = () => {
 
         if (!isPlay) {
             setPlay(true);
-            audioRef.current.play();
+            audioRef.current.play().catch(error => console.log(error));
         }
+    };
+
+    const handleVolumeChange = ({ x }) => {
+        const newVolume = Math.min(Math.max(x, 0), 1);
+        setVolume(newVolume);
+        audioRef.current.volume = newVolume;
     };
 
     const handleSongs = () => {
         if (isRedo) {
-            audioRef.current.play();
+            audioRef.current.play().catch(error => console.log(error));
         } else if (isRandom) {
-            setAudioIndex(Math.floor(Math.random() * audios.length));
+            setAudioIndex(Math.floor(Math.random() * songs.length));
         } else {
             setAudioIndex((prevIndex) => {
-                const nextIndex = (prevIndex + 1) % audios.length;
+                const nextIndex = (prevIndex + 1) % songs.length;
                 return nextIndex;
             });
         }
@@ -60,11 +81,11 @@ const AudioPlayer = () => {
         if (isRandom) setRandom(false); // Tắt Random nếu Redo được bật
     };
 
-    React.useEffect(() => {
-        if (audioRef.current) {
-            audioRef.current.play();
+    useEffect(() => {
+        if (audioRef.current && songs.length > 0) {
+            audioRef.current.play().catch(error => console.log(error));
         }
-    }, [audioIndex]);
+    }, [audioIndex, songs]);
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
@@ -73,12 +94,15 @@ const AudioPlayer = () => {
     };
 
     return (
-        <div className="AudioPlayer">
+        <div className="">
             <div className="container">
                 <div className="song-info">
-                    {/*<img className="Song-Thumbnail" src="img/images.png" alt="tet" />*/}
-                    <h2 className="Song-Title">{audios[audioIndex].title}</h2>
-                    <p className="Singer">{audios[audioIndex].artist}</p>
+                    {songs.length > 0 && (
+                        <>
+                            <h2 className="Song-Title">{songs[audioIndex]?.title}</h2>
+                            <p className="Singer">{songs[audioIndex]?.artist}</p>
+                        </>
+                    )}
                 </div>
                 <div className="song-control">
                     <div className="Control-Button-Group">
@@ -90,7 +114,7 @@ const AudioPlayer = () => {
                         </div>
                         <div
                             className="Prev-Button"
-                            onClick={() => setAudioIndex((audioIndex - 1 + audios.length) % audios.length)}
+                            onClick={() => setAudioIndex((audioIndex - 1 + songs.length) % songs.length)}
                         >
                             <FaBackward />
                         </div>
@@ -99,7 +123,7 @@ const AudioPlayer = () => {
                         </div>
                         <div
                             className="Next-Button"
-                            onClick={() => setAudioIndex((audioIndex + 1) % audios.length)}
+                            onClick={() => setAudioIndex((audioIndex + 1) % songs.length)}
                         >
                             <FaForward />
                         </div>
@@ -137,17 +161,44 @@ const AudioPlayer = () => {
                                 }}
                             />
                             <span className="time2">{formatTime(duration)}</span>
+                            <TimeSlider
+                                axis="x"
+                                xmax={1}
+                                x={volume}
+                                onChange={handleVolumeChange}
+                                styles={{
+                                    track: {
+                                        backgroundColor: "#e3e3e3",
+                                        height: "3px",
+                                        width: "100px",
+                                        marginLeft: "10px",
+                                    },
+                                    active: {
+                                        backgroundColor: "#89878d",
+                                        height: "3px",
+                                    },
+                                    thumb: {
+                                        marginTop: "-1.5px",
+                                        width: "10px",
+                                        height: "10px",
+                                        backgroundColor: "#a5a3a3",
+                                        borderRadius: 50,
+                                    },
+                                }}
+                            />
                         </div>
                     </div>
                 </div>
             </div>
-            <audio
-                ref={audioRef}
-                src={audios[audioIndex].src}
-                onLoadedData={handleLoadedData}
-                onTimeUpdate={() => setCurrentTime(audioRef.current.currentTime)}
-                onEnded={handleSongs}
-            />
+            {songs.length > 0 && (
+                <audio
+                    ref={audioRef}
+                    src={songs[audioIndex]?.lyrics}
+                    onLoadedData={handleLoadedData}
+                    onTimeUpdate={() => setCurrentTime(audioRef.current.currentTime)}
+                    onEnded={handleSongs}
+                />
+            )}
         </div>
     );
 };

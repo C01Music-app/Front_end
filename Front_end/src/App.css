@@ -1,5 +1,6 @@
 .App {
     text-align: center;
+    background-color: #170F23; /* Cập nhật màu nền */
 }
 
 .App-logo {
@@ -14,14 +15,14 @@
 }
 
 .App-header {
-    background-color: #282c34;
+    background-color: #170F23; /* Cập nhật màu nền */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    color: white;
+    color: #fff; /* Đảm bảo văn bản có màu tương phản tốt */
 }
 
 .App-link {
@@ -55,13 +56,13 @@
 }
 
 .media-body h5 {
-    font-size: 1rem; /* Adjust font size */
+    font-size: 1rem; /* Điều chỉnh kích thước font */
     margin: 0;
 }
 
 .media-body p {
     margin: 0;
-    font-size: 0.875rem; /* Adjust font size */
+    font-size: 0.875rem; /* Điều chỉnh kích thước font */
 }
 
 .media-right {
@@ -77,5 +78,9 @@
 .media-right button {
     margin-left: 5px;
     padding: 0.25rem 0.5rem;
-    font-size: 0.75rem; /* Adjust font size */
+    font-size: 0.75rem; /* Điều chỉnh kích thước font */
+}
+.topbar, .header, .navbar {
+    background-color: #170F23; /* Thay đổi màu nền */
+    color: #fff; /* Màu chữ trắng để dễ đọc */
 }

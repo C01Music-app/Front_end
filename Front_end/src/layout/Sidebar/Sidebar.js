@@ -1,26 +1,30 @@
-
-import React from "react";
-import "./Sidebar.css"
+import React, {useEffect, useState} from "react";
+import {CreatePlayList} from "../../components/List/PlayLists/CreatePlayList";
+import {Button} from "react-bootstrap";
+import AllPlayOfUser from "../../components/List/PlayLists/AllPlayOfUser";
 
 export function Sidebar() {
-  const role = localStorage.getItem("roles");
+  const [modalShow, setModalShow] = useState(false);
+
+
   return (
-    <>
-      <ul
-          className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed-sidebar"
-          id="accordionSidebar"
-      >
-        <a
-            className="sidebar-brand d-flex align-items-center justify-content-center"
-            href="/"
-        >
-          <div className="sidebar-brand-icon rotate-n-15">
-            <i className="fas fa-laugh-wink"></i>
-          </div>
-          <div className="sidebar-brand-text mx-3">Zing mp3</div>
-        </a>
-        <li className="nav-item">
-          <a className="nav-link">
+        <>
+          <ul
+              className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed-sidebar"
+              id="accordionSidebar"
+              style={{background : "#231B2E"}}
+          >
+            <a
+                className="sidebar-brand d-flex align-items-center justify-content-center"
+                href="/"
+            >
+              <div className="sidebar-brand-icon rotate-n-15">
+                <i className="fas fa-laugh-wink"></i>
+              </div>
+              <div className="sidebar-brand-text mx-3">Zing mp3</div>
+            </a>
+            <li className="nav-item">
+              <a className="nav-link">
             <span>
               <h6>
                 {" "}
@@ -41,10 +45,10 @@ export function Sidebar() {
                 Thư viện
               </h6>
             </span>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/">
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/">
             <span>
               <h6>
                 {" "}
@@ -65,10 +69,10 @@ export function Sidebar() {
                 Khám Phá
               </h6>
             </span>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="index.html">
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="index.html">
             <span>
               <h6>
                 <svg
@@ -89,10 +93,10 @@ export function Sidebar() {
                 #zingchart
               </h6>
             </span>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="index.html">
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="index.html">
             <span>
               <h6>
                 <svg
@@ -112,11 +116,11 @@ export function Sidebar() {
                 Radio
               </h6>
             </span>
-          </a>
-        </li>
-        <hr className="sidebar-divider"/>
-        <li className="nav-item">
-          <a className="nav-link" href="index.html">
+              </a>
+            </li>
+            <hr className="sidebar-divider"/>
+            <li className="nav-item">
+              <a className="nav-link" href="index.html">
             <span>
               {" "}
               <h6>
@@ -137,10 +141,10 @@ export function Sidebar() {
                 BXH Nhạc Mới
               </h6>
             </span>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="index.html">
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="index.html">
             <span>
               <h6>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -183,13 +187,12 @@ export function Sidebar() {
                 Chủ Đề & Thể Loại
               </h6>
             </span>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="index.html">
-
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="index.html">
             <span>
-
+              <h6>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path
                       fill-rule="evenodd"
@@ -200,84 +203,34 @@ export function Sidebar() {
                       stroke-width="1.5"
                   ></path>
                 </svg>
-                <h6>Top 100</h6>
+                Top 100
+              </h6>
             </span>
-
-          </a>
-        </li>
-        <hr className="sidebar-divider d-none d-md-block"/>
-        <li className="nav-item">
-          <div className="icon1-text-container">
-            <div className="icon-background">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                   className="bi bi-clock icon1"
-                   viewBox="0 0 16 16">
-                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
-              </svg>
-            </div>
-            <button onClick="handleListenedSong">Nghe gần đây</button>
-          </div>
-        </li>
-        <li className="nav-item">
-          <div className="icon-text-container">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                 className="bi bi-hearts custom-icons"
-                 viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                    d="M4.931.481c1.627-1.671 5.692 1.254 0 5.015-5.692-3.76-1.626-6.686 0-5.015m6.84 1.794c1.084-1.114 3.795.836 0 3.343-3.795-2.507-1.084-4.457 0-3.343M7.84 7.642c2.71-2.786 9.486 2.09 0 8.358-9.487-6.268-2.71-11.144 0-8.358"/>
-            </svg>
-            <button onClick="handleFavoriteSong">Bài hát yêu thích</button>
-          </div>
-        </li>
-        <li className="nav-item">
-          <div className="icon2-text-container">
-            <div className="icon-background">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                   className="bi bi-music-note-list icon2" viewBox="0 0 16 16">
-                <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2"/>
-                <path fill-rule="evenodd" d="M12 3v10h-1V3z"/>
-                <path d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1z"/>
-                <path fill-rule="evenodd"
-                      d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5m0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5"/>
-              </svg>
-            </div>
-            <button onClick="handleSongList">PlayList</button>
-          </div>
-        </li>
-        <li className="nav-item">
-          <div className="icon2-text-container">
-            <div className="icon-background">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                   className="bi bi-server" viewBox="0 0 16 16">
-                <path
-                    d="M1.333 2.667C1.333 1.194 4.318 0 8 0s6.667 1.194 6.667 2.667V4c0 1.473-2.985 2.667-6.667 2.667S1.333 5.473 1.333 4z"/>
-                <path
-                    d="M1.333 6.334v3C1.333 10.805 4.318 12 8 12s6.667-1.194 6.667-2.667V6.334a6.5 6.5 0 0 1-1.458.79C11.81 7.684 9.967 8 8 8s-3.809-.317-5.208-.876a6.5 6.5 0 0 1-1.458-.79z"/>
-                <path
-                    d="M14.667 11.668a6.5 6.5 0 0 1-1.458.789c-1.4.56-3.242.876-5.21.876-1.966 0-3.809-.316-5.208-.876a6.5 6.5 0 0 1-1.458-.79v1.666C1.333 14.806 4.318 16 8 16s6.667-1.194 6.667-2.667z"/>
-              </svg>
-            </div>
-            <button onClick="handleSongAlbum">Album</button>
-          </div>
-        </li>
-        <li className="nav-item">
-          <div className="icon2-text-container">
-            <div className="icon-background">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                   className="bi bi-cloud-upload" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                      d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383"/>
-                <path fill-rule="evenodd"
-                      d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708z"/>
-              </svg>
-            </div>
-            <button onClick="handleSongUpload">Đã tải lên</button>
-          </div>
-        </li>
-        <hr className="sidebar-divider d-none d-md-block"/>
-      </ul>
-    </>
+              </a>
+            </li>
+            <hr className="sidebar-divider d-none d-md-block"/>
+            <li className="nav-item">
+              <AllPlayOfUser/>
+              <Button className="nav-link" onClick={() => setModalShow(true)}>
+                        <span>
+                            <h6>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M12 1.75C6.61522 1.75 2.25 6.11522 2.25 11.5C2.25 16.8848 6.61522 21.25 12 21.25C17.3848 21.25 21.75 16.8848 21.75 11.5C21.75 6.11522 17.3848 1.75 12 1.75ZM3.75 11.5C3.75 7.16751 7.16751 3.75 12 3.75C16.8325 3.75 20.25 7.16751 20.25 11.5C20.25 15.8325 16.8325 19.25 12 19.25C7.16751 19.25 3.75 15.8325 3.75 11.5ZM12 6.75C12.4142 6.75 12.75 7.08579 12.75 7.5V11.25H16.5C16.9142 11.25 17.25 11.5858 17.25 12C17.25 12.4142 16.9142 12.75 16.5 12.75H12.75V16.5C12.75 16.9142 12.4142 17.25 12 17.25C11.5858 17.25 11.25 16.9142 11.25 16.5V12.75H7.5C7.08579 12.75 6.75 12.4142 6.75 12C6.75 11.5858 7.08579 11.25 7.5 11.25H11.25V7.5C11.25 7.08579 11.5858 6.75 12 6.75Z"
+                                        fill-opacity="0.8"
+                                    ></path>
+                                </svg>
+                              {" "}
+                              Tạo playlist mới
+                            </h6>
+                        </span>
+              </Button>
+            </li>
+            <CreatePlayList show={modalShow} onHide={() => setModalShow(false)}/>
+          </ul>
+        </>
   );
 
 }
