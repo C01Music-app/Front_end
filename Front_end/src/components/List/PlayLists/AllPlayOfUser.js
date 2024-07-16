@@ -3,11 +3,13 @@ import axios from 'axios';
 import {Link, useNavigate} from "react-router-dom";
 import {render} from "@testing-library/react";
 
-const UserPlaylists = () => {
+const UserPlaylists = ({show}) => {
     const [playlists, setPlaylists] = useState([]);
     const userId = parseInt(localStorage.getItem("idUser")); // Chuyển đổi userId thành số nguyên
     const navigate = useNavigate();
     const userName = localStorage.getItem("userName");
+
+
 
     useEffect(() => {
         const fetchPlaylists = async () => {
@@ -21,7 +23,7 @@ const UserPlaylists = () => {
             }
         };
         fetchPlaylists();
-    }, []); // Thêm userId vào mảng phụ thuộc
+    }, [show]); // Thêm userId vào mảng phụ thuộc
 
     if (!userId || userId === 0) {
         return null;
@@ -31,7 +33,7 @@ const UserPlaylists = () => {
         <>
             <li className="nav-item">
                 <h1>Playlist của {userName} </h1>
-                <a className="nav-link" href="index.html">
+                <a className="nav-link" href="/">
             <span>
               <h6>
                 <div style={{marginTop: -20}}>

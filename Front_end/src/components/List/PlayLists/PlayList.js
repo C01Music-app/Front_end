@@ -55,7 +55,7 @@ export function Playlist() {
             getPlaylistById();
             getAllSongs();
         }
-    }, [id]);
+    }, [id , modalShow]);
 
     if (!playlist) {
         return <div>...Loading</div>;
