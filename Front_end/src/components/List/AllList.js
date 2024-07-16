@@ -8,10 +8,10 @@ import React from "react";
 export function AllList() {
   return (
     <>
-      <div style={{ padding: "0px 24px" , background:"#170F23" }}>
+      <div style={{ padding: "0px 24px", background: "#170F23" }}>
         <Slider />
         <AlbumList1 />
-          {/*<SongList/>*/}
+        <SongList />
       </div>
     </>
   );

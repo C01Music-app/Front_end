@@ -163,7 +163,7 @@ export const Create = () => {
                       </div>
                       <div>
                         <p className="song-artist col-10 viii">
-                          {song.artist.name}
+                          {song.artist[0].name}
                         </p>
                         <p className="song-time">{song.dateStart}</p>
                       </div>
