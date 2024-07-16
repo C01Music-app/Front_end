@@ -180,7 +180,7 @@ export const CreateSongs = ({ show, closeModal, makeReload }) => {
             onSubmit={handleCreateSongs}
           >
             <Form>
-              <div className="card vi-w100">
+              <div className="card vi-w100 khanh">
                 <div className="row align-items-center no-gutters">
                   <div className="col-md-5">
                     <img

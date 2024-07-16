@@ -1,0 +1,48 @@
+.song-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.song-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.album-art {
+  width: 150px;
+  height: 150px;
+  margin-right: 20px;
+}
+
+.song-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.song-info h2 {
+  margin: 0;
+}
+
+.song-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.play-button {
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.play-button:hover {
+  background-color: #3700b3;
+}
