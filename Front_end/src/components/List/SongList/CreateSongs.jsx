@@ -6,10 +6,7 @@ import { Button, FormGroup, Label, Input } from "reactstrap";
 import { artistsService } from "../../../service/ArtistsService";
 import { Field, Formik, Form } from "formik";
 import { db, storage } from "./firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { createSongs } from "../../../service/SongsService";
-import { Await } from "react-router-dom";
 import * as SongsService from "../../../service/SongsService";
 
 // import { useDispatch } from "react-redux";

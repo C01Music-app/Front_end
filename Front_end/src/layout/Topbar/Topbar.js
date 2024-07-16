@@ -57,7 +57,7 @@ export function Topbar({ children, changeModal, loginStatus }) {
   };
   return (
     <>
-      <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+      <nav className="navbar navbar-expand navbar-light topbar mb-4 static-top shadow topbar" >
         <Link to="/">
           {" "}
           <button

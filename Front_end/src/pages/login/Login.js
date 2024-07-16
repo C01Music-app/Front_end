@@ -5,9 +5,12 @@ import axios from "axios";
 import {toast} from "react-toastify";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {FaEye, FaEyeSlash} from "react-icons/fa";
+import {useDispatch} from "react-redux";
+import setUser from "../../redux/action";
 
 
 export default function Login() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const {toggleFlag} = useContext(AppContext);
@@ -19,19 +22,35 @@ export default function Login() {
     }
 
     function setAcc (value){
-        console.log(value)
+        // console.log(value)
         axios.post("http://localhost:8080/auth/login",value).then((res) =>{
-            console.log(res.data);
+            // console.log(res.data);
             if(res.data === false){
                 alert("Tài khoản không khả dụng.")
             }
             else {
                 toggleFlag()
-                console.log(res.data)
+                // console.log(res.data)
                 localStorage.setItem("idUser", res.data.id);
                 localStorage.setItem("userName", res.data.username);
                 localStorage.setItem("roles",res.data.authorities[0].authority);
                 localStorage.setItem("token",res.data.token);
+                // const users = {
+                //     idUser:res.data.id,
+                //     userName:res.data.username,
+                //     roles:res.data.authorities[0].authority,
+                //     token:res.data.token
+                // }
+                // let users = {
+                //     idUser:3,
+                //     userName:"truong",
+                //     roles:"User",
+                //     token:"hhhhhhhh4444"
+                // }
+                // console.log("-----:   "+users)
+                // dispatch(setUser(
+                //     users
+                // ));
                 navigate("/");
                 toast.success("đăng nhập thành công.")
 

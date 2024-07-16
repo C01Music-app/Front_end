@@ -45,3 +45,20 @@ export const findByUserName = async (userName) => {
         console.error("Error finding user by username:", err);
     }
 };
+export const updateUserDetail = async (id, user, header) => {
+        try {
+            const res = await axios.put(`http://localhost:8080/user/detail/${id}`, user, header);
+            return res.data;
+        } catch (err) {
+            console.error("Error updating user:", err);
+        }
+};
+
+export const updateUserPassword = async (id, user, header) => {
+    try {
+        const res = await axios.put(`http://localhost:8080/user/password/${id}`, user, header);
+        return res.data;
+    } catch (err) {
+        console.error("Error updating user:", err);
+    }
+};

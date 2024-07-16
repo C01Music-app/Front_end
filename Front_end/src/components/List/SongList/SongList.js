@@ -6,9 +6,11 @@ import { useEffect, useState } from "react";
 import { descSongs } from "../../../service/SongsService";
 
 import { Button } from "react-bootstrap";
+import AddSongToPlayList from "../PlayLists/AddSongToPlayList";
 
 const SongList = () => {
   const [songs, setSongs] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
 
   const navigate = useNavigate();
 
@@ -72,16 +74,16 @@ const SongList = () => {
                     {song.premium && <span className="premium">PREMIUM</span>}
                   </div>
                   <div>
-                    <p className="song-artist col-10 viii">
-                      {song.artist.name}
-                    </p>
-                    <p className="song-time">{song.dateStart}</p>
+                    {/*<p className="song-artist col-10 viii">*/}
+                    {/*  {song.artist[0].name}*/}
+                    {/*</p>*/}
+                    {/*<p className="song-time">{song.dateStart}</p>*/}
                   </div>
                 </div>
                 <div className="media-right col-2">
-                  <button className="btn btn-outline-secondary btn-sm custom-btn vi22 ">
-                    <i className="icon ic-more"> </i> <h3>...</h3>
-                  </button>
+                  <Button className="btn btn-outline-secondary btn-sm custom-btn vi22" onClick={() => setModalShow(true)}>
+                  </Button>
+                  <AddSongToPlayList show={modalShow} onHide={() => setModalShow(false)}/>
                 </div>
               </div>
             </div>
