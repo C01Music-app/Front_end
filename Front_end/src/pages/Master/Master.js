@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { Topbar } from "../../layout/Topbar/Topbar";
 import { Footer } from "../../layout/Footer/Footer";
 import { Sidebar } from "../../layout/Sidebar/Sidebar";
+import AudioPlayer from "../../components/audioPlayer/AudioPlayer";
 
 export function Master({ change, loginStatus }) {
     return (
@@ -12,6 +13,7 @@ export function Master({ change, loginStatus }) {
                     <Topbar changeModal={change} loginStatus={loginStatus} />
                     <Outlet />
                 </div>
+                <AudioPlayer/>
                 <Footer />
             </div>
         </div>

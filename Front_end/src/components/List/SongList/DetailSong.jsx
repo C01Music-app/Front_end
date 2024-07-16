@@ -35,7 +35,6 @@ export const DetailSong = () => {
             alt="171x180"
             src="https://th.bing.com/th/id/R.78ae726a1bc19dc056b3bb5d3439f298?rik=Au1PZhb1kRIDOQ&pid=ImgRaw&r=0"
           />
-
           <Figure.Caption>
             <h4 className="white-text">ok</h4>
             Nulla vitae elit libero.Nulla vitae elit libero.
