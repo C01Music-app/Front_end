@@ -56,7 +56,7 @@ function AddPlaylistToSongModal(props) {
 
     return (
         <>
-            <div className="media-right col-2">
+            <div className="media-right col-12">
                 <button className="btn btn-outline-secondary btn-sm custom-btn vi22" onClick={handleShow}>
                     <i className="icon ic-more"></i> <h3>...</h3>
                 </button>

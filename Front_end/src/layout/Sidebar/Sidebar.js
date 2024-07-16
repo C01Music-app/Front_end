@@ -48,7 +48,7 @@ export function Sidebar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <a className="nav-link" href="">
             <span>
               <h6>
                 {" "}
@@ -72,7 +72,7 @@ export function Sidebar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="index.html">
+              <a className="nav-link" href="">
             <span>
               <h6>
                 <svg
@@ -96,7 +96,7 @@ export function Sidebar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="index.html">
+              <a className="nav-link" href="">
             <span>
               <h6>
                 <svg
@@ -120,7 +120,7 @@ export function Sidebar() {
             </li>
             <hr className="sidebar-divider"/>
             <li className="nav-item">
-              <a className="nav-link" href="index.html">
+              <a className="nav-link" href="">
             <span>
               {" "}
               <h6>
@@ -144,7 +144,7 @@ export function Sidebar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="index.html">
+              <a className="nav-link" href="">
             <span>
               <h6>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -190,7 +190,7 @@ export function Sidebar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="index.html">
+              <a className="nav-link" href="">
             <span>
               <h6>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -210,8 +210,8 @@ export function Sidebar() {
             </li>
             <hr className="sidebar-divider d-none d-md-block"/>
             <li className="nav-item">
-              <AllPlayOfUser/>
-              <Button className="nav-link" onClick={() => setModalShow(true)}>
+              <AllPlayOfUser show={modalShow}/>
+              <Button className="nav-link" style={{background: "#231B2E", border:"inherit"}} onClick={() => setModalShow(true)}>
                         <span>
                             <h6>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
