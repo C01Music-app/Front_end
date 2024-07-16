@@ -1,72 +1,36 @@
 import React, { useEffect, useState } from "react";
 import "./SongList.css";
 import { toast } from "react-toastify";
-import { Col, Modal, ModalBody, ModalHeader } from "react-bootstrap";
-import { Button, FormGroup, Label, Input } from "reactstrap";
+import { Modal, ModalBody, ModalHeader } from "react-bootstrap";
+import { Button } from "reactstrap";
 import { artistsService } from "../../../service/ArtistsService";
 import { Field, Formik, Form } from "formik";
 import { db, storage } from "./firebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import * as SongsService from "../../../service/SongsService";
 
-// import { useDispatch } from "react-redux";
-
 export const CreateSongs = ({ show, closeModal, makeReload }) => {
-  // const dispatch = useDispatch();
   const [imageUrl, setImageUrl] = useState(undefined);
   const [songUrl, setSongUrl] = useState(undefined);
   const [songs, setSongs] = useState({});
   const [artists, setArtists] = useState([]);
 
-  // const uploadFileImg = (image) => {
-  //   if (image === null) return;
-  //   const imageRef = ref(storage, `IMG/${image.name}`);
-  //   console.log(imageRef);
-  //   uploadBytes(imageRef, image).then((snapshot) => {
-  //     getDownloadURL(snapshot.ref).then((url) => {
-  //       setImageUrl(url);
-  //       console.log(setImageUrl(url));
-  //       console.log("image uploaded successfully", url);
-  //       console.log("image uploaded successfully", imageUrl);
-  //       songs.img_url = url;
-  //       localStorage.setItem("imgSongs", url);
-  //     });
-  //   });
-  // };
   const uploadFileImg = (image) => {
     if (image === null) return;
     const imageRef = ref(storage, `IMG/${image.name}`);
 
     uploadBytes(imageRef, image).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
-        setImageUrl(url); // Cập nhật state với đường dẫn ảnh mới
-        console.log("image uploaded successfully", url);
-
-        // Cập nhật songs.img_url trong state songs
+        setImageUrl(url);
         setSongs((prevSongs) => ({
           ...prevSongs,
           img_url: url,
         }));
-
-        // Lưu đường dẫn ảnh vào localStorage
         localStorage.setItem("imgSongs", url);
       });
     });
   };
-  // const uploadFileSong = (music) => {
-  //   if (music === null) return;
-  //   const urlRef = ref(storage, `Music/${music.name}`);
-  //   console.log(urlRef, "vi");
-  //   uploadBytes(urlRef, music).then((snapshot) => {
-  //     getDownloadURL(snapshot.ref).then((url) => {
-  //       setSongUrl(url);
-  //       console.log("song uploaded successfully", url);
-  //       console.log("song uploaded successfully", songUrl);
-  //       songs.song_url = url;
-  //       localStorage.setItem("lyrics", url);
-  //     });
-  //   });
-  // };
+
   const uploadFileSong = (music) => {
     if (music === null) return;
 
@@ -75,19 +39,12 @@ export const CreateSongs = ({ show, closeModal, makeReload }) => {
 
     uploadBytes(urlRef, music).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
-        setSongUrl(url); // Cập nhật state với đường dẫn bài hát mới
-        console.log("song uploaded successfully", url);
-
-        // Cập nhật songs.song_url trong state songs
+        setSongUrl(url);
         setSongs((prevSongs) => ({
           ...prevSongs,
           song_url: url,
         }));
-
-        // Lưu đường dẫn bài hát vào localStorage
         localStorage.setItem("lyrics", url);
-
-        // Đoạn này in ra giá trị songUrl sẽ hiển thị giá trị mới
         console.log("song uploaded successfully", url);
       });
     });
@@ -102,57 +59,33 @@ export const CreateSongs = ({ show, closeModal, makeReload }) => {
     getAllArtists();
   }, []);
 
-  // const handleCreateSongs = async (values) => {
-  //   console.log("ok");
-  //   console.log(values);
-  //   try {
-  //     values.imgSongs = localStorage.getItem("imgSongs");
-  //     values.lyrics = localStorage.getItem("lyrics");
-  //     SongsService.createSongs(values).then((res) => {
-  //       closeModal();
-  //       toast.success("thêm mới thành công");
-  //     });
-  //   } catch (error) {
-  //     toast.error("thất bại");
-  //   }
-  // };
   const handleCreateSongs = async (value) => {
-    const values = { ...value, artist: [JSON.parse(value.artist)] };
-
     try {
-      // Kiểm tra values có tồn tại và không phải là null
-      if (values && typeof values === "object") {
+      if (value && typeof value === "object") {
         const imgSongs = localStorage.getItem("imgSongs");
         const lyrics = localStorage.getItem("lyrics");
 
-        // Gán giá trị vào `values`
-        values.imgSongs = imgSongs;
-        values.lyrics = lyrics;
+        const parsedArtist = value.artist ? JSON.parse(value.artist) : null;
+
+        const values = {
+          ...value,
+          artist: parsedArtist ? [parsedArtist] : [],
+          imgSongs,
+          lyrics,
+        };
         console.log(values, "khanh");
 
-        // Gọi API để tạo bài hát và đợi cho đến khi hoàn thành
         const res = await SongsService.createSongs(values);
 
-        // Đóng modal và hiển thị thông báo thành công
         closeModal();
         toast.success("Thêm mới thành công");
       } else {
         throw new Error("Values object is undefined, null, or not an object");
       }
     } catch (error) {
-      // Xử lý lỗi nếu có
       console.error("Error creating songs:", error);
       toast.error("Thêm mới thất bại");
     }
-  };
-
-  const token = localStorage.getItem("token");
-
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
   };
 
   return (
@@ -164,18 +97,10 @@ export const CreateSongs = ({ show, closeModal, makeReload }) => {
         <ModalBody>
           <Formik
             initialValues={{
-              // id: "",
-              // like: "",
               title: "",
-              // artist: "",
               description: "",
               imgSongs: "",
-              // time: "",
-              // dateStart: "",
               lyrics: "",
-              // listens: "",
-              // playlists: "",
-              // lableSong: "",
             }}
             onSubmit={handleCreateSongs}
           >
@@ -223,11 +148,11 @@ export const CreateSongs = ({ show, closeModal, makeReload }) => {
                       </div>
                       <div className="form-group mb-2">
                         <label className="form-label" htmlFor="artist">
-                          ca sĩ
+                          Ca sĩ
                         </label>
                         <Field
                           className="form-control form-control-sm"
-                          placeholder="Chọn thể loại"
+                          placeholder="Chọn ca sĩ"
                           as="select"
                           name="artist"
                           id="artist"
