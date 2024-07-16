@@ -22,6 +22,9 @@ import {Create} from "./components/List/creates/create";
 import {CreateSongs} from "./components/List/SongList/CreateSongs";
 import {Playlist} from "./components/List/PlayLists/PlayList";
 import DeleteSongs from "./components/List/SongList/DeleteSongs";
+import 'react-toastify/dist/ReactToastify.css';
+import AudioPlayer from "./components/audioPlayer/AudioPlayer";
+
 
 function App() {
     const [menuStatus, setMenuStatus] = useState(false);
@@ -78,6 +81,7 @@ function App() {
               </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/audioPlayer" element={<AudioPlayer />} />
             </Routes>
             {menuStatus && (
                 <MenuLogin closeModal={closeMenuLogin} changeStatusLogin={changeStatusLogin} />
