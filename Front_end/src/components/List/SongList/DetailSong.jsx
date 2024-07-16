@@ -15,14 +15,15 @@ export const DetailSong = () => {
       console.log(e);
     }
   };
+
   const handleDetail = async (value, id) => {
     const res = await SongsService.detailSongs(value, id);
   };
-  //   useEffect(() => {
-
-  //     console.log(`staff: ${songs}`);
-  //     console.log(id);
-  //   },[id, staff]);
+  useEffect(() => {
+    // console.log(`staff: ${songs}`);
+    // console.log(id);
+    getSongs();
+  }, [songs]);
   if (!songs) {
     return <div>loanding...</div>;
   }

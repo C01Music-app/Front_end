@@ -74,16 +74,21 @@ const SongList = () => {
                     {song.premium && <span className="premium">PREMIUM</span>}
                   </div>
                   <div>
-                    {/*<p className="song-artist col-10 viii">*/}
-                    {/*  {song.artist[0].name}*/}
-                    {/*</p>*/}
-                    {/*<p className="song-time">{song.dateStart}</p>*/}
+                    <p className="song-artist col-10 viii">
+                      {song.artist[0].name}
+                    </p>
+                    <p className="song-time">{song.dateStart}</p>
                   </div>
                 </div>
                 <div className="media-right col-2">
-                  <Button className="btn btn-outline-secondary btn-sm custom-btn vi22" onClick={() => setModalShow(true)}>
-                  </Button>
-                  <AddSongToPlayList show={modalShow} onHide={() => setModalShow(false)}/>
+                  <Button
+                    className="btn btn-outline-secondary btn-sm custom-btn vi22"
+                    onClick={() => setModalShow(true)}
+                  ></Button>
+                  <AddSongToPlayList
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                  />
                 </div>
               </div>
             </div>
