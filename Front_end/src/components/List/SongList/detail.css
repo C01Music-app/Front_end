@@ -46,3 +46,8 @@
 .play-button:hover {
   background-color: #3700b3;
 }
+.vi {
+  width: 400px;
+  height: 400px;
+  margin-right: 10px;
+}

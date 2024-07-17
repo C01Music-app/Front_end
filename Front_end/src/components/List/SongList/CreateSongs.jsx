@@ -8,12 +8,14 @@ import { Field, Formik, Form } from "formik";
 import { db, storage } from "./firebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import * as SongsService from "../../../service/SongsService";
+import { useNavigate } from "react-router-dom";
 
 export const CreateSongs = ({ show, closeModal, makeReload }) => {
   const [imageUrl, setImageUrl] = useState(undefined);
   const [songUrl, setSongUrl] = useState(undefined);
   const [songs, setSongs] = useState({});
   const [artists, setArtists] = useState([]);
+  const navigate = useNavigate();
 
   const uploadFileImg = (image) => {
     if (image === null) return;
@@ -66,12 +68,14 @@ export const CreateSongs = ({ show, closeModal, makeReload }) => {
         const lyrics = localStorage.getItem("lyrics");
 
         const parsedArtist = value.artist ? JSON.parse(value.artist) : null;
-
+        const currentTime = new Date().toLocaleDateString(); // Lấy thời gian hiện tại
+        console.log(currentTime);
         const values = {
           ...value,
           artist: parsedArtist ? [parsedArtist] : [],
           imgSongs,
           lyrics,
+          dateStart: currentTime,
         };
         console.log(values, "khanh");
 
@@ -79,6 +83,8 @@ export const CreateSongs = ({ show, closeModal, makeReload }) => {
 
         closeModal();
         toast.success("Thêm mới thành công");
+        console.log(res.data.id);
+        // navigate(`/songs/detail/${res.data.id}`);
       } else {
         throw new Error("Values object is undefined, null, or not an object");
       }
@@ -97,8 +103,10 @@ export const CreateSongs = ({ show, closeModal, makeReload }) => {
         <ModalBody>
           <Formik
             initialValues={{
+              id: "",
               title: "",
               description: "",
+              // dateStart: "",
               imgSongs: "",
               lyrics: "",
             }}
