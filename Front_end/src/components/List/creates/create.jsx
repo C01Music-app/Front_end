@@ -135,52 +135,46 @@ export const Create = () => {
 
       <div className="zm-empty">
         <div className="icon upload-song"> </div>
-        <div className="text">
-          <div className="songs-list">
-            {songs.map((song, index) => (
-              <div className="song-item" key={song.id}>
-                <img
-                  src={song.imgSongs}
-                  alt={song.title}
-                  className="song-image"
-                />
-                <div className="song-info">
-                  <div className="d-flex">
+        <div className="songs-list">
+          {songs.map((song, index) => (
+            <div className="song-item" key={song.id}>
+              <img
+                src={song.imgSongs || "default-image-url.jpg"}
+                alt={song.title}
+                className="song-image"
+              />
+              <div className="song-info">
+                <div className="d-flex">
+                  <div>
+                    <div className="song-title">
+                      <div className="custom-link">
+                        <Link
+                          to={`/songs/detail/${song.id}`}
+                          className="white-text link"
+                        >
+                          {song.title}
+                        </Link>
+                      </div>
+                      {song.premium && <span className="premium">PREMIUM</span>}
+                    </div>
                     <div>
-                      <div className="song-title vicc ">
-                        <div className="custom-link">
-                          <Link
-                            to={`/detail/${song.id}`}
-                            className="white-text link"
-                          >
-                            {song.title}{" "}
-                          </Link>
-                        </div>
-
-                        {song.premium && (
-                          <span className="premium">PREMIUM</span>
-                        )}
-                      </div>
-                      <div>
-                        <p className="song-artist col-10 viii">
-                          {song.artist[0].name}
-                        </p>
-                        <p className="song-time">{song.dateStart}</p>
-                      </div>
+                      <p className="song-artist">{song.artist[0].name}</p>
+                      <p className="song-time">{song.dateStart}</p>
                     </div>
-                    <div className="media-right col-2">
-                      <button
-                        className="btn btn-outline-secondary btn-sm custom-btn vi22 "
-                        onClick={() => togglePopup(song)}
-                      >
-                        <i className="icon ic-more"> </i> <h3>...</h3>
-                      </button>
-                    </div>
+                  </div>
+                  <div className="media-right">
+                    <button
+                      className="btn btn-outline-secondary btn-sm custom-btn"
+                      onClick={() => togglePopup(song)}
+                    >
+                      <i className="icon ic-more"></i>
+                      <h3>...</h3>
+                    </button>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
         <div>

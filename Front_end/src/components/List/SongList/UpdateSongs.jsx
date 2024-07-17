@@ -6,12 +6,14 @@ import { Modal, ModalBody, ModalHeader } from "react-bootstrap";
 import { findByID, updateSongs } from "../../../service/SongsService";
 import { artistsService } from "../../../service/ArtistsService";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const UpdateSongs = ({ closeModal, id, showUpdate }) => {
   const [songs, setSongs] = useState();
   const [artists, setArtists] = useState([]);
   const [imageUrl, setImageUrl] = useState(undefined);
   const [songUrl, setSongUrl] = useState(undefined);
+  const navigate = useNavigate();
 
   const uploadFileImg = (image) => {
     if (image === null) return;
@@ -70,10 +72,11 @@ export const UpdateSongs = ({ closeModal, id, showUpdate }) => {
     }
   };
 
-  const handleUpdateSongs = async (value, id) => {
+  const handleUpdateSongs = async (value) => {
     try {
-      const res = await updateSongs(value, id);
+      await updateSongs(value, id);
       toast.success("Cập nhật thành công");
+      navigate(`/songs/detail/${id}`);
       closeModal();
     } catch (error) {
       toast.error("Cập nhật thất bại");
