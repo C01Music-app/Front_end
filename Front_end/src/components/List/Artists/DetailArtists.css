@@ -1,0 +1,73 @@
+.artist-detail {
+    color: #333;
+}
+
+.artist-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.artist-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.artist-img-top {
+    width: 100%;
+    height: auto;
+}
+
+.artist-card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.artist-card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.artist-card-text {
+    font-size: 16px;
+    color: #555;
+}
+
+.songs-container {
+    margin-top: 40px;
+}
+
+.songs-title {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.songs-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+.songs-table th, .songs-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.songs-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.song-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}

@@ -11,7 +11,7 @@ export function AllList() {
       <div style={{ padding: "0px 24px", background: "#170F23" }}>
         <Slider />
         <AlbumList1 />
-        <SongList />
+          {/*<SongList/>*/}
           <ArtistCarousel/>
       </div>
     </>

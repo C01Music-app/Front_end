@@ -34,12 +34,11 @@ const PopupMenu = ({ song, closePopup, makeReload }) => {
           </div>
         </div>
         <div className="popup-body">
-          <button className="popup-item">Lời bài hát</button>
-          <button className="popup-item">Chặn</button>
           <button className="popup-item">Thêm vào danh sách phát</button>
           <button className="popup-item">Phát tiếp theo</button>
           <Button
             variant="danger"
+            className="popup-item"
             onClick={() => {
               setShowDelete(true);
               handleRadioChange(song.id); // Thiết lập id của bài hát để xóa
