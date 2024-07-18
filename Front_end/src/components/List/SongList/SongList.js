@@ -4,9 +4,10 @@ import "../../vicss/vi.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { descSongs } from "../../../service/SongsService";
-
 import { Button } from "react-bootstrap";
 import AddSongToPlayList from "../PlayLists/AddSongToPlayList";
+import { format, parseISO } from "date-fns";
+import { vi } from "date-fns/locale";
 
 const SongList = () => {
   const [songs, setSongs] = useState([]);
@@ -76,10 +77,17 @@ const SongList = () => {
                     {song.premium && <span className="premium">PREMIUM</span>}
                   </div>
                   <div>
-                    {/*<p className="song-artist col-10 viii">*/}
-                    {/*  {song.artist[0].name}*/}
-                    {/*</p>*/}
-                    {/*<p className="song-time">{song.dateStart}</p>*/}
+
+                    <p className="song-artist col-10 viii">
+                      {song.artist[0].name}
+                    </p>
+                    <p className="song-time">
+                      {/* {format(parseISO(song.dateStart), "dd/MM/yyyy", {
+                        locale: vi,
+                      })} */}
+                      {song.dateStart}
+                    </p>
+
                   </div>
                 </div>
                 <div className="media-right col-2">
