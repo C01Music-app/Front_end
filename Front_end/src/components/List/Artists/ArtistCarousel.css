@@ -1,46 +1,43 @@
-.app {
+.app12 {
     background-color: #170F23;
     color: #170F23;
     padding: 20px;
-    font-family: Arial, sans-serif;
 }
 
-.zm-section-title {
+.zm-section-title12 {
     font-size: 24px;
-    color: #ffffff;
+    color: white;
 }
 
-.zm-carousel-wrapper {
+.zm-carousel-wrapper12 {
     margin-top: 20px;
 }
 
-.zm-carousel__container {
+.zm-carousel__container12 {
     display: flex;
     gap: 20px;
 }
 
-.zm-carousel-item {
+.zm-carousel-item12 {
     flex: 1;
     max-width: 20%;
 }
 
-.playlist-wrapper {
+.playlist-wrapper12 {
     background-color: #170F23;
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
 }
 
-.zm-card-image img {
+.zm-card-image12 img {
     width: 100%;
     border-radius: 10px;
 }
 
-.zm-card-content {
+.zm-card-content12 {
     margin-top: 10px;
 }
 
-.subtitle {
+.subtitle12 {
     font-size: 20px;
     color: #b0b0b0;
+
 }

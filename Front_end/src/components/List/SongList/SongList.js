@@ -11,6 +11,8 @@ import AddSongToPlayList from "../PlayLists/AddSongToPlayList";
 const SongList = () => {
   const [songs, setSongs] = useState([]);
   const [modalShow, setModalShow] = useState(false);
+  const validSongId = 2; // Thay giá trị này bằng ID hợp lệ của bài hát
+
 
   const navigate = useNavigate();
 
@@ -81,9 +83,15 @@ const SongList = () => {
                   </div>
                 </div>
                 <div className="media-right col-2">
-                  <Button className="btn btn-outline-secondary btn-sm custom-btn vi22" onClick={() => setModalShow(true)}>
-                  </Button>
-                  <AddSongToPlayList show={modalShow} onHide={() => setModalShow(false)}/>
+                  <Button
+                    className="btn btn-outline-secondary btn-sm custom-btn vi22"
+                    onClick={() => setModalShow(true)}
+                  ></Button>
+                  <AddSongToPlayList
+                      songId={song.id}
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                  />
                 </div>
               </div>
             </div>

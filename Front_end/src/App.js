@@ -22,6 +22,14 @@ import {Create} from "./components/List/creates/create";
 import {CreateSongs} from "./components/List/SongList/CreateSongs";
 import {Playlist} from "./components/List/PlayLists/PlayList";
 import DeleteSongs from "./components/List/SongList/DeleteSongs";
+import 'react-toastify/dist/ReactToastify.css';
+import AudioPlayer from "./components/audioPlayer/AudioPlayer";
+import Artists from "./components/List/Artists/Artists";
+import ArtistsList from "./components/List/Artists/ArtistsList";
+import {DetailArtists} from "./components/List/Artists/DetailArtists";
+import CreateArtist from "./components/List/Artists/CreateArtist";
+import UpdateArtist from "./components/List/Artists/UpdateArtist";
+
 
 function App() {
     const [menuStatus, setMenuStatus] = useState(false);
@@ -75,9 +83,14 @@ function App() {
                 <Route path="/userdetail" element={<UserDetail />} />
                 <Route path="/songs/create" element={<CreateSongs />} />
                 <Route path="/songs/remove/:id" element={<DeleteSongs />} />
+                  <Route path="/artists" element={<ArtistsList />} />
+                  <Route path="/artists/detail/:id" element={<DetailArtists />} />
+                  <Route path="/artists/update/:id" element={<UpdateArtist />} />
+                  <Route path="/artists/create" element={<CreateArtist />} />
               </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/audioPlayer" element={<AudioPlayer />} />
             </Routes>
             {menuStatus && (
                 <MenuLogin closeModal={closeMenuLogin} changeStatusLogin={changeStatusLogin} />

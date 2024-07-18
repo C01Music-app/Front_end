@@ -51,3 +51,15 @@ export const removeSongs = async (id) => {
   const res = await axios.delete(`http://localhost:8080/songs/remove/${id}`);
   return res.data;
 };
+
+export const updateSongs = async (Songs) => {
+  console.log(Songs);
+  const res = await axios.put(
+    `http://localhost:8080/songs/update/${Songs.id}`,
+    Songs
+  );
+  console.log(res);
+
+  return res.data;
+};
+

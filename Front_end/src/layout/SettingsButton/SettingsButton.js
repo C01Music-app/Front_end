@@ -3,6 +3,7 @@ import { FaCog } from 'react-icons/fa';
 import './SettingsButton.css';
 import {Dropdown} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import {DropdownSubmenu} from "react-bootstrap-submenu";
 
 const SettingsButton = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,9 +20,15 @@ const SettingsButton = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-                <Dropdown.Item as={Link} to="/userList" disabled={isRoleName!=="ADMIN"}>Users</Dropdown.Item>
-                <Dropdown.Item as={Link} to="/UserDetail">Profile</Dropdown.Item>
+                {isRoleName === "ADMIN" && (
+                    <Dropdown.Item as={Link} to="/UserList">UserList</Dropdown.Item>
+                )}
+                <DropdownSubmenu title="Profile">
+                    <Dropdown.Item as={Link} to="/UserDetail">UserDetail</Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/UserDetail">UserDetail</Dropdown.Item>
+                </DropdownSubmenu>
                 <Dropdown.Item href="#/action-3">Setting</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/artists" >List Artists</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
         // <div className="setting-item">

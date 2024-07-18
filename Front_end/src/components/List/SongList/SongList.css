@@ -131,3 +131,33 @@ h1 {
 .khanh {
   color: #000;
 }
+.song-item {
+  display: flex;
+  align-items: center;
+  background-color: #1c1c1c; /* Màu nền cho phù hợp với giao diện của bạn */
+  padding: 10px; /* Tùy chỉnh khoảng cách bên trong phần tử */
+  border-radius: 10px; /* Bo góc nếu cần */
+  margin-bottom: 10px; /* Khoảng cách giữa các phần tử */
+}
+
+.song-image {
+  width: 50px; /* Kích thước ảnh */
+  height: 50px;
+  /* border-radius: 50%; Ảnh tròn */
+  margin-right: 10px; /* Khoảng cách giữa ảnh và chữ */
+}
+
+.song-info {
+  color: #ffffff; /* Màu chữ */
+}
+
+.song-title {
+  font-size: 16px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.song-artist {
+  font-size: 14px;
+  margin: 0;
+}

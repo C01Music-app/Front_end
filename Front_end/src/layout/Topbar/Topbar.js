@@ -21,23 +21,20 @@ export function Topbar({ children, changeModal, loginStatus }) {
 
   const filteredSearch = async (searchValue) => {
     try {
-      const [artistsRes, songsRes, albumsRes, playListRes] = await Promise.all([
+      const [artistsRes, songsRes, albumsRes] = await Promise.all([
         artistsSearch(searchValue),
         albumSearch(searchValue),
-        playListSearch(searchValue),
         songSearch(searchValue),
       ]);
 
       console.log("Artists Response:", artistsRes);
       console.log("Songs Response:", songsRes);
       console.log("Albums Response:", albumsRes);
-      console.log("Playlists Response:", playListRes);
 
       const combinedResults = [
         ...(artistsRes || []).map((res) => ({ ...res, type: "Artist" })),
         ...(songsRes || []).map((res) => ({ ...res, type: "Song" })),
-        ...(albumsRes || []).map((res) => ({ ...res, type: "Album" })),
-        ...(playListRes || []).map((res) => ({ ...res, type: "Playlist" })),
+        ...(albumsRes || []).map((res) => ({ ...res, type: "Album" }))
       ];
       setFilteredResults(combinedResults);
     } catch (e) {
@@ -86,7 +83,7 @@ export function Topbar({ children, changeModal, loginStatus }) {
               {filteredResults.map((result, index) => (
                 <div key={index}>
                   <Link to={"/"}>
-                    {result.title || result.name} ({result.type})
+                    {result.title || result.name}
                   </Link>
                 </div>
               ))}

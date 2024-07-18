@@ -95,12 +95,12 @@ const AudioPlayer = () => {
 
     return (
         <div className="">
-            <div className="container-audio">
+            <div className="container1">
                 <div className="song-info">
                     {songs.length > 0 && (
                         <>
                             <h2 className="Song-Title">{songs[audioIndex]?.title}</h2>
-                            <p className="Singer">{songs[audioIndex]?.artist}</p>
+                            {/*<p className="Singer">{songs[audioIndex]?.artist}</p>*/}
                         </>
                     )}
                 </div>
