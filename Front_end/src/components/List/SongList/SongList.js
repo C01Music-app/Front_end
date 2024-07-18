@@ -11,6 +11,8 @@ import AddSongToPlayList from "../PlayLists/AddSongToPlayList";
 const SongList = () => {
   const [songs, setSongs] = useState([]);
   const [modalShow, setModalShow] = useState(false);
+  const validSongId = 2; // Thay giá trị này bằng ID hợp lệ của bài hát
+
 
   const navigate = useNavigate();
 
@@ -74,10 +76,10 @@ const SongList = () => {
                     {song.premium && <span className="premium">PREMIUM</span>}
                   </div>
                   <div>
-                    <p className="song-artist col-10 viii">
-                      {song.artist[0].name}
-                    </p>
-                    <p className="song-time">{song.dateStart}</p>
+                    {/*<p className="song-artist col-10 viii">*/}
+                    {/*  {song.artist[0].name}*/}
+                    {/*</p>*/}
+                    {/*<p className="song-time">{song.dateStart}</p>*/}
                   </div>
                 </div>
                 <div className="media-right col-2">
@@ -86,6 +88,7 @@ const SongList = () => {
                     onClick={() => setModalShow(true)}
                   ></Button>
                   <AddSongToPlayList
+                      songId={song.id}
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                   />
