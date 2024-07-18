@@ -8,9 +8,9 @@
 
 }
 
-.container {
+.container1 {
     display: flex;
-    width: 1200px;
+    width: 100%;
     background-color:black;
     position: fixed;
     bottom: 0; /* Align to the bottom */

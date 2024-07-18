@@ -26,9 +26,9 @@ const SettingsButton = () => {
                 <DropdownSubmenu title="Profile">
                     <Dropdown.Item as={Link} to="/UserDetail">UserDetail</Dropdown.Item>
                     <Dropdown.Item as={Link} to="/UserDetail">UserDetail</Dropdown.Item>
-
                 </DropdownSubmenu>
                 <Dropdown.Item href="#/action-3">Setting</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/artists" >List Artists</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
         // <div className="setting-item">

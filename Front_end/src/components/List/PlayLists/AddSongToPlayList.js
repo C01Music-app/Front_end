@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
 import { findByID } from '../../../service/SongsService';
 import { Field, Formik } from 'formik';
 import axios from 'axios';
+import { useParams } from "react-router-dom";
+import {toast} from "react-toastify";
 
 function AddPlaylistToSongModal(props) {
     const [playlists, setPlaylists] = useState([]);
     const [song, setSong] = useState(null);
-    const id = parseInt(localStorage.getItem("idUser")); // Chuyển đổi userId thành số nguyên
+    const idUser = parseInt(localStorage.getItem("idUser"));
     const [show, setShow] = useState(false);
-
-    const handleShow = () => setShow(true);
-    const handleClose = () => setShow(false);
 
     useEffect(() => {
         const fetchPlaylists = async () => {
             try {
-                const res = await axios.get("http://localhost:8080/playlists");
-                setPlaylists(res.data);
+                const response = await axios.get(`http://localhost:8080/playlists`);
+                const filteredPlaylists = response.data.filter(playlist => playlist.user && playlist.user.id === idUser);
+                setPlaylists(filteredPlaylists);
             } catch (error) {
-                console.log('Error fetching playlists:', error);
+                console.error('Error fetching playlists:', error);
             }
         };
         fetchPlaylists();
-    }, []);
+    }, [show]);
 
     useEffect(() => {
         const getSongById = async (songId) => {
@@ -35,33 +34,39 @@ function AddPlaylistToSongModal(props) {
                 console.log('Error fetching song:', error);
             }
         };
-
-        if (id) {
-            getSongById(id);
+        if (props.songId) {
+            getSongById(props.songId);
         }
-    }, [id]);
+    }, [props.songId]);
+
+    const handleClose = () => setShow(false);
 
     const handleSubmitSong = async (values) => {
-        console.log('Form values:', values);
-        const playlistId = JSON.parse(values.playlist).id; // Assuming values.playlist is JSON stringified object with an id field
+        console.log(values)
         try {
-            const response = await axios.post(`/songs/${id}/add-playlist`, { id: playlistId });
-            console.log('Add playlist to song response:', response.data);
+            const selectedPlaylist = JSON.parse(values.playlist);
+            const response = await axios.patch(`http://localhost:8080/songs/${song.id}/add-to-playlist/${selectedPlaylist.id}`);
+            toast.success("");
             handleClose();
+            if (response.status === 200) {
+                console.log(`Successfully updated song with playlist ID ${selectedPlaylist.id}`);
+                handleClose();
+            } else {
+                console.error('Failed to update song:', response.data);
+            }
         } catch (error) {
-            console.error('Error adding playlist to song:', error);
+            console.error('Error updating song:', error);
         }
     };
-
 
     return (
         <>
             <div className="media-right col-12">
-                <button className="btn btn-outline-secondary btn-sm custom-btn vi22" onClick={handleShow}>
+                <button className="btn btn-outline-secondary btn-sm custom-btn vi22" onClick={() => setShow(true)}>
                     <i className="icon ic-more"></i> <h3>...</h3>
                 </button>
             </div>
-            <Modal style={{color : "black"}} show={show} onHide={handleClose} centered>
+            <Modal style={{ color: "black" }} show={show} onHide={handleClose} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Thêm bài hát vào playlist</Modal.Title>
                 </Modal.Header>
@@ -70,35 +75,42 @@ function AddPlaylistToSongModal(props) {
                         initialValues={{
                             title: song ? song.title : '',
                             playlist: playlists.length > 0 ? JSON.stringify(playlists[0]) : '',
+                            id: song ? song.id : null, // Ensure id is included in initial values
                         }}
                         onSubmit={(values) => {
                             handleSubmitSong(values);
                         }}
                     >
-                        <Form>
-                            <div className="mb-3">
-                                <label htmlFor="title" className="form-label">Tên bài hát</label>
-                                <Field name="title" type="text" className="form-control" id="title" readOnly />
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="playlist" className="form-label">Chọn playlist</label>
-                                <Field name="playlist" as="select" className="form-control" id="playlist" required>
-                                    {Array.isArray(playlists) && playlists.map((playlist) => (
-                                        <option key={playlist.id} value={JSON.stringify(playlist)}>
-                                            {playlist.title}
-                                        </option>
-                                    ))}
-                                </Field>
-                            </div>
-                            <div className="d-grid gap-2">
-                                <Button variant="primary" type="submit">
-                                    Cập nhật
-                                </Button>
-                                <Button variant="danger" onClick={handleClose}>
-                                    Hủy
-                                </Button>
-                            </div>
-                        </Form>
+                        {({ handleSubmit }) => (
+                            <Form onSubmit={handleSubmit}>
+                                <div className="mb-3">
+                                    <label htmlFor="title" className="form-label">Tên bài hát</label>
+                                    <Field name="title" type="text" className="form-control" id="title" readOnly />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="playlist" className="form-label">Chọn playlist</label>
+                                    <Field name="playlist" as="select" className="form-control" id="playlist" required>
+                                        {Array.isArray(playlists) && playlists.length > 0 ? (
+                                            playlists.map((playlist) => (
+                                                <option key={playlist.id} value={JSON.stringify(playlist)}>
+                                                    {playlist.title}
+                                                </option>
+                                            ))
+                                        ) : (
+                                            <option value="">Không có playlist nào</option>
+                                        )}
+                                    </Field>
+                                </div>
+                                <div className="d-grid gap-2">
+                                    <Button variant="primary" type="submit">
+                                        Cập nhật
+                                    </Button>
+                                    <Button variant="danger" onClick={handleClose}>
+                                        Hủy
+                                    </Button>
+                                </div>
+                            </Form>
+                        )}
                     </Formik>
                 </Modal.Body>
             </Modal>

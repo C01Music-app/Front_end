@@ -1,5 +1,5 @@
 import Slider from "./Slider";
-import { Artists } from "./Artists/Artists";
+import ArtistCarousel from "./Artists/Artists";
 import SongList from "./SongList/SongList";
 import AlbumList1 from "./AlbumList/AlbumList1";
 
@@ -12,6 +12,7 @@ export function AllList() {
         <Slider />
         <AlbumList1 />
         <SongList />
+          <ArtistCarousel/>
       </div>
     </>
   );
