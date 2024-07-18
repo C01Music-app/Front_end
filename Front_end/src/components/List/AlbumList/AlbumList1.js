@@ -59,7 +59,7 @@ const AlbumList1 = () => {
   }
   return (
     <div className="app">
-      <h3 className="zm-section-title title is-2">Nhạc Hot Gây Bão</h3>
+      <h3 className="zm-section-title title is-2" >Nhạc Hot Gây Bão</h3>
       {/* <Link to="/son">vi du</Link> */}
       <div className="zm-carousel-wrapper">
         <div className="zm-carousel">
@@ -76,7 +76,7 @@ const AlbumList1 = () => {
                       </div>
                     </a>
                     <div className="zm-card-content">
-                      <h3 className="mt-10 subtitle">{album.title}</h3>
+                      <h3 className=" subtitle">{album.title}</h3>
                     </div>
                   </div>
                 </div>
