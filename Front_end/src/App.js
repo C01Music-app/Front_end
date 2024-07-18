@@ -1,73 +1,70 @@
-import React, {useEffect, useState} from "react";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
-import {AllList} from "./components/List/AllList";
+import { AllList } from "./components/List/AllList";
 
-import {DetailSong} from "./components/List/SongList/DetailSong";
-
-import {PlayMusic} from "./layout/PlayMusic/PlayMusic";
+import { PlayMusic } from "./layout/PlayMusic/PlayMusic";
 
 import axios from "axios";
-import {Register} from "./pages/register/Register";
+import { Register } from "./pages/register/Register";
 import Login from "./pages/login/Login";
-import {UserList} from "./components/List/UserList";
+import { UserList } from "./components/List/UserList";
 import MenuLogin from "./layout/Topbar/MenuLogin";
-import {AppProvider} from "./context/AppContext";
-import {Master} from "./pages/Master/Master";
-import {UserDetail} from "./components/updateUser/UserDetail";
-import {ToastContainer} from "react-toastify";
+import { AppProvider } from "./context/AppContext";
+import { Master } from "./pages/Master/Master";
+import { UserDetail } from "./components/updateUser/UserDetail";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {Create} from "./components/List/creates/create";
-import {CreateSongs} from "./components/List/SongList/CreateSongs";
-import {Playlist} from "./components/List/PlayLists/PlayList";
+import { Create } from "./components/List/creates/create";
+import { CreateSongs } from "./components/List/SongList/CreateSongs";
+import { Playlist } from "./components/List/PlayLists/PlayList";
 import DeleteSongs from "./components/List/SongList/DeleteSongs";
-import 'react-toastify/dist/ReactToastify.css';
+import DetailSong from "./components/List/SongList/DetailSong";
+import "react-toastify/dist/ReactToastify.css";
 import AudioPlayer from "./components/audioPlayer/AudioPlayer";
-import Artists from "./components/List/Artists/Artists";
 import ArtistsList from "./components/List/Artists/ArtistsList";
 import {DetailArtists} from "./components/List/Artists/DetailArtists";
 import CreateArtist from "./components/List/Artists/CreateArtist";
 import UpdateArtist from "./components/List/Artists/UpdateArtist";
 
-
 function App() {
-    const [menuStatus, setMenuStatus] = useState(false);
-    const [loginStatus, setLoginStatus] = useState(false);
-    const openModal = () => {
-        setMenuStatus(!menuStatus);
-    };
+  const [menuStatus, setMenuStatus] = useState(false);
+  const [loginStatus, setLoginStatus] = useState(false);
+  const openModal = () => {
+    setMenuStatus(!menuStatus);
+  };
 
-    const changeStatusLogin = () => {
-        setLoginStatus(!loginStatus);
-    };
+  const changeStatusLogin = () => {
+    setLoginStatus(!loginStatus);
+  };
 
-    const closeMenuLogin = () => {
-        setMenuStatus(false);
-    };
+  const closeMenuLogin = () => {
+    setMenuStatus(false);
+  };
 
-    useEffect(() => {
-        console.log(menuStatus);
-    }, [menuStatus]);
+  useEffect(() => {
+    console.log(menuStatus);
+  }, [menuStatus]);
 
-    useEffect(() => {
-        const tokenStr = localStorage.getItem("token");
-        axios
-            .get("http://localhost:8080/auth/authen", {
-                headers: {Authorization: `Bearer ${tokenStr}`},
-            })
-            .then((res) => {
-                console.log(res.data);
-            })
-            .catch((err) => {
-                localStorage.removeItem("token");
-                localStorage.removeItem("userName");
-                localStorage.removeItem("name");
-                localStorage.removeItem("role");
-                localStorage.removeItem("userAvatar");
-                localStorage.removeItem("idUser");
-            });
-    }, []);
+  useEffect(() => {
+    const tokenStr = localStorage.getItem("token");
+    axios
+      .get("http://localhost:8080/auth/authen", {
+        headers: { Authorization: `Bearer ${tokenStr}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userName");
+        localStorage.removeItem("name");
+        localStorage.removeItem("role");
+        localStorage.removeItem("userAvatar");
+        localStorage.removeItem("idUser");
+      });
+  }, []);
   return (
       <div className="App" style={{ background: "#170F23" }}>
         <BrowserRouter>
@@ -100,4 +97,5 @@ function App() {
         </BrowserRouter>
       </div>
   );
-}export default App;
+}
+export default App;

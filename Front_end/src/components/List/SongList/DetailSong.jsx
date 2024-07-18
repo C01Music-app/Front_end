@@ -1,46 +1,55 @@
 import React, { useEffect, useState } from "react";
-import Figure from "react-bootstrap/Figure";
+import { useParams } from "react-router-dom";
+import "./detail.css"; // Đảm bảo bạn đã tạo CSS phù hợp
+import { detailSongs, findByID } from "../../../service/SongsService";
 
-import * as SongsService from "../../../service/SongsService";
-import "./detail.css";
-export const DetailSong = () => {
-  const [songs, setSongs] = useState([]);
-
-  const getSongs = async (id) => {
+const DetailSong = () => {
+  const { id } = useParams();
+  const [songs, setSongs] = useState(null);
+  const getSong = async () => {
     try {
-      console.log(`current id: ${id}`);
-      const res = await SongsService.findByID(id);
+      const res = await findByID(id);
       setSongs(res);
-    } catch (e) {
-      console.log(e);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
     }
   };
-
   const handleDetail = async (value, id) => {
-    const res = await SongsService.detailSongs(value, id);
+    const res = await detailSongs(value, id);
   };
   useEffect(() => {
-    // console.log(`staff: ${songs}`);
-    // console.log(id);
-    getSongs();
-  }, [songs]);
+    getSong();
+  }, [id]);
+
   if (!songs) {
-    return <div>loanding...</div>;
+    return <div>Loading...</div>;
   }
+
   return (
     <div className="song-detail">
       <div className="song-header">
-        <img src={songs.imgSongs} alt={songs.title} className="album-art" />
-        <div className="song-info">
+        <img
+          src={songs.imgSongs || "default-image-url.jpg"}
+          alt={songs.title}
+          className="song-image vi"
+        />
+        <div className="song-meta">
           <h2>{songs.title}</h2>
-          <p>{songs.artist.name}</p>
-          <p>{songs.duration}</p>
+          <p>{songs.artist[0].name}</p>
+          <p>{songs.description}</p>
+          <p>
+            Ngày phát hành: {new Date(songs.dateStart).toLocaleDateString()}
+          </p>
+          <p>Cung cấp bởi: {songs.provider}</p>
         </div>
       </div>
-      <div className="song-body">
-        <button className="play-button">Phát Bài Hát</button>
-        <p>{songs.description}</p>
+      <div className="song-player">
+        <audio controls src={songs.lyrics}></audio>
       </div>
+      <button className="play-button">Phát tất cả</button>
     </div>
   );
 };
+
+export default DetailSong;
