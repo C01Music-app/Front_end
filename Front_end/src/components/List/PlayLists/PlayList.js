@@ -55,7 +55,7 @@ export function Playlist() {
             getPlaylistById();
             getAllSongs();
         }
-    }, [id , modalShow]);
+    }, [id,modalShow]);
 
     if (!playlist) {
         return <div>...Loading</div>;
@@ -119,7 +119,7 @@ export function Playlist() {
                     </div>
                 </div>
             </div>
-            <div className="container">
+            <div className="container1">
                 <h2 className="mt-5 mb-4">Danh sách các bài hát</h2>
                 <table className="table">
                     <thead>
