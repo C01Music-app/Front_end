@@ -68,6 +68,7 @@ export const CreateSongs = ({ show, closeModal, makeReload }) => {
         const lyrics = localStorage.getItem("lyrics");
 
         const parsedArtist = value.artist ? JSON.parse(value.artist) : null;
+
         const currentTime = new Date().toLocaleDateString(); // Lấy thời gian hiện tại
         console.log(currentTime);
         const values = {
@@ -75,14 +76,13 @@ export const CreateSongs = ({ show, closeModal, makeReload }) => {
           artist: parsedArtist ? [parsedArtist] : [],
           imgSongs,
           lyrics,
-          dateStart: currentTime,
         };
         console.log(values, "khanh");
 
         const res = await SongsService.createSongs(values);
-
-        closeModal();
+        console.log(res);
         toast.success("Thêm mới thành công");
+        closeModal();
         console.log(res.data.id);
         // navigate(`/songs/detail/${res.data.id}`);
       } else {
@@ -103,7 +103,6 @@ export const CreateSongs = ({ show, closeModal, makeReload }) => {
         <ModalBody>
           <Formik
             initialValues={{
-              id: "",
               title: "",
               description: "",
               // dateStart: "",
