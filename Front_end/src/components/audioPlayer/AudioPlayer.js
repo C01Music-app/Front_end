@@ -21,8 +21,8 @@ const AudioPlayer = () => {
   const [songs, setSongs] = useState(songList);
 
   useEffect(() => {
-    const savedIsPlay = localStorage.getItem("isPlaying");
-    const savedCurrentTime = parseFloat(localStorage.getItem("currentTime"));
+    const savedIsPlay = localStorage.getItem("isPlaying") === "true";
+    const savedCurrentTime = parseFloat(localStorage.getItem("currentTime") || 0);
     setCurrentTime(savedCurrentTime);
     setPlay(savedIsPlay);
 
@@ -156,52 +156,6 @@ const AudioPlayer = () => {
   };
 
   return (
-    <div className="">
-      <div className="container-audio col-12">
-        <div className="song-info col-3">
-          {songs[audioIndex] && (
-            <>
-              <h2 className="Song-Title">{songs[audioIndex].title}</h2>
-              <p className="Singer">{songs[audioIndex].artist[0].name}</p>
-            </>
-          )}
-        </div>
-        <div className="song-control col-6">
-          <div className="Control-Button-Group">
-            <div
-              className={`Random-Button ${isRandom ? "active" : ""}`}
-              onClick={handleRandomClick}
-            >
-              <FaRandom />
-            </div>
-            <div
-              className="Prev-Button"
-              onClick={() =>
-                dispatch(
-                  selectIndex((audioIndex - 1 + songs.length) % songs.length)
-                )
-              }
-            >
-              <FaBackward />
-            </div>
-            <div className="Pause-Play-Button" onClick={handlePausePlayClick}>
-              {isPlay ? <FaPause /> : <FaPlay />}
-            </div>
-            <div
-              className="Next-Button"
-              onClick={() =>
-                dispatch(selectIndex((audioIndex + 1) % songs.length))
-              }
-            >
-              <FaForward />
-            </div>
-            <div
-              className={`Redo-Button ${isRedo ? "active" : ""}`}
-              onClick={handleRedoClick}
-            >
-              <FaRedo />
-            </div>
-          </div>
       <div className="">
         <div className="container-audio col-12">
           <div className="song-info col-3">

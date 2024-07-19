@@ -17,7 +17,7 @@ export function Master({ change, loginStatus }) {
           <Topbar changeModal={change} loginStatus={loginStatus} />
           <Outlet />
         </div>
-        <AudioPlayer />
+         <AudioPlayer/>
         <Footer />
       </div>
     </div>
