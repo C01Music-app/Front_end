@@ -49,6 +49,52 @@ const SongList = () => {
           <button className="filter-button active">Tất Cả</button>
           <button className="filter-button">Việt Nam</button>
           <button className="filter-button">Quốc Tế</button>
+
+          {/* <div className="app">
+        <div className="header">
+          <h1>Mới Phát Hành</h1>
+          <div className="filters">
+            <button className="filter-button active">Tất Cả</button>
+            <button className="filter-button">Việt Nam</button>
+            <button className="filter-button">Quốc Tế</button>
+          </div>
+        </div>
+        <div className="songs-list">
+          {songs.map((song, index) => (
+              <div className="song-item" key={song.id}>
+                <img
+                    src={song.imgSongs}
+                    alt={song.title}
+                    className="song-image"
+                    onClick={() => {handleMusic(index)}}
+                />
+                <div className="song-info">
+                  <div className="d-flex">
+                    <div>
+                      <div className="song-title vicc ">
+                        <div className="custom-link">
+                          <Link to={`/detail/${song.id}`} className="white-text link">
+                            {song.title}{" "}
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="media-right col-2">
+                      <Button
+                          className="btn btn-outline-secondary btn-sm custom-btn vi22"
+                          onClick={() => setModalShow(true)}
+                      >
+                        +
+                      </Button>
+                      <AddSongToPlayList
+                          show={modalShow}
+                          onHide={() => setModalShow(false)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+          ))} */}
         </div>
       </div>
       <div className="songs-list">
