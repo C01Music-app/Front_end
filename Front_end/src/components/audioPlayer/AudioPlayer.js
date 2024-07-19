@@ -1,106 +1,150 @@
-import "./AudioPlayer.css";
-import { FaPlay, FaPause, FaForward, FaBackward, FaRandom, FaRedo } from 'react-icons/fa';
 import React, { useEffect, useRef, useState } from "react";
+import "./AudioPlayer.css";
+import { FaPlay, FaPause, FaForward, FaBackward, FaRandom, FaRedo } from "react-icons/fa";
 import TimeSlider from "react-input-slider";
-import { descSongs } from "../../service/SongsService";
+import { useSelector, useDispatch } from "react-redux";
+import { selectIndex } from "../../redux/action";
 
 const AudioPlayer = () => {
+    const dispatch = useDispatch();
+    const currentIndexSong = useSelector((state) => state.currentSongIndex);
+    const songList = useSelector((state) => state.songs);
     const audioRef = useRef();
-    const [audioIndex, setAudioIndex] = useState(0);
+    const [audioIndex, setAudioIndex] = useState(currentIndexSong || 0);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [isPlay, setPlay] = useState(false);
     const [isRandom, setRandom] = useState(false);
     const [isRedo, setRedo] = useState(false);
     const [volume, setVolume] = useState(1);
-    const [songs, setSongs] = useState([]);
+    const [songs, setSongs] = useState(songList);
 
-    const getSongs = async () => {
-        try {
-            const res = await descSongs();
-            setSongs(res);
-        } catch (e) {
-            console.log(e);
-        }
-    };
 
     useEffect(() => {
-        getSongs();
+        const savedIsPlay = localStorage.getItem("isPlaying") === "true";
+        const savedCurrentTime = parseFloat(localStorage.getItem("currentTime") || 0);
+        setCurrentTime(savedCurrentTime);
+        setPlay(savedIsPlay);
+
+        if (audioRef.current) {
+            audioRef.current.currentTime = savedCurrentTime;
+            audioRef.current.volume = volume;
+
+            if (savedIsPlay) {
+                audioRef.current.play().catch((err) => {
+                    console.log(err);
+                });
+            }
+        }
+
+        const updateCurrentTime = setInterval(() => {
+            if (audioRef.current) {
+                localStorage.setItem("currentTime", audioRef.current.currentTime);
+            }
+        }, 1000);
+
+        return () => clearInterval(updateCurrentTime);
     }, []);
 
+    useEffect(() => {
+        localStorage.setItem("isPlaying", isPlay);
+        localStorage.setItem("volume", volume);
+    }, [isPlay, volume]);
+
+    useEffect(() => {
+        setSongs(songList);
+    }, [songList]);
+
+    useEffect(() => {
+        const savedIndex = localStorage.getItem("currentIndexSong");
+        if (savedIndex !== null) {
+            dispatch(selectIndex(parseInt(savedIndex, 10)));
+        }
+    }, [dispatch]);
+
+    useEffect(() => {
+        localStorage.setItem("currentIndexSong", currentIndexSong);
+        setAudioIndex(currentIndexSong);
+        if (audioRef.current && songs.length > 0) {
+            audioRef.current.src = songs[currentIndexSong]?.lyrics || "";
+            audioRef.current.play().catch((error) => console.log(error));
+            setPlay(true);
+        }
+    }, [currentIndexSong, songs]);
+
     const handleLoadedData = () => {
-        setDuration(audioRef.current.duration);
-        if (isPlay) audioRef.current.play().catch(error => console.log(error));
+        setDuration(audioRef.current?.duration || 0);
+        if (isPlay) audioRef.current?.play().catch((error) => console.log(error));
     };
 
     const handlePausePlayClick = () => {
         if (isPlay) {
-            audioRef.current.pause();
+            audioRef.current?.pause();
         } else {
-            audioRef.current.play().catch(error => console.log(error));
+            audioRef.current?.play().catch((error) => console.log(error));
         }
         setPlay(!isPlay);
     };
 
     const handleTimeSliderChange = ({ x }) => {
-        audioRef.current.currentTime = x;
-        setCurrentTime(x);
-
-        if (!isPlay) {
-            setPlay(false);
-            // audioRef.current.play().catch(error => console.log(error));
+        if (audioRef.current) {
+            audioRef.current.currentTime = x;
+            setCurrentTime(x);
         }
     };
 
     const handleVolumeChange = ({ x }) => {
         const newVolume = Math.min(Math.max(x, 0), 1);
         setVolume(newVolume);
-        audioRef.current.volume = newVolume;
+        if (audioRef.current) {
+            audioRef.current.volume = newVolume;
+        }
     };
 
     const handleSongs = () => {
         if (isRedo) {
-            audioRef.current.play().catch(error => console.log(error));
+            audioRef.current?.play().catch((error) => console.log(error));
         } else if (isRandom) {
-            setAudioIndex(Math.floor(Math.random() * songs.length));
+            const randomIndex = Math.floor(Math.random() * songs.length);
+            dispatch(selectIndex(randomIndex));
         } else {
-            setAudioIndex((prevIndex) => {
-                const nextIndex = (prevIndex + 1) % songs.length;
-                return nextIndex;
-            });
+            const nextIndex = (audioIndex + 1) % songs.length;
+            dispatch(selectIndex(nextIndex));
         }
     };
 
     const handleRandomClick = () => {
         setRandom(!isRandom);
-        if (isRedo) setRedo(false); // Tắt Redo nếu Random được bật
+        if (isRedo) setRedo(false);
     };
 
     const handleRedoClick = () => {
         setRedo(!isRedo);
-        if (isRandom) setRandom(false); // Tắt Random nếu Redo được bật
+        if (isRandom) setRandom(false);
     };
 
-    // useEffect(() => {
-    //     if (audioRef.current && songs.length > 0) {
-    //         audioRef.current.play().catch(error => console.log(error));
-    //     }
-    // }, [audioIndex, songs]);
+    useEffect(() => {
+        if (audioRef.current && songs[audioIndex]) {
+            audioRef.current.src = songs[audioIndex].lyrics;
+            audioRef.current.play().catch((error) => console.log(error));
+            setPlay(true);
+        }
+    }, [audioIndex, songs]);
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60);
-        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
     };
 
     return (
         <div className="">
             <div className="container1">
                 <div className="song-info">
-                    {songs.length > 0 && (
+                    {songs[audioIndex] && (
                         <>
-                            <h2 className="Song-Title">{songs[audioIndex]?.title}</h2>
-                            {/*<p className="Singer">{songs[audioIndex]?.artist}</p>*/}
+                            <h2 className="Song-Title">{songs[audioIndex].title}</h2>
+                            <p className="Singer">{songs[audioIndex].artist}</p>
                         </>
                     )}
                 </div>
@@ -114,7 +158,9 @@ const AudioPlayer = () => {
                         </div>
                         <div
                             className="Prev-Button"
-                            onClick={() => setAudioIndex((audioIndex - 1 + songs.length) % songs.length)}
+                            onClick={() =>
+                                dispatch(selectIndex((audioIndex - 1 + songs.length) % songs.length))
+                            }
                         >
                             <FaBackward />
                         </div>
@@ -123,7 +169,7 @@ const AudioPlayer = () => {
                         </div>
                         <div
                             className="Next-Button"
-                            onClick={() => setAudioIndex((audioIndex + 1) % songs.length)}
+                            onClick={() => dispatch(selectIndex((audioIndex + 1) % songs.length))}
                         >
                             <FaForward />
                         </div>
@@ -190,17 +236,16 @@ const AudioPlayer = () => {
                     </div>
                 </div>
             </div>
-            {songs.length > 0 && (
-                <audio
-                    ref={audioRef}
-                    src={songs[audioIndex]?.lyrics}
-                    onLoadedData={handleLoadedData}
-                    onTimeUpdate={() => setCurrentTime(audioRef.current.currentTime)}
-                    onEnded={handleSongs}
-                />
-            )}
+            <audio
+                ref={audioRef}
+                src={songs[audioIndex]?.lyrics}
+                onLoadedData={handleLoadedData}
+                onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime || 0)}
+                onEnded={handleSongs}
+            />
         </div>
     );
 };
 
 export default AudioPlayer;
+

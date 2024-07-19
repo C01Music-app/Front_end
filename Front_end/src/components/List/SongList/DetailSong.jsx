@@ -36,7 +36,7 @@ const DetailSong = () => {
         />
         <div className="song-meta">
           <h2>{songs.title}</h2>
-          <p>{songs.artist[0].name}</p>
+          {/*<p>{songs.artist[0].name}</p>*/}
           <p>{songs.description}</p>
           <p>
             Ngày phát hành: {new Date(songs.dateStart).toLocaleDateString()}
@@ -44,9 +44,9 @@ const DetailSong = () => {
           <p>Cung cấp bởi: {songs.provider}</p>
         </div>
       </div>
-      <div className="song-player">
-        <audio controls src={songs.lyrics}></audio>
-      </div>
+      {/*<div className="song-player">*/}
+      {/*  <audio controls src={songs.lyrics}></audio>*/}
+      {/*</div>*/}
       <button className="play-button">Phát tất cả</button>
     </div>
   );
