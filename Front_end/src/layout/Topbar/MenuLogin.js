@@ -8,6 +8,7 @@ import { Button } from "react-bootstrap";
 const MenuLogin = ({ closeModal, changeStatusLogin }) => {
   const navigate = useNavigate();
   const [token, setToken] = React.useState(localStorage.getItem("token"));
+  const isRoleName = localStorage.getItem("roles");
   function login() {
     // handler(false);
     closeModal();
@@ -21,7 +22,7 @@ const MenuLogin = ({ closeModal, changeStatusLogin }) => {
       .then((res) => {
         localStorage.removeItem("token");
         localStorage.removeItem("userName");
-        localStorage.removeItem("role");
+        localStorage.removeItem("roles");
         localStorage.removeItem("idUser");
         setToken("");
         closeModal();
