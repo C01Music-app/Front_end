@@ -135,7 +135,8 @@ export function Playlist() {
                     <tbody>
                     {filteredSongs.map((song, index) => (
                         <tr key={index}>
-                            <td><img src={song.imgSongs} alt={song.title} className="img-fluid rounded-circle"/></td>
+                            <td><img src={song.imgSongs} alt={song.title} className="img-fluid rounded-circle"
+                            onClick={()=>{handleClickSong(index)}}/></td>
                             <td>{song.title}</td>
                             <td>{song.artist.map((a) => a.name).join(', ')}</td>
                             <td>{song.album || 'N/A'}</td>
