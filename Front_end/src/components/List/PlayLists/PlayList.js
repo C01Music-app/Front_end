@@ -46,16 +46,16 @@ export function Playlist() {
         }
     };
 
-    // const handleEditTitle = async () => {
-    //     try {
-    //         const res = await axios.put(`http://localhost:8080/playlists/${id}`, { title: newTitle });
-    //         console.log("Updated Playlist Data:", res.data);
-    //         setPlaylist(res.data);
-    //         setIsEditing(false);
-    //     } catch (error) {
-    //         console.error('Error updating playlist title:', error);
-    //     }
-    // };
+    const handleEditTitle = async () => {
+        try {
+            const res = await axios.put(`http://localhost:8080/playlists/${id}`, { title: newTitle });
+            console.log("Updated Playlist Data:", res.data);
+            setPlaylist(res.data);
+            setIsEditing(false);
+        } catch (error) {
+            console.error('Error updating playlist title:', error);
+        }
+    };
 
     useEffect(() => {
         if (id) {
@@ -109,6 +109,7 @@ export function Playlist() {
         }
     };
 
+
     return (
         <div className="playlist1 col-12 px-5">
             <div className="playlist">
@@ -130,7 +131,9 @@ export function Playlist() {
                                 playlistId={playlist.id} // Pass playlistId to EditPlaylistModal
                             />
                         </div>
-                        {/*<div className="playlist-creator">Tạo bởi <span>{playlist.user.userName}</span></div>*/}
+                        <div className="playlist-creator">
+                            Tạo bởi <span>{playlist.user ? playlist.user.userName : 'Unknown'}</span>
+                        </div>
                     </div>
                 </div>
             </div>
