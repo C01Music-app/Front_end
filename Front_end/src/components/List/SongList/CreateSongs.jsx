@@ -68,6 +68,7 @@ export const CreateSongs = ({ show, closeModal, makeReload }) => {
         const lyrics = localStorage.getItem("lyrics");
 
         const parsedArtist = value.artist ? JSON.parse(value.artist) : null;
+
         const currentTime = new Date().toLocaleDateString(); // Lấy thời gian hiện tại
         console.log(currentTime);
         const values = {
