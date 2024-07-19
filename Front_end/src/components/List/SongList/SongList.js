@@ -88,7 +88,7 @@ const SongList = () => {
                       />
                     </div>
                   </div>
->>>>>>> 114cee5 (update audioPlayer)
+
                 </div>
               </div>
           ))}

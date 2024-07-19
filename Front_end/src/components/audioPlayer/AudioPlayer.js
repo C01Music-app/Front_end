@@ -41,7 +41,7 @@ const AudioPlayer = () => {
             if (audioRef.current) {
                 localStorage.setItem("currentTime", audioRef.current.currentTime);
             }
-        }, 1000);
+        }, 1);
 
         return () => clearInterval(updateCurrentTime);
     }, []);
@@ -139,7 +139,7 @@ const AudioPlayer = () => {
 
     return (
         <div className="">
-            <div className="container1">
+            <div className="container-audio">
                 <div className="song-info">
                     {songs[audioIndex] && (
                         <>
@@ -210,6 +210,8 @@ const AudioPlayer = () => {
                             <TimeSlider
                                 axis="x"
                                 xmax={1}
+                                xmin={0}
+                                xstep={0.01}
                                 x={volume}
                                 onChange={handleVolumeChange}
                                 styles={{
