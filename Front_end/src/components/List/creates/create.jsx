@@ -158,7 +158,7 @@ export const Create = () => {
                       {song.premium && <span className="premium">PREMIUM</span>}
                     </div>
                     <div>
-                      {/*<p className="song-artist">{song.artist[0].name}</p>*/}
+                      {/* <p className="song-artist">{song.artist[0].name}</p> */}
                       <p className="song-time">{song.dateStart}</p>
                     </div>
                   </div>

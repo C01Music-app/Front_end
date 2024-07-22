@@ -6,8 +6,6 @@ import {render} from "@testing-library/react";
 const UserPlaylists = ({show}) => {
     const [playlists, setPlaylists] = useState([]);
     const userId = parseInt(localStorage.getItem("idUser")); // Chuyển đổi userId thành số nguyên
-    const navigate = useNavigate();
-    const userName = localStorage.getItem("userName");
 
 
 
@@ -32,7 +30,6 @@ const UserPlaylists = ({show}) => {
     return (
         <>
             <li className="nav-item">
-                <h1>Playlist của {userName} </h1>
                 <a className="nav-link" href="/">
             <span>
               <h6>

@@ -100,9 +100,13 @@ export function Playlist() {
                                 onHide={() => setModalShow(false)}
                                 playlistId={playlist.id} // Pass playlistId to EditPlaylistModal
                             />
-                            <LikeButton userId={userId} itemId={playlist.id} itemType="playlist" />  {/* Like button for playlist */}
+                            <div className="like-button-wrapper">
+                                <LikeButton userId={userId} itemId={playlist.id} itemType="playlist" />  {/* Like button for playlist */}
+                            </div>
                         </div>
-                        <div className="playlist-creator">Tạo bởi <span>{playlist.user.userName}</span></div>
+                        <div className="playlist-creator">
+                            Tạo bởi <span>{playlist.user ? playlist.user.userName : 'Unknown'}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -129,7 +133,9 @@ export function Playlist() {
                             <td>{song.duration}</td>
                             <td>
                                 <button className="btn btn-danger" onClick={() => handleDelete(song.id, parseInt(id))}>Xoá</button>
-                                <LikeButton userId={userId} itemId={song.id} itemType="song" />  {/* Like button for song */}
+                                <div className="like-button-wrapper">
+                                    <LikeButton userId={userId} itemId={song.id} itemType="song" />  {/* Like button for song */}
+                                </div>
                             </td>
                         </tr>
                     ))}
