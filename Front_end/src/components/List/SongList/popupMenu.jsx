@@ -30,7 +30,7 @@ const PopupMenu = ({ song, closePopup, makeReload }) => {
           <img src={song.imgSongs} alt="Album Art" className="album-art" />
           <div className="song-info">
             <strong>{song.title}</strong>
-            <span>{song.artist.name}</span>
+            {/*<span>{song.artist.name}</span>*/}
           </div>
         </div>
         <div className="popup-body">

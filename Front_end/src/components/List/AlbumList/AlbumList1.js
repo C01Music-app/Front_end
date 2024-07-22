@@ -59,7 +59,7 @@ const AlbumList1 = () => {
   }
   return (
     <div className="app">
-      <h3 className="zm-section-title title is-2" >Nhạc Hot Gây Bão</h3>
+      <h3 className="zm-section-title title is-2" >Album Hot Gây Bão</h3>
       {/* <Link to="/son">vi du</Link> */}
       <div className="zm-carousel-wrapper">
         <div className="zm-carousel">
