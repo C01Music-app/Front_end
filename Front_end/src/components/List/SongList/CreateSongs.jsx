@@ -81,10 +81,8 @@ export const CreateSongs = ({ show, closeModal, makeReload }) => {
 
         const res = await SongsService.createSongs(values);
         console.log(res);
-        toast.success("Thêm mới thành công");
         closeModal();
-        console.log(res.data.id);
-        // navigate(`/songs/detail/${res.data.id}`);
+        toast.success("Thêm mới thành công");
       } else {
         throw new Error("Values object is undefined, null, or not an object");
       }
@@ -138,6 +136,7 @@ export const CreateSongs = ({ show, closeModal, makeReload }) => {
                           id="title"
                           placeholder="Nhập tên bài hát"
                           className="form-control"
+                          required
                         />
                       </div>
 
