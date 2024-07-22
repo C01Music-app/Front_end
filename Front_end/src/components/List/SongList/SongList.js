@@ -114,7 +114,7 @@ const SongList = () => {
                   <div className="song-title vicc ">
                     <div className="custom-link">
                       <Link
-                        to={`/detail/${song.id}`}
+                        to={`/songs/detail/${song.id}`}
                         className="white-text link"
                       >
                         {song.title}{" "}

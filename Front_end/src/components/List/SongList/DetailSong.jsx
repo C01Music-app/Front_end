@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./detail.css"; // Đảm bảo bạn đã tạo CSS phù hợp
+import "./detail.css";
 import { detailSongs, findByID } from "../../../service/SongsService";
 import {
   createComment,
@@ -19,6 +19,7 @@ const DetailSong = () => {
   const [comments, setComments] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [commentToDelete, setCommentToDelete] = useState(null);
+  const userName = localStorage.getItem("userName");
 
   const handleShowModal = (commentId) => {
     setCommentToDelete(commentId);
@@ -92,37 +93,57 @@ const DetailSong = () => {
   }
 
   return (
-    <div className="song-detail">
-      <div className="song-header">
-        <img
-          src={songs.imgSongs || "default-image-url.jpg"}
-          alt={songs.title}
-          className="song-image vi"
-        />
-        <div className="song-meta">
-          <h2>{songs.title}</h2>
-          {songs.artist && songs.artist.length > 0 ? (
-            <ul>
-              {songs.artist.map((artist) => (
-                <li key={artist.id}>{artist.name}</li>
-              ))}
-            </ul>
-          ) : (
-            <p>No artists found for this song.</p>
-          )}
-          <p>{songs.description}</p>
-          <p>
-            Ngày phát hành: {new Date(songs.dateStart).toLocaleDateString()}
-          </p>
-          <p>Cung cấp bởi: {songs.provider}</p>
+    <div>
+      <div className="song-detail">
+        <div className="song-header">
+          <img
+            src={songs.imgSongs || "default-image-url.jpg"}
+            alt={songs.title}
+            className="song-image vi"
+          />
+          <div className="song-meta">
+            <h2>{songs.title}</h2>
+
+            {songs.artist && songs.artist.length > 0 ? (
+              <ul>
+                {songs.artist.map((artist) => (
+                  <li key={artist.id}> Ca sĩ:{artist.name}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>No artists found for this song.</p>
+            )}
+            <p>mô tả:{songs.description}</p>
+            <p>
+              Ngày phát hành: {new Date(songs.dateStart).toLocaleDateString()}
+            </p>
+            <p>Cung cấp bởi: {songs.provider}</p>
+          </div>
         </div>
+        <div className="song-player">
+          <audio ref={audioRef} src={songs.lyrics} />
+        </div>
+        <button className="play-button" onClick={togglePlay}>
+          {isPlaying ? "Tạm Dừng" : "Tiếp Tục Phát"}
+        </button>
+
+        <Modal show={showModal} onHide={handleCloseModal}>
+          <Modal.Header closeButton>
+            <Modal.Title className="vixinh">Xác Nhận Xóa</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="nam">
+            Bạn có chắc chắn muốn xóa bình luận này không?
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCloseModal}>
+              Hủy
+            </Button>
+            <Button variant="danger" onClick={handleDeleteComment}>
+              Xóa
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
-      <div className="song-player">
-        <audio ref={audioRef} src={songs.lyrics} />
-      </div>
-      <button className="play-button" onClick={togglePlay}>
-        {isPlaying ? "Tạm Dừng" : "Tiếp Tục Phát"}
-      </button>
       <div className="comment-section">
         <Button
           className="comment-button"
@@ -145,28 +166,13 @@ const DetailSong = () => {
         <div className="comments-list nu">
           {comments.map((cmt, index) => (
             <div key={index} className="comment-item">
+              <h1>{userName}:</h1>
               <p>{cmt.content}</p>
               <button onClick={() => handleShowModal(cmt.id)}>Xóa</button>
             </div>
           ))}
         </div>
       </div>
-      <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title className=" vixinh">Xác Nhận Xóa</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="nam">
-          Bạn có chắc chắn muốn xóa bình luận này không?
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Hủy
-          </Button>
-          <Button variant="danger" onClick={handleDeleteComment}>
-            Xóa
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };
