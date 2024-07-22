@@ -5,8 +5,9 @@ import { detailSongs, findByID } from "../../../service/SongsService";
 import {
   createComment,
   getAllCommentSongId,
+  removeComment,
 } from "../../../service/CommentService";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 
 const DetailSong = () => {
   const { id } = useParams();
@@ -16,6 +17,18 @@ const DetailSong = () => {
   const [showCommentBox, setShowCommentBox] = useState(false);
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [commentToDelete, setCommentToDelete] = useState(null);
+
+  const handleShowModal = (commentId) => {
+    setCommentToDelete(commentId);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setCommentToDelete(null);
+  };
 
   const getSong = async () => {
     try {
@@ -28,9 +41,7 @@ const DetailSong = () => {
       console.log(error);
     }
   };
-  const handleDetail = async (value, id) => {
-    const res = await detailSongs(value, id);
-  };
+
   useEffect(() => {
     getSong();
   }, [id]);
@@ -45,14 +56,7 @@ const DetailSong = () => {
       setIsPlaying(!isPlaying);
     }
   };
-  // const getComments = async () => {
-  //   try {
-  //     const res = await axios.get(`/api/songs/${id}/comments`);
-  //     setComments(res.data);
-  //   } catch (error) {
-  //     console.error("Error fetching comments:", error);
-  //   }
-  // };
+
   const handleCommentChange = (event) => {
     setComment(event.target.value);
   };
@@ -67,6 +71,19 @@ const DetailSong = () => {
       setShowCommentBox(false);
     } catch (error) {
       console.error("Error submitting comment:", error);
+    }
+  };
+
+  const handleDeleteComment = async () => {
+    if (commentToDelete === null) return;
+
+    try {
+      await removeComment(id, commentToDelete);
+      console.log(id, commentToDelete);
+      setComments(comments.filter((comment) => comment.id !== commentToDelete));
+      handleCloseModal();
+    } catch (error) {
+      console.error("Error deleting comment:", error);
     }
   };
 
@@ -100,15 +117,11 @@ const DetailSong = () => {
           <p>Cung cấp bởi: {songs.provider}</p>
         </div>
       </div>
-      {/* <div className="song-player">
-        <audio controls src={songs.lyrics}></audio>
-      </div>
-      <button className="play-button">Phát tất cả</button> */}
       <div className="song-player">
         <audio ref={audioRef} src={songs.lyrics} />
       </div>
       <button className="play-button" onClick={togglePlay}>
-        {isPlaying ? "Tạm Dừng" : " Tiếp Tục Phát "}
+        {isPlaying ? "Tạm Dừng" : "Tiếp Tục Phát"}
       </button>
       <div className="comment-section">
         <Button
@@ -133,10 +146,27 @@ const DetailSong = () => {
           {comments.map((cmt, index) => (
             <div key={index} className="comment-item">
               <p>{cmt.content}</p>
+              <button onClick={() => handleShowModal(cmt.id)}>Xóa</button>
             </div>
           ))}
         </div>
       </div>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title className=" vixinh">Xác Nhận Xóa</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="nam">
+          Bạn có chắc chắn muốn xóa bình luận này không?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Hủy
+          </Button>
+          <Button variant="danger" onClick={handleDeleteComment}>
+            Xóa
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

@@ -100,9 +100,6 @@ export function Playlist() {
                                 onHide={() => setModalShow(false)}
                                 playlistId={playlist.id} // Pass playlistId to EditPlaylistModal
                             />
-                            <div className="like-button-wrapper">
-                                <LikeButton userId={userId} itemId={playlist.id} itemType="playlist" />  {/* Like button for playlist */}
-                            </div>
                         </div>
                         <div className="playlist-creator">
                             Tạo bởi <span>{playlist.user ? playlist.user.userName : 'Unknown'}</span>
