@@ -4,7 +4,8 @@ import { Button } from "react-bootstrap";
 import { CreateSongs } from "../SongList/CreateSongs";
 import { descSongs } from "../../../service/SongsService";
 import { Link } from "react-router-dom";
-import PopupMenu from "../SongList/popupMenu"; // Đảm bảo đường dẫn tới thành phần đúng
+import PopupMenu from "../SongList/popupMenu";
+import LikeButton from "../PlayLists/LikeButton"; // Đảm bảo đường dẫn tới thành phần đúng
 
 export const Create = () => {
   const [show, setShow] = useState(false);
@@ -14,6 +15,7 @@ export const Create = () => {
   const [songs, setSongs] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedSong, setSelectedSong] = useState(null);
+  const userId = parseInt(localStorage.getItem("idUser"));
 
   const togglePopup = (song) => {
     setSelectedSong(song);
@@ -149,8 +151,8 @@ export const Create = () => {
                     <div className="song-title">
                       <div className="custom-link">
                         <Link
-                          to={`/songs/detail/${song.id}`}
-                          className="white-text link"
+                            to={`/songs/detail/${song.id}`}
+                            className="white-text link"
                         >
                           {song.title}
                         </Link>
@@ -161,11 +163,14 @@ export const Create = () => {
                       {/* <p className="song-artist">{song.artist[0].name}</p> */}
                       <p className="song-time">{song.dateStart}</p>
                     </div>
+                    <div className="like-button-wrapper">
+                      <LikeButton userId={userId} itemId={song.id} itemType="song"/> {/* Like button for song */}
+                    </div>
                   </div>
                   <div className="media-right">
                     <button
-                      className="btn btn-outline-secondary btn-sm custom-btn"
-                      onClick={() => togglePopup(song)}
+                        className="btn btn-outline-secondary btn-sm custom-btn"
+                        onClick={() => togglePopup(song)}
                     >
                       <i className="icon ic-more"></i>
                       <h3>...</h3>

@@ -4,15 +4,15 @@ import axios from "axios";
 import { Button, Modal, Form } from "react-bootstrap";
 import { FaPencilAlt } from "react-icons/fa";
 import "./PlayList.css";
-import {EditPlaylistModal} from "./EditPlaylistModal";
+import { EditPlaylistModal } from "./EditPlaylistModal";
+import LikeButton from './LikeButton';  // Import the LikeButton component
 
 export function Playlist() {
     const [modalShow, setModalShow] = useState(false);
     const [playlist, setPlaylist] = useState(null);
     const [songs, setSongs] = useState([]);
-    const [isEditing, setIsEditing] = useState(false);
-    const [newTitle, setNewTitle] = useState('');
     const { id } = useParams();
+    const userId = parseInt(localStorage.getItem("idUser"));  // Assuming userId is stored in localStorage
 
     const openModal = () => {
         setModalShow(true);
@@ -23,7 +23,6 @@ export function Playlist() {
             const res = await axios.get(`http://localhost:8080/playlists/detail/${id}`);
             console.log("Playlist Data:", res.data);
             setPlaylist(res.data);
-            setNewTitle(res.data.title);
         } catch (error) {
             console.error('Error fetching playlist data:', error);
         }
@@ -39,29 +38,17 @@ export function Playlist() {
         }
     };
 
-    const handleEditTitle = async () => {
-        try {
-            const res = await axios.put(`http://localhost:8080/playlists/${id}`, { title: newTitle });
-            console.log("Updated Playlist Data:", res.data);
-            setPlaylist(res.data);
-            setIsEditing(false);
-        } catch (error) {
-            console.error('Error updating playlist title:', error);
-        }
-    };
-
     useEffect(() => {
         if (id) {
             getPlaylistById();
             getAllSongs();
         }
-    }, [id,modalShow]);
+    }, [id, modalShow]);
 
     if (!playlist) {
         return <div>...Loading</div>;
     }
 
-    // Lọc các bài hát dựa trên id của playlist
     const filteredSongs = Array.isArray(songs) ? songs.filter(song =>
         song.playlists.some(p => p.id === parseInt(id))
     ) : [];
@@ -93,20 +80,19 @@ export function Playlist() {
         }
     };
 
-
     return (
         <div className="playlist1 col-12 px-5">
             <div className="playlist">
                 <div className="playlist-header">
                     <div className="playlist-thumbnail">
-                        <img src="https://photo-zmp3.zmdcdn.me/album_default.png" alt="Playlist Thumbnail"/>
+                        <img src="https://photo-zmp3.zmdcdn.me/album_default.png" alt="Playlist Thumbnail" />
                     </div>
                     <div className="playlist-info">
                         <div>
                             <h3 className="playlist-title">
                                 <span>{playlist.title}</span>
                                 <Button variant="info" onClick={openModal}>
-                                    <FaPencilAlt/>
+                                    <FaPencilAlt />
                                 </Button>
                             </h3>
                             <EditPlaylistModal
@@ -115,7 +101,9 @@ export function Playlist() {
                                 playlistId={playlist.id} // Pass playlistId to EditPlaylistModal
                             />
                         </div>
-                        <div className="playlist-creator">Tạo bởi <span>{playlist.user.userName}</span></div>
+                        <div className="playlist-creator">
+                            Tạo bởi <span>{playlist.user ? playlist.user.userName : 'Unknown'}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -135,15 +123,16 @@ export function Playlist() {
                     <tbody>
                     {filteredSongs.map((song, index) => (
                         <tr key={index}>
-                            <td><img src={song.imgSongs} alt={song.title} className="img-fluid rounded-circle"/></td>
+                            <td><img src={song.imgSongs} alt={song.title} className="img-fluid rounded-circle" /></td>
                             <td>{song.title}</td>
                             <td>{song.artist.map((a) => a.name).join(', ')}</td>
                             <td>{song.album || 'N/A'}</td>
                             <td>{song.duration}</td>
                             <td>
-                                <button className="btn btn-danger"
-                                        onClick={() => handleDelete(song.id, parseInt(id))}>Xoá
-                                </button>
+                                <button className="btn btn-danger" onClick={() => handleDelete(song.id, parseInt(id))}>Xoá</button>
+                                <div className="like-button-wrapper">
+                                    <LikeButton userId={userId} itemId={song.id} itemType="song" />  {/* Like button for song */}
+                                </div>
                             </td>
                         </tr>
                     ))}

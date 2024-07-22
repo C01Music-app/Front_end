@@ -62,8 +62,8 @@ function AddPlaylistToSongModal(props) {
     return (
         <>
             <div className="media-right col-12">
-                <button className="btn btn-outline-secondary btn-sm custom-btn vi22" onClick={() => setShow(true)}>
-                    <i className="icon ic-more"></i> <h3>...</h3>
+                <button className="btn-outline-secondary  custom-btn vi22" onClick={() => setShow(true)}>
+                    <h3>...</h3>
                 </button>
             </div>
             <Modal style={{ color: "black" }} show={show} onHide={handleClose} centered>
