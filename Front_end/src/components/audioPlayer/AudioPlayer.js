@@ -21,8 +21,10 @@ const AudioPlayer = () => {
   const [songs, setSongs] = useState(songList);
 
   useEffect(() => {
-    const savedIsPlay = localStorage.getItem("isPlaying") === "true";
-    const savedCurrentTime = parseFloat(localStorage.getItem("currentTime") || 0);
+    const savedIsPlay = localStorage.getItem("isPlaying");
+    console.log("-----------------useEffect1------------------------")
+    console.log("saveisPlay: "+savedIsPlay)
+    const savedCurrentTime = parseFloat(localStorage.getItem("currentTime"));
     setCurrentTime(savedCurrentTime);
     setPlay(savedIsPlay);
 
@@ -30,11 +32,11 @@ const AudioPlayer = () => {
       audioRef.current.currentTime = savedCurrentTime;
       audioRef.current.volume = volume;
 
-      if (savedIsPlay) {
-        audioRef.current.play().catch((err) => {
-          console.log(err);
-        });
-      }
+      // if (savedIsPlay) {
+      //   audioRef.current.play().catch((err) => {
+      //     console.log(err);
+      //   });
+      // }
     }
 
     const updateCurrentTime = setInterval(() => {
@@ -50,6 +52,8 @@ const AudioPlayer = () => {
   useEffect(() => {
     localStorage.setItem("isPlaying", isPlay);
     localStorage.setItem("volume", volume);
+    console.log("-------------------------------useEffect2------------------------")
+    console.log("trạng thái" + isPlay)
   }, [isPlay, volume]);
 
   useEffect(() => {
@@ -69,7 +73,7 @@ const AudioPlayer = () => {
     if (audioRef.current && songs.length > 0) {
       audioRef.current.src = songs[currentIndexSong]?.lyrics || "";
       audioRef.current.play().catch((error) => console.log(error));
-      setPlay(true);
+      setPlay(false);
     }
   }, [currentIndexSong, songs]);
 
@@ -278,3 +282,4 @@ const AudioPlayer = () => {
 };
 
 export default AudioPlayer;
+

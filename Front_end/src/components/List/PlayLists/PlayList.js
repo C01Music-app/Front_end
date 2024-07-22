@@ -6,14 +6,19 @@ import { FaPencilAlt } from "react-icons/fa";
 import "./PlayList.css";
 import { EditPlaylistModal } from "./EditPlaylistModal";
 import LikeButton from './LikeButton';  // Import the LikeButton component
+import { EditPlaylistModal } from "./EditPlaylistModal";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIndex, selectSongs } from "../../../redux/action";
 
 export function Playlist() {
     const [modalShow, setModalShow] = useState(false);
-    const [playlist, setPlaylist] = useState(null);
+    const [playlist, setPlaylist] = useState([]);
     const [songs, setSongs] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [newTitle, setNewTitle] = useState('');
     const { id } = useParams();
+    const dispatch = useDispatch();
+    const listSongs = useSelector(state => state.songs);
     const userId = parseInt(localStorage.getItem("idUser"));  // Assuming userId is stored in localStorage
 
     const openModal = () => {
@@ -59,14 +64,22 @@ export function Playlist() {
         }
     }, [id, modalShow]);
 
+    useEffect(() => {
+        if (Array.isArray(songs)) {
+            const filtered = songs.filter(song =>
+                song.playlists.some(p => p.id === parseInt(id))
+            );
+            dispatch(selectSongs(filtered));
+        }
+    }, [songs, id, dispatch]);
+
     if (!playlist) {
         return <div>...Loading</div>;
     }
 
-    // Lọc các bài hát dựa trên id của playlist
-    const filteredSongs = Array.isArray(songs) ? songs.filter(song =>
-        song.playlists.some(p => p.id === parseInt(id))
-    ) : [];
+    const handleClickSong = (index) => {
+        dispatch(selectIndex(index));
+    };
 
     const handleDelete = async (songId, playlistId) => {
         try {
@@ -95,7 +108,6 @@ export function Playlist() {
         }
     };
 
-
     return (
         <div className="playlist1 col-12 px-5">
             <div className="playlist">
@@ -117,9 +129,7 @@ export function Playlist() {
                                 playlistId={playlist.id} // Pass playlistId to EditPlaylistModal
                             />
                         </div>
-                        <div className="playlist-creator">
-                            Tạo bởi <span>{playlist.user ? playlist.user.userName : 'Unknown'}</span>
-                        </div>
+                        {/*<div className="playlist-creator">Tạo bởi <span>{playlist.user.userName}</span></div>*/}
                     </div>
                 </div>
             </div>
@@ -137,11 +147,16 @@ export function Playlist() {
                     </tr>
                     </thead>
                     <tbody>
-                    {filteredSongs.map((song, index) => (
+                    {listSongs.map((song, index) => (
                         <tr key={index}>
-                            <td><img src={song.imgSongs} alt={song.title} className="img-fluid rounded-circle"
-                            // onClick={()=>{handleClickSong(index)}}
-                            /></td>
+                            <td>
+                                <img
+                                    src={song.imgSongs}
+                                    alt={song.title}
+                                    className="img-fluid rounded-circle"
+                                    onClick={() => { handleClickSong(index) }}
+                                />
+                            </td>
                             <td>{song.title}</td>
                             <td>{song.artist.map((a) => a.name).join(', ')}</td>
                             <td>{song.album || 'N/A'}</td>

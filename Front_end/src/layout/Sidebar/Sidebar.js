@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {CreatePlayList} from "../../components/List/PlayLists/CreatePlayList";
 import {Button} from "react-bootstrap";
 import AllPlayOfUser from "../../components/List/PlayLists/AllPlayOfUser";
+import {Link} from "react-router-dom";
 
 export function Sidebar() {
   const [modalShow, setModalShow] = useState(false);
@@ -14,15 +15,17 @@ export function Sidebar() {
               id="accordionSidebar"
               style={{background : "#231B2E"}}
           >
-            <a
-                className="sidebar-brand d-flex align-items-center justify-content-center"
-                href="/"
-            >
+            {/*<a*/}
+            {/*    className="sidebar-brand d-flex align-items-center justify-content-center"*/}
+            {/*    href="/"*/}
+            {/*>*/}
+            <Link to = "/">
               <div className="sidebar-brand-icon rotate-n-15">
                 <i className="fas fa-laugh-wink"></i>
               </div>
               <div className="sidebar-brand-text mx-3">Zing mp3</div>
-            </a>
+            {/*</a>*/}
+            </Link>
             <li className="nav-item">
               <a className="nav-link">
             <span>
