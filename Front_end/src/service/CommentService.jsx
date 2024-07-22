@@ -13,8 +13,10 @@ export const createComment = async (id, comment) => {
   return res.data;
 };
 
-export const removeComment = async (id) => {
-  const res = await axios.delete(`http://localhost:8080/comment/${id}`);
+export const removeComment = async (id, commentId) => {
+  const res = await axios.delete(
+    `http://localhost:8080/songs/${id}/delete/comments/${commentId}`
+  );
   return res.data;
 };
 

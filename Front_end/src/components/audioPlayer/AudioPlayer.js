@@ -11,6 +11,7 @@ import {
 import TimeSlider from "react-input-slider";
 import { useSelector, useDispatch } from "react-redux";
 import { selectIndex } from "../../redux/action";
+import { IConSoundOff, IConSoundOn } from "./IConAudio";
 
 const AudioPlayer = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,9 @@ const AudioPlayer = () => {
   const [isPlay, setPlay] = useState(false);
   const [isRandom, setRandom] = useState(false);
   const [isRedo, setRedo] = useState(false);
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState(
+    parseFloat(localStorage.getItem("volume")) || 0.5
+  );
   const [songs, setSongs] = useState(songList);
 
   useEffect(() => {
@@ -47,6 +50,7 @@ const AudioPlayer = () => {
 
     const updateCurrentTime = setInterval(() => {
       if (audioRef.current) {
+        setCurrentTime(audioRef.current.currentTime);
         localStorage.setItem("currentTime", audioRef.current.currentTime);
       }
     }, 1000);
@@ -84,7 +88,6 @@ const AudioPlayer = () => {
     setDuration(audioRef.current?.duration || 0);
     if (isPlay) audioRef.current?.play().catch((error) => console.log(error));
   };
-
   const handlePausePlayClick = () => {
     if (isPlay) {
       audioRef.current?.pause();
@@ -107,6 +110,7 @@ const AudioPlayer = () => {
     if (audioRef.current) {
       audioRef.current.volume = newVolume;
     }
+    localStorage.setItem("volume", newVolume);
   };
 
   const handleSongs = () => {
@@ -131,6 +135,22 @@ const AudioPlayer = () => {
     if (isRandom) setRandom(false);
   };
 
+  const handleSound = () => {
+    if (volume === 0) {
+      const savedVolume = parseFloat(localStorage.getItem("volume")) || 0.5;
+      setVolume(savedVolume);
+      if (audioRef.current) {
+        audioRef.current.volume = savedVolume;
+      }
+    } else {
+      localStorage.setItem("volume", volume);
+      setVolume(0);
+      if (audioRef.current) {
+        audioRef.current.volume = 0;
+      }
+    }
+  };
+
   useEffect(() => {
     if (audioRef.current && songs[audioIndex]) {
       audioRef.current.src = songs[audioIndex].lyrics;
@@ -147,8 +167,8 @@ const AudioPlayer = () => {
 
   return (
     <div className="">
-      <div className="container-audio">
-        <div className="song-info">
+      <div className="container-audio col-12">
+        <div className="song-info col-3">
           {songs[audioIndex] && (
             <>
               <h2 className="Song-Title">{songs[audioIndex].title}</h2>
@@ -156,7 +176,7 @@ const AudioPlayer = () => {
             </>
           )}
         </div>
-        <div className="song-control">
+        <div className="song-control col-6">
           <div className="Control-Button-Group">
             <div
               className={`Random-Button ${isRandom ? "active" : ""}`}
@@ -192,6 +212,7 @@ const AudioPlayer = () => {
               <FaRedo />
             </div>
           </div>
+
           <div className="timeSliderCustom">
             <div className="time-display">
               <span className="time1">{formatTime(currentTime)}</span>
@@ -219,35 +240,50 @@ const AudioPlayer = () => {
                 }}
               />
               <span className="time2">{formatTime(duration)}</span>
-              <TimeSlider
-                axis="x"
-                xmax={1}
-                x={volume}
-                onChange={handleVolumeChange}
-                styles={{
-                  track: {
-                    backgroundColor: "#e3e3e3",
-                    height: "3px",
-                    width: "100px",
-                    marginLeft: "10px",
-                  },
-                  active: {
-                    backgroundColor: "#89878d",
-                    height: "3px",
-                  },
-                  thumb: {
-                    marginTop: "-1.5px",
-                    width: "10px",
-                    height: "10px",
-                    backgroundColor: "#a5a3a3",
-                    borderRadius: 50,
-                  },
-                }}
-              />
             </div>
+          </div>
+          <div />
+        </div>
+        <div className="sound-control d-flex justify-content-end col-3">
+          <div
+            className="sound-icon"
+            onClick={handleSound}
+            style={{ position: "absolute", left: "110px", top: "41px" }}
+          >
+            {volume === 0 ? <IConSoundOff /> : <IConSoundOn />}
+          </div>
+          <div className="sound-bar" style={{ width: "35px" }}>
+            <TimeSlider
+              axis="x"
+              xmax={1}
+              xmin={0}
+              xstep={0.01}
+              x={volume}
+              onChange={handleVolumeChange}
+              styles={{
+                track: {
+                  backgroundColor: "#e3e3e3",
+                  height: "3px",
+                  width: "100px",
+                  marginLeft: "10px",
+                },
+                active: {
+                  backgroundColor: "#89878d",
+                  height: "3px",
+                },
+                thumb: {
+                  marginTop: "-1.5px",
+                  width: "10px",
+                  height: "10px",
+                  backgroundColor: "#a5a3a3",
+                  borderRadius: 50,
+                },
+              }}
+            />
           </div>
         </div>
       </div>
+
       <audio
         ref={audioRef}
         src={songs[audioIndex]?.lyrics}
