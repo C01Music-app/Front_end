@@ -63,12 +63,13 @@ export function Playlist() {
             getAllSongs();
         }
     }, [id, modalShow]);
-
+    // code của trường
     useEffect(() => {
         if (Array.isArray(songs)) {
             const filtered = songs.filter(song =>
                 song.playlists.some(p => p.id === parseInt(id))
             );
+            // thêm phần này
             dispatch(selectSongs(filtered));
         }
     }, [songs, id, dispatch]);
