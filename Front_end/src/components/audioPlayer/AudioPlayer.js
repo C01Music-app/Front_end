@@ -30,11 +30,11 @@ const AudioPlayer = () => {
       audioRef.current.currentTime = savedCurrentTime;
       audioRef.current.volume = volume;
 
-      // if (savedIsPlay) {
-      //   audioRef.current.play().catch((err) => {
-      //     console.log(err);
-      //   });
-      // }
+      if (savedIsPlay) {
+        audioRef.current.play().catch((err) => {
+          console.log(err);
+        });
+      }
     }
 
     const updateCurrentTime = setInterval(() => {
@@ -50,8 +50,6 @@ const AudioPlayer = () => {
   useEffect(() => {
     localStorage.setItem("isPlaying",isPlay);
     localStorage.setItem("volume", volume);
-    console.log("-------------------------------useEffect2------------------------")
-    console.log("trạng thái" + isPlay)
   }, [isPlay, volume]);
 
   useEffect(() => {
@@ -79,7 +77,6 @@ const AudioPlayer = () => {
   const handleLoadedData = () => {
     setDuration(audioRef.current?.duration || 0);
     if (isPlay) audioRef.current?.play().catch((error) => console.log(error));
-    setPlay(true)
   };
   const handlePausePlayClick = () => {
     if (isPlay) {
@@ -97,7 +94,7 @@ const AudioPlayer = () => {
     }
   };
 
-  const handleVolumeChange = ({x}) => {
+  const handleVolumeChange = ({ x }) => {
     const newVolume = Math.min(Math.max(x, 0), 1);
     setVolume(newVolume);
     if (audioRef.current) {
@@ -159,48 +156,52 @@ const AudioPlayer = () => {
   };
 
   return (
-      <div className="">
-        <div className="container-audio col-12">
-          <div className="song-info col-3">
-            {songs[audioIndex] && (
-                <>
-                  <h2 className="Song-Title">{songs[audioIndex].title}</h2>
-                  {/*<p className="Singer">{songs[audioIndex].artist.info}</p>*/}
-                </>
-            )}
-          </div>
-          <div className="song-control col-6">
-            <div className="Control-Button-Group">
-              <div
-                  className={`Random-Button ${isRandom ? "active" : ""}`}
-                  onClick={handleRandomClick}
-              >
-                <FaRandom/>
-              </div>
-              <div
-                  className="Prev-Button"
-                  onClick={() =>
-                      dispatch(selectIndex((audioIndex - 1 + songs.length) % songs.length))
-                  }
-              >
-                <FaBackward/>
-              </div>
-              <div className="Pause-Play-Button" onClick={handlePausePlayClick}>
-                {isPlay ? <FaPause/> : <FaPlay/>}
-              </div>
-              <div
-                  className="Next-Button"
-                  onClick={() => dispatch(selectIndex((audioIndex + 1) % songs.length))}
-              >
-                <FaForward/>
-              </div>
-              <div
-                  className={`Redo-Button ${isRedo ? "active" : ""}`}
-                  onClick={handleRedoClick}
-              >
-                <FaRedo/>
-              </div>
+    <div className="">
+      <div className="container-audio col-12">
+        <div className="song-info col-3">
+          {songs[audioIndex] && (
+            <>
+              <h2 className="Song-Title">{songs[audioIndex].title}</h2>
+              <p className="Singer">{songs[audioIndex].artist[0].name}</p>
+            </>
+          )}
+        </div>
+        <div className="song-control col-6">
+          <div className="Control-Button-Group">
+            <div
+              className={`Random-Button ${isRandom ? "active" : ""}`}
+              onClick={handleRandomClick}
+            >
+              <FaRandom />
             </div>
+            <div
+              className="Prev-Button"
+              onClick={() =>
+                dispatch(
+                  selectIndex((audioIndex - 1 + songs.length) % songs.length)
+                )
+              }
+            >
+              <FaBackward />
+            </div>
+            <div className="Pause-Play-Button" onClick={handlePausePlayClick}>
+              {isPlay ? <FaPause /> : <FaPlay />}
+            </div>
+            <div
+              className="Next-Button"
+              onClick={() =>
+                dispatch(selectIndex((audioIndex + 1) % songs.length))
+              }
+            >
+              <FaForward />
+            </div>
+            <div
+              className={`Redo-Button ${isRedo ? "active" : ""}`}
+              onClick={handleRedoClick}
+            >
+              <FaRedo />
+            </div>
+          </div>
 
             <div className="timeSliderCustom">
               <div className="time-display">
@@ -282,4 +283,3 @@ const AudioPlayer = () => {
 };
 
 export default AudioPlayer;
-
