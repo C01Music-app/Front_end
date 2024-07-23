@@ -172,7 +172,7 @@ const AudioPlayer = () => {
           {songs[audioIndex] && (
             <>
               <h2 className="Song-Title">{songs[audioIndex].title}</h2>
-              <p className="Singer">{songs[audioIndex].artist}</p>
+              <p className="Singer">{songs[audioIndex].artist[0].name}</p>
             </>
           )}
         </div>
