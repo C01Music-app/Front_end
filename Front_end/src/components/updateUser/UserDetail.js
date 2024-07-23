@@ -31,10 +31,10 @@ export function UserDetail() {
         try {
             const userUpdate = { ...values };
             await updateUserDetail(id, userUpdate, { headers: { Authorization: `Bearer ${token}` } });
-            localStorage.removeItem("token");
-            localStorage.removeItem("userName");
-            localStorage.removeItem("roles");
-            localStorage.removeItem("idUser");
+            // localStorage.removeItem("token");
+            // localStorage.removeItem("userName");
+            // localStorage.removeItem("roles");
+            // localStorage.removeItem("idUser");
             toast.success("Successfully updated user");
         } catch (err) {
             console.error("Error updating user:", err);

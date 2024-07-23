@@ -9,7 +9,7 @@ const SELECT_INDEX ='SELECT_INDEX';
 const initialState = {
    user : {
        idUser:"",
-       userName:"truong mac dinh",
+       userName:"",
        roles:"",
        token:""
    },

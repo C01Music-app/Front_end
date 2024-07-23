@@ -11,7 +11,7 @@ const AudioPlayer = () => {
   const currentIndexSong = useSelector((state) => state.currentSongIndex);
   const songList = useSelector((state) => state.songs);
   const audioRef = useRef();
-  const [audioIndex, setAudioIndex] = useState(currentIndexSong || 0);
+  const [audioIndex, setAudioIndex] = useState(currentIndexSong);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isPlay, setPlay] = useState(false);
@@ -22,8 +22,6 @@ const AudioPlayer = () => {
 
   useEffect(() => {
     const savedIsPlay = localStorage.getItem("isPlaying");
-    console.log("-----------------useEffect1------------------------")
-    console.log("saveisPlay: "+savedIsPlay)
     const savedCurrentTime = parseFloat(localStorage.getItem("currentTime"));
     setCurrentTime(savedCurrentTime);
     setPlay(savedIsPlay);
@@ -50,7 +48,7 @@ const AudioPlayer = () => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("isPlaying", isPlay);
+    localStorage.setItem("isPlaying",isPlay);
     localStorage.setItem("volume", volume);
     console.log("-------------------------------useEffect2------------------------")
     console.log("trạng thái" + isPlay)
@@ -58,7 +56,8 @@ const AudioPlayer = () => {
 
   useEffect(() => {
     setSongs(songList);
-  }, [songList]);
+    setPlay(false)
+    }, [songList]);
 
   useEffect(() => {
     const savedIndex = localStorage.getItem("currentIndexSong");
@@ -80,6 +79,7 @@ const AudioPlayer = () => {
   const handleLoadedData = () => {
     setDuration(audioRef.current?.duration || 0);
     if (isPlay) audioRef.current?.play().catch((error) => console.log(error));
+    setPlay(true)
   };
   const handlePausePlayClick = () => {
     if (isPlay) {
@@ -165,7 +165,7 @@ const AudioPlayer = () => {
             {songs[audioIndex] && (
                 <>
                   <h2 className="Song-Title">{songs[audioIndex].title}</h2>
-                  <p className="Singer">{songs[audioIndex].artist}</p>
+                  {/*<p className="Singer">{songs[audioIndex].artist.info}</p>*/}
                 </>
             )}
           </div>

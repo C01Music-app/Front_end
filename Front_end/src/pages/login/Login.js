@@ -5,12 +5,13 @@ import axios from "axios";
 import {toast} from "react-toastify";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {FaEye, FaEyeSlash} from "react-icons/fa";
-import {useDispatch} from "react-redux";
-import setUser from "../../redux/action";
+import {useDispatch, useSelector} from "react-redux";
+import {setUser} from "../../redux/action";
 
 
 export default function Login() {
     const dispatch = useDispatch();
+    // const acc = useSelector(state => state.user);
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const {toggleFlag} = useContext(AppContext);
@@ -39,8 +40,11 @@ export default function Login() {
                 //     idUser:res.data.id,
                 //     userName:res.data.username,
                 //     roles:res.data.authorities[0].authority,
-                //     token:res.data.token
+                //     token:res.data.token,
+                //     password:res.data.password
                 // }
+                // console.log(users)
+                // dispatch(setUser(users));
                 // let users = {
                 //     idUser:3,
                 //     userName:"truong",

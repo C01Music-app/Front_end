@@ -6,7 +6,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import "./PlayList.css";
 import { EditPlaylistModal } from "./EditPlaylistModal";
 import LikeButton from './LikeButton';  // Import the LikeButton component
-import { EditPlaylistModal } from "./EditPlaylistModal";
+// import { EditPlaylistModal } from "./EditPlaylistModal";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIndex, selectSongs } from "../../../redux/action";
 
@@ -46,16 +46,16 @@ export function Playlist() {
         }
     };
 
-    const handleEditTitle = async () => {
-        try {
-            const res = await axios.put(`http://localhost:8080/playlists/${id}`, { title: newTitle });
-            console.log("Updated Playlist Data:", res.data);
-            setPlaylist(res.data);
-            setIsEditing(false);
-        } catch (error) {
-            console.error('Error updating playlist title:', error);
-        }
-    };
+    // const handleEditTitle = async () => {
+    //     try {
+    //         const res = await axios.put(`http://localhost:8080/playlists/${id}`, { title: newTitle });
+    //         console.log("Updated Playlist Data:", res.data);
+    //         setPlaylist(res.data);
+    //         setIsEditing(false);
+    //     } catch (error) {
+    //         console.error('Error updating playlist title:', error);
+    //     }
+    // };
 
     useEffect(() => {
         if (id) {

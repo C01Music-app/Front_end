@@ -54,9 +54,9 @@ export const updateUserDetail = async (id, user, header) => {
         }
 };
 
-export const updateUserPassword = async (id, user, header) => {
+export const updatePassword = async ( user, header) => {
     try {
-        const res = await axios.put(`http://localhost:8080/user/password/${id}`, user, header);
+        const res = await axios.put(`http://localhost:8080/user/password`, user, header);
         return res.data;
     } catch (err) {
         console.error("Error updating user:", err);
