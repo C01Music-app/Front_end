@@ -15,9 +15,13 @@ export const Create = () => {
   const [songs, setSongs] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedSong, setSelectedSong] = useState(null);
+  const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
   const userId = parseInt(localStorage.getItem("idUser"));
 
-  const togglePopup = (song) => {
+  const togglePopup = (song, event) => {
+    const songItem = event.currentTarget.closest(".song-item");
+    const { top, left } = songItem.getBoundingClientRect();
+    setPopupPosition({ top: top - songItem.clientHeight, left });
     setSelectedSong(song);
     setShowPopup(!showPopup);
   };
@@ -151,8 +155,8 @@ export const Create = () => {
                     <div className="song-title">
                       <div className="custom-link">
                         <Link
-                            to={`/songs/detail/${song.id}`}
-                            className="white-text link"
+                          to={`/songs/detail/${song.id}`}
+                          className="white-text link"
                         >
                           {song.title}
                         </Link>
@@ -164,13 +168,18 @@ export const Create = () => {
                       <p className="song-time">{song.dateStart}</p>
                     </div>
                     <div className="like-button-wrapper">
-                      <LikeButton userId={userId} itemId={song.id} itemType="song"/> {/* Like button for song */}
+                      <LikeButton
+                        userId={userId}
+                        itemId={song.id}
+                        itemType="song"
+                      />{" "}
+                      {/* Like button for song */}
                     </div>
                   </div>
                   <div className="media-right">
                     <button
-                        className="btn btn-outline-secondary btn-sm custom-btn"
-                        onClick={() => togglePopup(song)}
+                      className="btn btn-outline-secondary btn-sm custom-btn"
+                      onClick={(event) => togglePopup(song, event)}
                     >
                       <i className="icon ic-more"></i>
                       <h3>...</h3>
@@ -202,6 +211,7 @@ export const Create = () => {
         <PopupMenu
           makeReload={makeReload}
           song={selectedSong}
+          position={popupPosition}
           closePopup={() => setShowPopup(false)}
         />
       )}

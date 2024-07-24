@@ -8,7 +8,7 @@ import { artistsService } from "../../../service/ArtistsService";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-export const UpdateSongs = ({ closeModal, id, showUpdate }) => {
+export const UpdateSongs = ({ closeModal, id, showUpdate, closePopup }) => {
   const [songs, setSongs] = useState();
   const [artists, setArtists] = useState([]);
   const [imageUrl, setImageUrl] = useState(undefined);
@@ -100,7 +100,9 @@ export const UpdateSongs = ({ closeModal, id, showUpdate }) => {
   return (
     <div>
       <Modal show={showUpdate}>
-        <ModalHeader className="khanh">Cập nhật bài hát</ModalHeader>
+        <ModalHeader className="custom-modal-header">
+          Cập nhật bài hát
+        </ModalHeader>
         <ModalBody>
           <Formik
             initialValues={songs}
@@ -110,19 +112,15 @@ export const UpdateSongs = ({ closeModal, id, showUpdate }) => {
             }}
           >
             <Form>
-              <div className="card khanh">
+              <div className="card vi-w100 khanh">
                 <div className="row align-items-center no-gutters">
                   <div className="col-md-5">
-                    {/* <img
+                    <img
                       name="imgSongs"
-                      src={
-                        songs.imgSongs == null
-                          ? "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-                          : songs.imgSongs
-                      }
-                      className="img-fluid"
+                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                      class="img-fluid"
                       alt=""
-                    /> */}
+                    />
                   </div>
                   <div className="col-md-7">
                     <div className="card-body">
@@ -138,7 +136,6 @@ export const UpdateSongs = ({ closeModal, id, showUpdate }) => {
                           className="form-control"
                         />
                       </div>
-
                       <div className="form-group mb-2">
                         <label className="form-label" htmlFor="description">
                           Mô tả
@@ -170,7 +167,7 @@ export const UpdateSongs = ({ closeModal, id, showUpdate }) => {
                         </Field>
                       </div>
 
-                      {/* <div className="form-group mb-2">
+                      <div className="form-group mb-2">
                         <label className="form-label" htmlFor="imgSongs">
                           Ảnh
                         </label>
@@ -182,7 +179,7 @@ export const UpdateSongs = ({ closeModal, id, showUpdate }) => {
                             uploadFileImg(event.target.files[0]);
                           }}
                         />
-                      </div> */}
+                      </div>
                       <div className="form-group mb-2">
                         <label className="form-label" htmlFor="lyrics">
                           File nhạc
