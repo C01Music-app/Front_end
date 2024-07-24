@@ -96,7 +96,7 @@ export const CreateSongs = ({ show, closeModal, makeReload }) => {
   const vali = Yup.object().shape({
     title: Yup.string()
       .required("vui lòng không để trống")
-      .matches(/^[A-Z][a-z]/, "viết hoa chữ cái đầu"),
+      .matches(/^[A-Z]/, "viết hoa chữ cái đầu"),
     description: Yup.string().required("vui lòng không để trống"),
     imgSongs: Yup.mixed()
       .required("Vui lòng không để trống")

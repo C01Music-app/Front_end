@@ -13,7 +13,7 @@
 
 .popup-content {
   padding: 5px;
-  margin: 20px;
+  margin: 10px;
 }
 
 .popup-header {
@@ -63,4 +63,8 @@
 }
 .vi-w100 {
   width: 100% !important;
+}
+.popup {
+  position: absolute;
+  z-index: 1000;
 }

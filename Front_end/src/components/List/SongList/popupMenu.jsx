@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import { DetailSong } from "./DetailSong";
 import { UpdateSongs } from "./UpdateSongs";
 
-const PopupMenu = ({ song, closePopup, makeReload }) => {
+const PopupMenu = ({ song, closePopup, makeReload, position }) => {
   const [showDelete, setShowDelete] = useState(false);
   const [id, setId] = useState(-1);
   const [showUpdate, setShowUpdate] = useState(false);
@@ -24,7 +24,7 @@ const PopupMenu = ({ song, closePopup, makeReload }) => {
   };
 
   return (
-    <div className="popup">
+    <div className="popup" style={{ top: position.top, left: position.left }}>
       <div className="popup-content">
         <div className="popup-header">
           <img src={song.imgSongs} alt="Album Art" className="album-art" />
@@ -34,38 +34,43 @@ const PopupMenu = ({ song, closePopup, makeReload }) => {
           </div>
         </div>
         <div className="popup-body">
-          <button className="popup-item">Thêm vào danh sách phát</button>
-          <button className="popup-item">Phát tiếp theo</button>
           <Button
             variant="danger"
             className="popup-item"
             onClick={() => {
               setShowDelete(true);
-              handleRadioChange(song.id); // Thiết lập id của bài hát để xóa
+              handleRadioChange(song.id);
+              // Thiết lập id của bài hát để xóa
             }}
           >
             Xóa
           </Button>
-          <button className="popup-item">Thêm vào playlist</button>
+
           <Button
             className="popup-item"
             onClick={() => {
               setShowUpdate(true);
-              handleRadioChange(song.id); // Thiết lập id của bài hát để chỉnh
+              handleRadioChange(song.id);
+              // Thiết lập id của bài hát để chỉnh
             }}
           >
             Chỉnh sửa
           </Button>
           <button className="popup-item" onClick={closePopup}>
-            thoát
+            Thoát
           </button>
         </div>
-        <div className="popup-footer">
-          <span>Tải lên bởi {song.artist.name}</span>
-        </div>
+        {/* <div className="popup-footer">
+          <span>Tải lên bởi {song.artist[0].name}</span>
+        </div> */}
       </div>
       {showDelete && (
-        <DeleteSongs closeModal={closeModal} id={id} showDelete={showDelete} />
+        <DeleteSongs
+          closeModal={closeModal}
+          id={id}
+          showDelete={showDelete}
+          closePopup={closePopup}
+        />
       )}
 
       <UpdateSongs closeModal={closeModal} showUpdate={showUpdate} id={id} />
