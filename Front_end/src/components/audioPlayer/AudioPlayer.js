@@ -1,39 +1,28 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "./AudioPlayer.css";
-import {
-  FaPlay,
-  FaPause,
-  FaForward,
-  FaBackward,
-  FaRandom,
-  FaRedo,
-} from "react-icons/fa";
+import {FaPlay, FaPause, FaForward, FaBackward, FaRandom, FaRedo} from "react-icons/fa";
 import TimeSlider from "react-input-slider";
-import { useSelector, useDispatch } from "react-redux";
-import { selectIndex } from "../../redux/action";
-import { IConSoundOff, IConSoundOn } from "./IConAudio";
+import {useSelector, useDispatch} from "react-redux";
+import {selectIndex} from "../../redux/action";
+import {IConSoundOff, IConSoundOn} from "./IConAudio";
 
 const AudioPlayer = () => {
   const dispatch = useDispatch();
   const currentIndexSong = useSelector((state) => state.currentSongIndex);
   const songList = useSelector((state) => state.songs);
   const audioRef = useRef();
-  const [audioIndex, setAudioIndex] = useState(currentIndexSong || 0);
+  const [audioIndex, setAudioIndex] = useState(currentIndexSong);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isPlay, setPlay] = useState(false);
   const [isRandom, setRandom] = useState(false);
   const [isRedo, setRedo] = useState(false);
-  const [volume, setVolume] = useState(
-    parseFloat(localStorage.getItem("volume")) || 0.5
-  );
+  const [volume, setVolume] = useState(parseFloat(localStorage.getItem("volume")) || 0.5);
   const [songs, setSongs] = useState(songList);
 
   useEffect(() => {
-    const savedIsPlay = localStorage.getItem("isPlaying") === "true";
-    const savedCurrentTime = parseFloat(
-      localStorage.getItem("currentTime") || 0
-    );
+    const savedIsPlay = localStorage.getItem("isPlaying");
+    const savedCurrentTime = parseFloat(localStorage.getItem("currentTime"));
     setCurrentTime(savedCurrentTime);
     setPlay(savedIsPlay);
 
@@ -41,21 +30,26 @@ const AudioPlayer = () => {
       audioRef.current.currentTime = savedCurrentTime;
       audioRef.current.volume = volume;
 
-      if (savedIsPlay) {
-        audioRef.current.play().catch((err) => {
-          console.log(err);
-        });
-      }
+      // if (savedIsPlay) {
+      //   audioRef.current.play().catch((err) => {
+      //     console.log(err);
+      //   });
+      // }
     }
 
     const updateCurrentTime = setInterval(() => {
+
       if (audioRef.current) {
         setCurrentTime(audioRef.current.currentTime);
         localStorage.setItem("currentTime", audioRef.current.currentTime);
+
       }
     }, 1000);
 
-    return () => clearInterval(updateCurrentTime);
+      return () =>  {
+        clearInterval(updateCurrentTime);
+        console.log()
+      }
   }, []);
 
   useEffect(() => {
@@ -65,7 +59,9 @@ const AudioPlayer = () => {
 
   useEffect(() => {
     setSongs(songList);
-  }, [songList]);
+    localStorage.removeItem("isPlaying");
+    localStorage.removeItem("currentIndexSong")
+    }, [songList]);
 
   useEffect(() => {
     const savedIndex = localStorage.getItem("currentIndexSong");
@@ -78,15 +74,16 @@ const AudioPlayer = () => {
     localStorage.setItem("currentIndexSong", currentIndexSong);
     setAudioIndex(currentIndexSong);
     if (audioRef.current && songs.length > 0) {
-      audioRef.current.src = songs[currentIndexSong]?.lyrics || "";
-      audioRef.current.play().catch((error) => console.log(error));
-      setPlay(true);
+      // audioRef.current.src = songs[currentIndexSong]?.lyrics || "";
+      // audioRef.current.play().catch((error) => console.log(error));
+      setPlay(false);
     }
   }, [currentIndexSong, songs]);
 
   const handleLoadedData = () => {
     setDuration(audioRef.current?.duration || 0);
     if (isPlay) audioRef.current?.play().catch((error) => console.log(error));
+    setPlay(true)
   };
   const handlePausePlayClick = () => {
     if (isPlay) {
@@ -99,6 +96,7 @@ const AudioPlayer = () => {
 
   const handleTimeSliderChange = ({ x }) => {
     if (audioRef.current) {
+
       audioRef.current.currentTime = x;
       setCurrentTime(x);
     }
@@ -154,7 +152,7 @@ const AudioPlayer = () => {
   useEffect(() => {
     if (audioRef.current && songs[audioIndex]) {
       audioRef.current.src = songs[audioIndex].lyrics;
-      audioRef.current.play().catch((error) => console.log(error));
+      // audioRef.current.play().catch((error) => console.log(error));
       setPlay(true);
     }
   }, [audioIndex, songs]);
@@ -213,86 +211,85 @@ const AudioPlayer = () => {
             </div>
           </div>
 
-          <div className="timeSliderCustom">
-            <div className="time-display">
-              <span className="time1">{formatTime(currentTime)}</span>
+            <div className="timeSliderCustom">
+              <div className="time-display">
+                <span className="time1">{formatTime(currentTime)}</span>
+                <TimeSlider
+                    axis="x"
+                    xmax={duration}
+                    x={currentTime}
+                    onChange={handleTimeSliderChange}
+                    styles={{
+                      track: {
+                        backgroundColor: "#e3e3e3",
+                        height: "3px",
+                      },
+                      active: {
+                        backgroundColor: "#333",
+                        height: "3px",
+                      },
+                      thumb: {
+                        marginTop: "-1.5px",
+                        width: "10px",
+                        height: "10px",
+                        backgroundColor: "#333",
+                        borderRadius: 50,
+                      },
+                    }}
+                />
+                <span className="time2">{formatTime(duration)}</span>
+              </div>
+            </div>
+            <div/>
+          </div>
+          <div className="sound-control d-flex justify-content-end col-3">
+            <div className="sound-icon" onClick={handleSound} style={{position:'absolute', left:'110px', top: '41px'}}>
+              {volume === 0 ? <IConSoundOff/> : <IConSoundOn/>}
+            </div>
+            <div className="sound-bar" style={{width:'35px'}}>
               <TimeSlider
-                axis="x"
-                xmax={duration}
-                x={currentTime}
-                onChange={handleTimeSliderChange}
-                styles={{
-                  track: {
-                    backgroundColor: "#e3e3e3",
-                    height: "3px",
-                  },
-                  active: {
-                    backgroundColor: "#333",
-                    height: "3px",
-                  },
-                  thumb: {
-                    marginTop: "-1.5px",
-                    width: "10px",
-                    height: "10px",
-                    backgroundColor: "#333",
-                    borderRadius: 50,
-                  },
-                }}
+                  axis="x"
+                  xmax={1}
+                  xmin={0}
+                  xstep={0.01}
+                  x={volume}
+                  onChange={handleVolumeChange}
+                  styles={{
+                    track: {
+                      backgroundColor: "#e3e3e3",
+                      height: "3px",
+                      width:'100px',
+                      marginLeft: "10px",
+                    },
+                    active: {
+                      backgroundColor: "#89878d",
+                      height: "3px",
+                    },
+                    thumb: {
+                      marginTop: "-1.5px",
+                      width: "10px",
+                      height: "10px",
+                      backgroundColor: "#a5a3a3",
+                      borderRadius: 50,
+                    },
+                  }}
               />
-              <span className="time2">{formatTime(duration)}</span>
             </div>
           </div>
-          <div />
-        </div>
-        <div className="sound-control d-flex justify-content-end col-3">
-          <div
-            className="sound-icon"
-            onClick={handleSound}
-            style={{ position: "absolute", left: "110px", top: "41px" }}
-          >
-            {volume === 0 ? <IConSoundOff /> : <IConSoundOn />}
-          </div>
-          <div className="sound-bar" style={{ width: "35px" }}>
-            <TimeSlider
-              axis="x"
-              xmax={1}
-              xmin={0}
-              xstep={0.01}
-              x={volume}
-              onChange={handleVolumeChange}
-              styles={{
-                track: {
-                  backgroundColor: "#e3e3e3",
-                  height: "3px",
-                  width: "100px",
-                  marginLeft: "10px",
-                },
-                active: {
-                  backgroundColor: "#89878d",
-                  height: "3px",
-                },
-                thumb: {
-                  marginTop: "-1.5px",
-                  width: "10px",
-                  height: "10px",
-                  backgroundColor: "#a5a3a3",
-                  borderRadius: 50,
-                },
-              }}
-            />
-          </div>
-        </div>
-      </div>
 
-      <audio
-        ref={audioRef}
-        src={songs[audioIndex]?.lyrics}
-        onLoadedData={handleLoadedData}
-        onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime || 0)}
-        onEnded={handleSongs}
-      />
-    </div>
+        </div>
+
+        <audio
+            ref={audioRef}
+            src={songs[audioIndex]?.lyrics}
+            onLoadedData={handleLoadedData}
+            onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime)}
+            onEnded={handleSongs}
+        />
+
+      </div>
   );
 };
 
 export default AudioPlayer;
+

@@ -46,7 +46,7 @@ function AddPlaylistToSongModal(props) {
         try {
             const selectedPlaylist = JSON.parse(values.playlist);
             const response = await axios.patch(`http://localhost:8080/songs/${song.id}/add-to-playlist/${selectedPlaylist.id}`);
-            toast.success("");
+            toast.success("Add song successfully");
             handleClose();
             if (response.status === 200) {
                 console.log(`Successfully updated song with playlist ID ${selectedPlaylist.id}`);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ArtistCarousel.css';
 import Card from 'react-bootstrap/Card';
+import {Link} from "react-router-dom";
 
 const ArtistCarousel = () => {
     const [artists, setArtists] = useState([]);
@@ -31,16 +32,18 @@ const ArtistCarousel = () => {
                 <div className="zm-carousel">
                     <div className="zm-carousel__container12">
                         {artists.map((artist, index) => (
-                            <div className="zm-carousel-item12" key={artist.id} style={{ width : "50%",padding:'0 80px'}}  >
+                            <div className="zm-carousel-item12" key={artist.id}
+                                 style={{width: "100%", padding: '0 50px'}}>
                                 <div className="">
                                     <div className="zm-card">
-                                        <a href={`/artists/detail/${artist.id}`} title={artist.name}>
+                                        <Link to={`/artists/detail/${artist.id}`} title={artist.name}>
                                             <div className="zm-card-image">
-                                                <figure className="image is-20x48">
-                                                    <img src={artist.img} alt={artist.name} style={{height: '150px'}}/>
+                                                <figure className="image">
+                                                    <img src={artist.img} alt={artist.name}
+                                                         style={{ height: '150px', width: '300px' }} />
                                                 </figure>
                                             </div>
-                                        </a>
+                                        </Link>
                                         <div className="zm-card-content12 ">
                                             <h3 className="subtitle12" style={{left: "100px"}}>{artist.name}</h3>
                                         </div>

@@ -14,7 +14,6 @@ export function Topbar({ children, changeModal, loginStatus }) {
   const name = localStorage.getItem("userName");
 
   const [reload, setReload] = useState(false);
-
   useEffect(() => {
     setReload(!reload);
   }, [loginStatus]);
@@ -52,72 +51,107 @@ export function Topbar({ children, changeModal, loginStatus }) {
       setFilteredResults([]);
     }
   };
+
+  const getLinkPath = (result) => {
+    switch (result.type) {
+      case "Artist":
+        return `/artists/detail/${result.id}`;
+      case "Song":
+        return `/songs/detail/${result.id}`;
+      case "Album":
+        return `/albums/detail/${result.id}`;
+      default:
+        return "/";
+    }
+  };
+
   return (
-    <>
-      <nav className="navbar navbar-expand navbar-light topbar mb-4 static-top shadow topbar" >
-        <Link to="/">
-          {" "}
-          <button
-            id="sidebarToggleTop"
-            className="btn btn-link d-md-none rounded-circle mr-3"
-          >
-            <i className="fa fa-bars"></i>
-          </button>{" "}
-        </Link>
-        <div className="search-bar-container">
-          <form className="search-form">
-            <div className="search-input-group">
-              <i className="fas fa-search search-icon"></i>
-              <input
-                type="text"
-                className="search-input"
-                placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..."
-                aria-label="Search"
-                value={search}
-                onChange={handleChange}
-              />
-            </div>
-          </form>
-          {filteredResults.length > 0 && (
-            <div className="results-list">
-              {filteredResults.map((result, index) => (
-                <div key={index}>
-                  <Link to={"/"}>
-                    {result.title || result.name}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-        <ul className="navbar-nav ml-auto">
-          <SettingsButton />
-          <div className="topbar-divider d-none d-sm-block"></div>
-          <li className="nav-item dropdown no-arrow">
-            <div
-              className="nav-link dropdown-toggle"
-              id="userDropdown"
-              role="button"
-              aria-haspopup="true"
-              aria-expanded="false"
+      <>
+        <nav className="navbar navbar-expand navbar-light topbar mb-4 static-top shadow topbar">
+          <Link to="/">
+            {" "}
+            <button
+                id="sidebarToggleTop"
+                className="btn btn-link d-md-none rounded-circle mr-3"
             >
-              {name && (
-                <span className="mr-2 d-none d-lg-inline text-gray-600 small">
+              <i className="fa fa-bars"></i>
+            </button>{" "}
+          </Link>
+          <div className="search-bar-container">
+            <form className="search-form">
+              <div className="search-input-group">
+                <i className="fas fa-search search-icon"></i>
+                <input
+                    type="text"
+                    className="search-input"
+                    placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..."
+                    aria-label="Search"
+                    value={search}
+                    onChange={handleChange}
+                />
+              </div>
+            </form>
+            {filteredResults.length > 0 && (
+                <div className="results-list">
+                  {filteredResults.map((result, index) => (
+                      <div key={index}>
+                        <Link to={getLinkPath(result)}>
+                          {result.title || result.name}
+                        </Link>
+                      </div>
+                  ))}
+                </div>
+            )}
+          </div>
+          <ul className="navbar-nav ml-auto">
+            <SettingsButton />
+            <div className="topbar-divider d-none d-sm-block"></div>
+            <li className="nav-item dropdown no-arrow">
+              <div
+                  className="nav-link dropdown-toggle"
+                  id="userDropdown"
+                  role="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+              >
+                {name && (
+                    <span className="mr-2 d-none d-lg-inline text-gray-600 small">
                   {name}
                 </span>
-              )}
-              <img
-                className="img-profile rounded-circle"
-                src="img/images.png"
-                alt="profile"
-                onClick={() => {
-                  changeModal();
-                }}
-              />
-            </div>
-          </li>
-        </ul>
-      </nav>
-    </>
+                )}
+                <img
+                    className="img-profile rounded-circle"
+                    src="img/images.png"
+                    alt="profile"
+                    onClick={() => {
+                      changeModal();
+                    }}
+                />
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

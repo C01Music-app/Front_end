@@ -21,6 +21,10 @@ const DetailSong = () => {
   const [commentToDelete, setCommentToDelete] = useState(null);
   const userName = localStorage.getItem("userName");
 
+  const isRoleName = localStorage.getItem("roles");
+
+
+
   const handleShowModal = (commentId) => {
     setCommentToDelete(commentId);
     setShowModal(true);
@@ -145,12 +149,14 @@ const DetailSong = () => {
         </Modal>
       </div>
       <div className="comment-section">
+        {(isRoleName==="ADMIN" || isRoleName === "USER" ) && (
         <Button
           className="comment-button"
           onClick={() => setShowCommentBox(!showCommentBox)}
         >
           Bình luận
         </Button>
+        )}
         {showCommentBox && (
           <div className="comment-box nam">
             <textarea

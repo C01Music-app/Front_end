@@ -6,12 +6,19 @@ import { FaPencilAlt } from "react-icons/fa";
 import "./PlayList.css";
 import { EditPlaylistModal } from "./EditPlaylistModal";
 import LikeButton from './LikeButton';  // Import the LikeButton component
+// import { EditPlaylistModal } from "./EditPlaylistModal";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIndex, selectSongs } from "../../../redux/action";
 
 export function Playlist() {
     const [modalShow, setModalShow] = useState(false);
-    const [playlist, setPlaylist] = useState(null);
+    const [playlist, setPlaylist] = useState([]);
     const [songs, setSongs] = useState([]);
+    const [isEditing, setIsEditing] = useState(false);
+    const [newTitle, setNewTitle] = useState('');
     const { id } = useParams();
+    const dispatch = useDispatch();
+    const listSongs = useSelector(state => state.songs);
     const userId = parseInt(localStorage.getItem("idUser"));  // Assuming userId is stored in localStorage
 
     const openModal = () => {
@@ -23,6 +30,7 @@ export function Playlist() {
             const res = await axios.get(`http://localhost:8080/playlists/detail/${id}`);
             console.log("Playlist Data:", res.data);
             setPlaylist(res.data);
+            setNewTitle(res.data.title);
         } catch (error) {
             console.error('Error fetching playlist data:', error);
         }
@@ -38,20 +46,41 @@ export function Playlist() {
         }
     };
 
+    const handleEditTitle = async () => {
+        try {
+            const res = await axios.put(`http://localhost:8080/playlists/${id}`, { title: newTitle });
+            console.log("Updated Playlist Data:", res.data);
+            setPlaylist(res.data);
+            setIsEditing(false);
+        } catch (error) {
+            console.error('Error updating playlist title:', error);
+        }
+    };
+
     useEffect(() => {
         if (id) {
             getPlaylistById();
             getAllSongs();
         }
     }, [id, modalShow]);
+    // code của trường
+    useEffect(() => {
+        if (Array.isArray(songs)) {
+            const filtered = songs.filter(song =>
+                song.playlists.some(p => p.id === parseInt(id))
+            );
+            // thêm phần này
+            dispatch(selectSongs(filtered));
+        }
+    }, [songs, id, dispatch]);
 
     if (!playlist) {
         return <div>...Loading</div>;
     }
 
-    const filteredSongs = Array.isArray(songs) ? songs.filter(song =>
-        song.playlists.some(p => p.id === parseInt(id))
-    ) : [];
+    const handleClickSong = (index) =>{
+        dispatch(selectIndex(index));
+    }
 
     const handleDelete = async (songId, playlistId) => {
         try {
@@ -79,6 +108,7 @@ export function Playlist() {
             console.error('Lỗi khi xoá playlist từ bài hát:', error);
         }
     };
+
 
     return (
         <div className="playlist1 col-12 px-5">
@@ -121,9 +151,16 @@ export function Playlist() {
                     </tr>
                     </thead>
                     <tbody>
-                    {filteredSongs.map((song, index) => (
+                    {listSongs.map((song, index) => (
                         <tr key={index}>
-                            <td><img src={song.imgSongs} alt={song.title} className="img-fluid rounded-circle" /></td>
+                            <td>
+                                <img
+                                    src={song.imgSongs}
+                                    alt={song.title}
+                                    className="img-fluid rounded-circle"
+                                    onClick={() => { handleClickSong(index) }}
+                                />
+                            </td>
                             <td>{song.title}</td>
                             <td>{song.artist.map((a) => a.name).join(', ')}</td>
                             <td>{song.album || 'N/A'}</td>

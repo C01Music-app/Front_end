@@ -62,4 +62,15 @@ export const updateSongs = async (Songs) => {
 
   return res.data;
 };
+export const unlikeSong = async (userId, songId) => {
+  try {
+    await axios.delete(`http://localhost:8080/likes/song/${songId}/unlike`, {
+      data: { userId }
+    });
+  } catch (error) {
+    console.error('Error unliking song:', error);
+    throw error;
+  }
+};
+
 

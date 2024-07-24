@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './img/ImageSlider.css';
 
 const images = [
-    'https://photo-zmp3.zmdcdn.me/banner/4/9/4/a/494a2c78b19387bff1eb1da5fddbe500.jpg',
-    'https://photo-zmp3.zmdcdn.me/banner/8/4/e/4/84e496159fd5e94624dc869267d6929a.jpg',
-    'https://photo-zmp3.zmdcdn.me/banner/2/d/3/7/2d378748d8fec62f7270cf726d4d309d.jpg'
+    'https://photo-zmp3.zmdcdn.me/banner/c/b/0/d/cb0dee2e4aec359faa6014d565dc6045.jpg',
+    'https://photo-zmp3.zmdcdn.me/banner/f/c/7/e/fc7e6d84f690eb1e1e3b029b229e1617.jpg',
+    'https://photo-zmp3.zmdcdn.me/banner/a/9/d/7/a9d7fb528fa70ad2c33e175d99a89d7c.jpg'
 ];
 
 const ImageSlider = () => {

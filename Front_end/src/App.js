@@ -28,6 +28,7 @@ import ArtistsList from "./components/List/Artists/ArtistsList";
 import {DetailArtists} from "./components/List/Artists/DetailArtists";
 import CreateArtist from "./components/List/Artists/CreateArtist";
 import UpdateArtist from "./components/List/Artists/UpdateArtist";
+import Password from "./components/updateUser/Password";
 
 
 function App() {
@@ -86,6 +87,7 @@ function App() {
                   <Route path="/artists/detail/:id" element={<DetailArtists />} />
                   <Route path="/artists/update/:id" element={<UpdateArtist />} />
                   <Route path="/artists/create" element={<CreateArtist />} />
+                <Route path="/password" element={<Password />} />
               </Route>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
