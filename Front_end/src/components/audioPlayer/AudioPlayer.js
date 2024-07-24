@@ -38,20 +38,23 @@ const AudioPlayer = () => {
     }
 
     const updateCurrentTime = setInterval(() => {
+
       if (audioRef.current) {
         setCurrentTime(audioRef.current.currentTime);
         localStorage.setItem("currentTime", audioRef.current.currentTime);
+
       }
     }, 1000);
 
-    return () => clearInterval(updateCurrentTime);
+      return () =>  {
+        clearInterval(updateCurrentTime);
+        console.log()
+      }
   }, []);
 
   useEffect(() => {
     localStorage.setItem("isPlaying", isPlay);
     localStorage.setItem("volume", volume);
-    console.log("-------------------------------useEffect2------------------------")
-    console.log("trạng thái" + isPlay)
   }, [isPlay, volume]);
 
   useEffect(() => {
@@ -93,6 +96,7 @@ const AudioPlayer = () => {
 
   const handleTimeSliderChange = ({ x }) => {
     if (audioRef.current) {
+
       audioRef.current.currentTime = x;
       setCurrentTime(x);
     }
@@ -279,9 +283,10 @@ const AudioPlayer = () => {
             ref={audioRef}
             src={songs[audioIndex]?.lyrics}
             onLoadedData={handleLoadedData}
-            onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime || 0)}
+            onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime)}
             onEnded={handleSongs}
         />
+
       </div>
   );
 };
