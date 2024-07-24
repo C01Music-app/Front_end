@@ -11,7 +11,7 @@ const AudioPlayer = () => {
   const currentIndexSong = useSelector((state) => state.currentSongIndex);
   const songList = useSelector((state) => state.songs);
   const audioRef = useRef();
-  const [audioIndex, setAudioIndex] = useState(currentIndexSong || 0);
+  const [audioIndex, setAudioIndex] = useState(currentIndexSong);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isPlay, setPlay] = useState(false);
@@ -21,8 +21,8 @@ const AudioPlayer = () => {
   const [songs, setSongs] = useState(songList);
 
   useEffect(() => {
-    const savedIsPlay = localStorage.getItem("isPlaying") === "true";
-    const savedCurrentTime = parseFloat(localStorage.getItem("currentTime") || 0);
+    const savedIsPlay = localStorage.getItem("isPlaying");
+    const savedCurrentTime = parseFloat(localStorage.getItem("currentTime"));
     setCurrentTime(savedCurrentTime);
     setPlay(savedIsPlay);
 
@@ -50,6 +50,8 @@ const AudioPlayer = () => {
   useEffect(() => {
     localStorage.setItem("isPlaying",isPlay);
     localStorage.setItem("volume", volume);
+    console.log("-------------------------------useEffect2------------------------")
+    console.log("trạng thái" + isPlay)
   }, [isPlay, volume]);
 
   useEffect(() => {
@@ -68,15 +70,16 @@ const AudioPlayer = () => {
     localStorage.setItem("currentIndexSong", currentIndexSong);
     setAudioIndex(currentIndexSong);
     if (audioRef.current && songs.length > 0) {
-      audioRef.current.src = songs[currentIndexSong]?.lyrics || "";
-      audioRef.current.play().catch((error) => console.log(error));
-      setPlay(false);
+      // audioRef.current.src = songs[currentIndexSong]?.lyrics || "";
+      // audioRef.current.play().catch((error) => console.log(error));
+      // setPlay(false);
     }
   }, [currentIndexSong, songs]);
 
   const handleLoadedData = () => {
     setDuration(audioRef.current?.duration || 0);
     if (isPlay) audioRef.current?.play().catch((error) => console.log(error));
+    setPlay(false)
   };
   const handlePausePlayClick = () => {
     if (isPlay) {
@@ -87,14 +90,14 @@ const AudioPlayer = () => {
     setPlay(!isPlay);
   };
 
-  const handleTimeSliderChange = ({x}) => {
+  const handleTimeSliderChange = ({ x }) => {
     if (audioRef.current) {
       audioRef.current.currentTime = x;
       setCurrentTime(x);
     }
   };
 
-  const handleVolumeChange = ({x}) => {
+  const handleVolumeChange = ({ x }) => {
     const newVolume = Math.min(Math.max(x, 0), 1);
     setVolume(newVolume);
     if (audioRef.current) {
@@ -144,8 +147,8 @@ const AudioPlayer = () => {
   useEffect(() => {
     if (audioRef.current && songs[audioIndex]) {
       audioRef.current.src = songs[audioIndex].lyrics;
-      audioRef.current.play().catch((error) => console.log(error));
-      setPlay(true);
+      // audioRef.current.play().catch((error) => console.log(error));
+      // setPlay(true);
     }
   }, [audioIndex, songs]);
 
@@ -162,7 +165,7 @@ const AudioPlayer = () => {
             {songs[audioIndex] && (
                 <>
                   <h2 className="Song-Title">{songs[audioIndex].title}</h2>
-                  <p className="Singer">{songs[audioIndex].artist}</p>
+                  {/*<p className="Singer">{songs[audioIndex].artist.info}</p>*/}
                 </>
             )}
           </div>
@@ -279,3 +282,4 @@ const AudioPlayer = () => {
 };
 
 export default AudioPlayer;
+
