@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import axios from "axios";
-import * as songs from "react-bootstrap/ElementChildren";
+import {useDispatch, useSelector} from "react-redux";
+import {selectIndex, selectSongs} from "../../../redux/action";
 
 export function DetailArtists() {
     const [artist, setArtist] = useState(null);
     const {id} = useParams();
-    const [song, setSongs] = useState([]);
+    const [songs, setSongs] = useState([]);
+    const dispatch = useDispatch();
+    const listSongs = useSelector(state => state.songs);
 
 
     const getByIdArtists = async () => {
@@ -34,10 +37,21 @@ export function DetailArtists() {
             console.error('Error fetching songs data:', error);
         }
     };
+    useEffect(() => {
+        if (Array.isArray(songs)) {
+            const filteredSong = songs.filter(song =>
+                song.artist.some(p => p.id === parseInt(id, 10))
+            );
+            dispatch(selectSongs(filteredSong));
+        }
+    }, [songs, id, dispatch]);
 
-    const filteredSongs = Array.isArray(song) ? song.filter(song =>
-        song.artist.some(p => p.id === parseInt(id))
-    ) : [];
+
+    const handleClickSong = (index) => {
+        dispatch(selectIndex(index));
+    };
+
+
 
     if (!artist) {
         return <div>...Loading</div>;
@@ -51,7 +65,7 @@ export function DetailArtists() {
                         <div className="col-md-6 offset-md-3">
                             <div className="card">
                                 <img src={artist.img} className="card-img-top" alt={artist.name}
-                                     style={{maxWidth: '100%', height: 'auto'}}/>
+                                     style={{maxWidth: '100%', height: 'auto'}} />
                                 <div className="card-body" style={{color:"black"}}>
                                     <h5 className="card-title">{artist.name}</h5>
                                     <p className="card-text">{artist.info}</p>
@@ -74,9 +88,11 @@ export function DetailArtists() {
                         </tr>
                         </thead>
                         <tbody>
-                        {filteredSongs.map((song, index) => (
+                        {listSongs.map((song, index) => (
                             <tr key={index}>
-                                <td><img src={song.imgSongs} alt={song.title} className="img-fluid rounded-circle"/></td>
+                                <td><img src={song.imgSongs} alt={song.title} className="img-fluid rounded-circle"
+                                         onClick={() => { handleClickSong(index) }}
+                                /></td>
                                 <td>{song.title}</td>
                                 <td>{song.artist.map((a) => a.name).join(', ')}</td>
                                 <td>{song.album || 'N/A'}</td>

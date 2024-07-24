@@ -56,7 +56,8 @@ const AudioPlayer = () => {
 
   useEffect(() => {
     setSongs(songList);
-    setPlay(false)
+    localStorage.removeItem("isPlaying");
+    localStorage.removeItem("currentIndexSong")
     }, [songList]);
 
   useEffect(() => {
@@ -72,14 +73,14 @@ const AudioPlayer = () => {
     if (audioRef.current && songs.length > 0) {
       // audioRef.current.src = songs[currentIndexSong]?.lyrics || "";
       // audioRef.current.play().catch((error) => console.log(error));
-      // setPlay(false);
+      setPlay(false);
     }
   }, [currentIndexSong, songs]);
 
   const handleLoadedData = () => {
     setDuration(audioRef.current?.duration || 0);
     if (isPlay) audioRef.current?.play().catch((error) => console.log(error));
-    setPlay(false)
+    setPlay(true)
   };
   const handlePausePlayClick = () => {
     if (isPlay) {
@@ -148,7 +149,7 @@ const AudioPlayer = () => {
     if (audioRef.current && songs[audioIndex]) {
       audioRef.current.src = songs[audioIndex].lyrics;
       // audioRef.current.play().catch((error) => console.log(error));
-      // setPlay(true);
+      setPlay(true);
     }
   }, [audioIndex, songs]);
 
