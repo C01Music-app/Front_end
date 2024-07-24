@@ -74,7 +74,8 @@ export const UpdateSongs = ({ closeModal, id, showUpdate }) => {
 
   const handleUpdateSongs = async (value) => {
     try {
-      await updateSongs(value, id);
+      const newV = { ...value, artist: [JSON.parse(value.artist)] };
+      await updateSongs(newV, id);
       toast.success("Cập nhật thành công");
       navigate(`/songs/detail/${id}`);
       closeModal();
@@ -169,7 +170,7 @@ export const UpdateSongs = ({ closeModal, id, showUpdate }) => {
                         </Field>
                       </div>
 
-                      <div className="form-group mb-2">
+                      {/* <div className="form-group mb-2">
                         <label className="form-label" htmlFor="imgSongs">
                           Ảnh
                         </label>
@@ -181,7 +182,7 @@ export const UpdateSongs = ({ closeModal, id, showUpdate }) => {
                             uploadFileImg(event.target.files[0]);
                           }}
                         />
-                      </div>
+                      </div> */}
                       <div className="form-group mb-2">
                         <label className="form-label" htmlFor="lyrics">
                           File nhạc
