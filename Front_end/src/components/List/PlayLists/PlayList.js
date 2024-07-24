@@ -78,10 +78,9 @@ export function Playlist() {
         return <div>...Loading</div>;
     }
 
-    // Lọc các bài hát dựa trên id của playlist
-    const filteredSongs = Array.isArray(songs) ? songs.filter(song =>
-        song.playlists.some(p => p.id === parseInt(id))
-    ) : [];
+    const handleClickSong = (index) =>{
+        dispatch(selectIndex(index));
+    }
 
     const handleDelete = async (songId, playlistId) => {
         try {
