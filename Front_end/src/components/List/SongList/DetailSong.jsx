@@ -20,7 +20,10 @@ const DetailSong = () => {
   const [showModal, setShowModal] = useState(false);
   const [commentToDelete, setCommentToDelete] = useState(null);
   const userName = localStorage.getItem("userName");
+
   const isRoleName = localStorage.getItem("roles");
+
+
 
   const handleShowModal = (commentId) => {
     setCommentToDelete(commentId);
