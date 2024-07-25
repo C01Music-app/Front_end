@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { findByID, removeSongs } from "../../../service/SongsService";
 import { toast } from "react-toastify";
+import {useNavigate} from "react-router-dom";
 
 const DeleteSongs = ({ showDelete, closeModal, id }) => {
   const [song, setSongs] = useState();

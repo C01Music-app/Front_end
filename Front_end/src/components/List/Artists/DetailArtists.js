@@ -37,18 +37,18 @@ export function DetailArtists() {
             console.error('Error fetching songs data:', error);
         }
     };
-    useEffect(() => {
-        if (Array.isArray(songs)) {
+
             const filteredSong = songs.filter(song =>
-                song.artist.some(p => p.id === parseInt(id, 10))
-            );
-            dispatch(selectSongs(filteredSong));
-        }
-    }, [songs, id, dispatch]);
+                song.artist.some(p => p.id === parseInt(id, 10)));
+
+
+
+
 
 
     const handleClickSong = (index) => {
         dispatch(selectIndex(index));
+        dispatch(selectSongs(filteredSong));
     };
 
 
@@ -74,7 +74,6 @@ export function DetailArtists() {
                         </div>
                     </div>
                 </div>
-
                 <div className="container mt-5">
                     <h2 className="mb-4">Danh sách các bài hát</h2>
                     <table className="table">
@@ -88,7 +87,7 @@ export function DetailArtists() {
                         </tr>
                         </thead>
                         <tbody>
-                        {listSongs.map((song, index) => (
+                        {filteredSong.map((song, index) => (
                             <tr key={index}>
                                 <td><img src={song.imgSongs} alt={song.title} className="img-fluid rounded-circle"
                                          onClick={() => { handleClickSong(index) }}

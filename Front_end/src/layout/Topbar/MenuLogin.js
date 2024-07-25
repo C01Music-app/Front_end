@@ -58,7 +58,7 @@ const MenuLogin = ({ closeModal, changeStatusLogin }) => {
           <a>Tìm hiểu thêm</a>
         </div>
 
-        {(isRoleName==="ADMIN" || isRoleName==="USER")&&(<a class="zm-btn button" tabindex="0" href="/in">
+        {isRoleName==="ADMIN" &&(<a class="zm-btn button" tabindex="0" href="/in">
           <i class="icon ic-upload"></i>
           <span>Tải lên</span>
         </a>
