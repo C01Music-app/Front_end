@@ -121,7 +121,6 @@ const DetailSong = () => {
             <p>
               Ngày phát hành: {new Date(songs.dateStart).toLocaleDateString()}
             </p>
-            <p>Cung cấp bởi: {songs.provider}</p>
           </div>
         </div>
         <div className="song-player">
@@ -132,8 +131,8 @@ const DetailSong = () => {
         </button>
 
         <Modal show={showModal} onHide={handleCloseModal}>
-          <Modal.Header closeButton>
-            <Modal.Title className="vixinh">Xác Nhận Xóa</Modal.Title>
+          <Modal.Header closeButton className="vixinh">
+            <Modal.Title >Xác Nhận Xóa</Modal.Title>
           </Modal.Header>
           <Modal.Body className="nam">
             Bạn có chắc chắn muốn xóa bình luận này không?

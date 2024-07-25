@@ -5,6 +5,7 @@ import TimeSlider from "react-input-slider";
 import {useSelector, useDispatch} from "react-redux";
 import {selectIndex} from "../../redux/action";
 import {IConSoundOff, IConSoundOn} from "./IConAudio";
+import {log} from "react-modal/lib/helpers/bodyTrap";
 
 const AudioPlayer = () => {
   const dispatch = useDispatch();
@@ -66,7 +67,7 @@ const AudioPlayer = () => {
   useEffect(() => {
     const savedIndex = localStorage.getItem("currentIndexSong");
     if (savedIndex !== null) {
-      dispatch(selectIndex(parseInt(savedIndex, 10)));
+      // dispatch(selectIndex(parseInt(savedIndex, 10)));
     }
   }, [dispatch]);
 

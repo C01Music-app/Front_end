@@ -178,6 +178,7 @@ export const UpdateSongs = ({ closeModal, id, showUpdate, closePopup }) => {
                           onChange={(event) => {
                             uploadFileImg(event.target.files[0]);
                           }}
+
                         />
                       </div>
                       <div className="form-group mb-2">

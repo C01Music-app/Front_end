@@ -63,16 +63,11 @@ export function Playlist() {
             getAllSongs();
         }
     }, [id, modalShow]);
-    // code của trường
-    useEffect(() => {
-        if (Array.isArray(songs)) {
-            const filtered = songs.filter(song =>
-                song.playlists.some(p => p.id === parseInt(id))
-            );
-            // thêm phần này
-            dispatch(selectSongs(filtered));
-        }
-    }, [songs, id, dispatch]);
+
+    const filtered = songs.filter(song =>
+        song.playlists.some(p => p.id === parseInt(id))
+    );
+
 
     if (!playlist) {
         return <div>...Loading</div>;
@@ -80,6 +75,7 @@ export function Playlist() {
 
     const handleClickSong = (index) =>{
         dispatch(selectIndex(index));
+        dispatch(selectSongs(filtered));
     }
 
     const handleDelete = async (songId, playlistId) => {
@@ -131,9 +127,6 @@ export function Playlist() {
                                 playlistId={playlist.id} // Pass playlistId to EditPlaylistModal
                             />
                         </div>
-                        <div className="playlist-creator">
-                            Tạo bởi <span>{playlist.user ? playlist.user.userName : 'Unknown'}</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -151,7 +144,7 @@ export function Playlist() {
                     </tr>
                     </thead>
                     <tbody>
-                    {listSongs.map((song, index) => (
+                    {filtered.map((song, index) => (
                         <tr key={index}>
                             <td>
                                 <img
